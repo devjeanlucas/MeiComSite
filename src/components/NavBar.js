@@ -4,7 +4,7 @@ export default function NavBar () {
 return (
     <div className={styles.container}>
         <div className={styles.content}>
-            <h4>MeiComSite</h4>
+            <h4>MeiComSite </h4>
             <div className={styles.menu}>
                 <p>Soluções</p>
                 <p>Planos e Preços</p>
