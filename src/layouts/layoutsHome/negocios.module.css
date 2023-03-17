@@ -2,6 +2,8 @@
     .container {
         width: 100%;
         text-align: center;
+        margin-bottom: 5em ;
+        background-color: #fff;
     }
     .img {
     width: 100%;
@@ -29,7 +31,7 @@
 @media screen and (min-width:560px) {
     .img {
         width: 80%;
-        height: 450px;
+        height: 480px;
         }
     .big_text {
     font-size: 4em;
