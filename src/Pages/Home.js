@@ -1,3 +1,4 @@
+import BoxCriar from "../layouts/layoutsHome/BoxCriar";
 import BoxCriarSiteGuia from "../layouts/layoutsHome/BoxCriarSiteGuia";
 import BoxModalidade from "../layouts/layoutsHome/BoxModalidades";
 import BoxPix from "../layouts/layoutsHome/BoxPix";
@@ -14,6 +15,7 @@ return (
         <BoxCriarSiteGuia/>
         <BoxModalidade/>
         <BoxTemplates/>
+        <BoxCriar/>
     </div>    
     )
 }

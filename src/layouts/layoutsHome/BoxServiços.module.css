@@ -1,9 +1,7 @@
 @media screen and (min-width:320px) {
     .container {
         width: 100%;
-        box-shadow: 1px 1px 4px #a1a1a1;
         margin-bottom: 2em;
-        background-color: #F7F7F7;
         }
         .container_img {
         width: 100%;

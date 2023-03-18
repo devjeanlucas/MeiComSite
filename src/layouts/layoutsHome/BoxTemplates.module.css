@@ -4,8 +4,19 @@ align-items: center;
 .container {
 margin-bottom: 4em;
 }
-.box {
-width: 100%;
-height: 400px;
-background-color: #818181;
+.container h4 {
+text-align: center;
+margin-top: 0.7em;
+}
+.cont_img img {
+    width: 100% ;
+    height: 300px;
+}
+.name_template {
+text-align: right;
+font-size: 1.2em;  
+font-weight: 600; 
+}
+.cont_slides {
+margin-left: 1em !important;
 }

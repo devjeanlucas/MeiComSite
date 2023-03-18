@@ -15,7 +15,7 @@ return (
                 </div>  
             </div>
             <div className="col-sm-5 col-md-4 order-2 order-sm-2">
-                <img src="https://img.freepik.com/vetores-gratis/ilustracao-de-pessoa-digitalizando-um-codigo-qr-com-um-smartphone_23-2148621302.jpg?w=740&t=st=1679004373~exp=1679004973~hmac=f65a619124e37143a7bb5805dfeca12e0236bd60201e863930611dee1d3fd2eb" className={styles.img}/>
+                <img src="https://img.freepik.com/vetores-gratis/varredura-de-codigo-qr-com-ilustracao-de-personagem_23-2148613581.jpg?w=740&t=st=1679161203~exp=1679161803~hmac=9f8b35bed70e3baf6e69e8bd80f907a689f5fb896a19a1daf85f923f5a7c7ba7" className={styles.img}/>
             </div>
             <div className="col-sm-4 order-1 order-sm-2">
                 <ul className={styles.list}>
