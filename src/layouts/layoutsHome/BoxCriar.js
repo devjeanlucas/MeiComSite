@@ -6,10 +6,9 @@ export default function BoxCriar () {
     return (
         <>
             <div className={styles.container}>
-                <div className="row">
+                <div className={`${styles.row} row`}>
                     <div className="col-sm-6">
                         <h1>Dê o primeiro passo</h1>
-
                     </div>
                     <div className="col-sm-6">
                         <a href="#">Começar <FaArrowRight/></a>

@@ -12,7 +12,7 @@ return (
             </div>
             <div className="col-md-7">
                 <div className={styles.container_text}>
-                    <h3>Entenda um Pouco sobre nós</h3>
+                    <h3>Se joga no novo!</h3>
                     <h4 className="title_light">Torne o seu negócio Virtual</h4>
                     <ul className={styles.list}>
                         <li><FaRegCheckCircle className={styles.icon}/> Controlador de estoque</li>

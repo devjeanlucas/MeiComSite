@@ -30,7 +30,7 @@ export default function BoxModalidade () {
                             </div>
                         </div>
                         <div className={styles.description}>
-                            <p>Exponha seus produtos de forma prática, facilitando a interação do seu cliente e a divulgação da sua loja.</p>
+                            <p>Mostre seus produtos de forma prática, facilitando a interação do seu cliente e a divulgação da sua loja.</p>
                         </div>
                     </div>
                 </div>
