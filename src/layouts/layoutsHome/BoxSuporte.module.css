@@ -4,9 +4,12 @@ width: 100%;
 .container_text {
 padding-top: 1.5em;
 }
+.container {
+margin-bottom: 7em;
+}
 .container a {
     color: #000;
-    font-size: 1.6em;
+    font-size: 1.4em;
 }
 .container_text h1 {
 font-size: 3.6em;
