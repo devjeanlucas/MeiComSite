@@ -7,7 +7,7 @@ return (
         <div className="row">
             <div className="col-md-5">
                 <div className={styles.container_img}>
-                    <img src="https://img.freepik.com/vetores-gratis/agencia-de-recrutamento-candidatos-e-entrevista-de-emprego_1262-18959.jpg?w=740&t=st=1678980514~exp=1678981114~hmac=db4b110b4babd4c54267cdd5ac3ca89d279b0ac822d1d2047f5eea6e8c010713"/>
+                    <img src="https://img.freepik.com/free-vector/online-marketing-abstract-concept-illustration-digital-marketing-online-sales-social-media-strategy-seo-optimization-ecommerce-agency-service-internet-advertising_335657-54.jpg?t=st=1679352992~exp=1679353592~hmac=c0b0553f5f33b4b9810f85089abea6060ab41f591f8bc669b1e7c24258a8eded"/>
                 </div>
             </div>
             <div className="col-md-7">

@@ -9,11 +9,15 @@
         .container {
             margin-bottom: 5em;
         }
+        .container h1 {
+        margin-left: 0.5em;}
         .box {
             width: 96%;
             box-shadow: 1px 1px 4px #979797;
             padding: 1em;
         }
+        .box h2 {
+        font-size: 1.6em;}
         .margin_top_2em {
             margin-top: 0em !important;
             box-sizing: border-box;
@@ -29,7 +33,7 @@
         .display_table {
         display: table !important;}
         .resposta {
-            font-size: 1.3em;
+            font-size: 1.1em;
             color: #646464;
         }
         .icon {

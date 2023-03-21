@@ -5,7 +5,6 @@ import BoxPix from "../layouts/layoutsHome/BoxPix";
 import BoxServiços from "../layouts/layoutsHome/boxServiços";
 import BoxSuporte from "../layouts/layoutsHome/BoxSuporte";
 import BoxTemplates from "../layouts/layoutsHome/BoxTemplates";
-import Footer from "../layouts/layoutsHome/Footer";
 import Negocios from "../layouts/layoutsHome/negocios";
 import PrincipaisDuvidas from "../layouts/layoutsHome/PrincipaisDuvidas";
 
@@ -21,7 +20,6 @@ return (
         <BoxCriar/>
         <BoxSuporte/>
         <PrincipaisDuvidas/>
-        <Footer/>
     </div>    
     )
 }

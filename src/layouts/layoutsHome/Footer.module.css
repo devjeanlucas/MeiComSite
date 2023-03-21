@@ -2,6 +2,7 @@
     .container {
         width: 100%;
         padding: 1em 5em 1em 1em;
+        margin-top: 5em;
     }
     .container_lists {
         display: none;
@@ -39,10 +40,11 @@
     }
     .mobile {
         display: block;
-        margin-top: 3em;
+        margin-top: 2em;
+        width: 300px !important;
     }
     .item {
-        border-bottom: 1px solid #000;
+        width: 100%;
     }
     .button {
         border: none !important;

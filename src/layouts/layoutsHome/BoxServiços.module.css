@@ -33,7 +33,7 @@
 }
 @media screen and (min-width:570px) {
     .list li {
-        font-size: 1.3em;
+        font-size: 1.1em;
         color: rgb(75, 75, 75);
     }
     .container_img img {
