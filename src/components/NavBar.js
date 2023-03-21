@@ -10,8 +10,8 @@ return (
             <Link to="/" className={styles.logo}>MeiComSite</Link>
             <div className={styles.menu}>
                 <p>Soluções</p>
-                <p>Planos e Preços</p>
-                <Link to="suporte">Ajuda</Link>
+                <Link to="/planos">Planos e Preços</Link>
+                <Link to="/suporte/query">Ajuda</Link>
             </div>
             <div className={styles.login}>
                 <button className="button_link">Entrar</button>

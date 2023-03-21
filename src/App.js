@@ -3,6 +3,9 @@ import Home from "./Pages/Home"
 import Suporte from "./Pages/Suporte";
 import Container from "./components/Container"
 import Footer from "./layouts/layoutsHome/Footer"
+import Response from "./layouts/layoutsSuporte/Response";
+import ControlSuporte from "./layouts/layoutsSuporte/ControlSuporte";
+import PlanosPreços from "./Pages/PlanosPreços"
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App() {
@@ -12,7 +15,12 @@ function App() {
         <Container>
             <Routes>
               <Route path="/" element={<Home/>}/>
-              <Route path="/suporte" element={<Suporte/>}/>
+
+              <Route path="suporte" element={<Suporte/>}>
+                <Route path="/suporte/query" element={<ControlSuporte/>}/>
+                <Route path="/suporte/:query" element={<Response/>}/>
+              </Route>
+              <Route path="/planos" element={<PlanosPreços/>}/>
             </Routes>
         </Container>
         <Footer/>

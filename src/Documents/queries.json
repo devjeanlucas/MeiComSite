@@ -1,0 +1,55 @@
+[
+    {
+        "pergunta":"passos",
+        "titulo":"Como começar?",
+        "resposta": 
+        [
+            {
+                "titulo":"1º passo:",
+                "conteudo": "Preencha o formulário"
+
+            },
+            {
+                "titulo": "2º passo:",
+                "conteudo":"Escolha o layout"
+            }
+        ]
+        
+        
+    },
+    {
+        "pergunta":"pagamentos",
+        "titulo":"Como funciona os pagamentos?",
+        "resposta":[
+            {
+                "titulo":"",
+                "conteudo":"Utilizamos o método de pagamento do pix do mercado pago."
+            },
+            {
+                "titulo":"",
+                "conteudo":"Através da sua própria conta do mercado pago cadastrada na plataforma o valor é depositado na mesma a MeiComsite não desconta nenhum valor da sua venda."
+            }
+            
+        ]
+    },
+    {
+        "pergunta":"fotos",
+        "titulo":"Como coloco minhas fotos?",
+        "resposta":[]
+    },
+    {
+        "pergunta":"preços",
+        "titulo":"Quanto custa?",
+        "resposta":[]
+    },
+    {
+        "pergunta":"criticasesugestoes",
+        "titulo":"Críticas e Sugestões",
+        "resposta":[]
+    },
+    {
+        "pergunta":"politicaeprivacidade",
+        "titulo":"Política e privacidade",
+        "resposta":[]
+    }
+]

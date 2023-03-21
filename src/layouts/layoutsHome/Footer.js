@@ -1,5 +1,6 @@
 import styles from "./Footer.module.css"
 import {FaInstagram,FaWhatsapp} from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 export default function Footer () {
     return (
@@ -41,7 +42,7 @@ export default function Footer () {
                         </ul>
                         <ul className={styles.list}>
                             <h4>Ajuda</h4>
-                            <li><a href="#">Central de ajuda</a></li>
+                            <Link to="/suporte/query">Central de ajuda</Link>
                             <li><a href="#">Entre em contato</a></li>
                         </ul>
                     </div>

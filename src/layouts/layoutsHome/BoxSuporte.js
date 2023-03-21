@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styles from "./BoxSuporte.module.css"
 
 export default function BoxSuporte () {
@@ -10,7 +11,7 @@ return (
                     <h1>Oferecemos todo suporte a você </h1>
                     <p>Conte conosco para tirar suas dúvidas sobre a MeiComSite com suporte 24h por Whatsapp ou E-mail</p>
                 </div>
-                <a href="#">Central de ajuda</a>
+                <Link to="/suporte/query">Central de ajuda</Link>
             </div>
             <div className="col-md-6">
                 <div>
