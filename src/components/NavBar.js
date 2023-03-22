@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import styles from "./NavBar.module.css"
-import {FaBars} from "react-icons/fa"
+import {FaBars, FaRegUser} from "react-icons/fa"
 import MenuMobile from "./MenuMobile"
+import ButtonLogin from "./ButtonLogin"
 
 export default function NavBar () {
 return (
@@ -14,8 +15,13 @@ return (
                 <Link to="/suporte/query">Ajuda</Link>
             </div>
             <div className={styles.login}>
-                <button className="button_link">Entrar</button>
-                <button className="button_orange">cadastre-se</button>
+                <div className={styles.border_left}></div>
+
+
+                <ButtonLogin/>
+
+
+
                 <div>
                     <FaBars className={`${styles.icon_mobile} navbar-toggler`} 
                     type="button" 

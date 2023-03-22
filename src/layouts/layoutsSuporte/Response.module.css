@@ -1,5 +1,5 @@
 .container {
-    margin: 4em 6em;
+    margin: 2em 1em;
 }
 .content {
 margin-top: 2em;
@@ -15,9 +15,6 @@ font-size: 1.5em;
 }
 .passos p {
 margin-bottom: 0px;}
-.title {
-margin: 1em;
-}
 .cont_button {
     margin: 5em 0em;
     display: flex;
