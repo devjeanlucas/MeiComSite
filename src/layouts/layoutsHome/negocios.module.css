@@ -23,16 +23,19 @@
         color: #000;
         text-decoration: none;
     }
-    .cont_buttons a button{
+    .btn_start{
         padding: 1em;
         border-radius: 10px;
         background-color: #ff9100 !important;
         color: #fff;
         border: none !important;
+        margin-right: 1em;
     }
-    .cont_buttons button:first-child {
+    .btn_plan{
         border: 1px solid #000;
         background-color: transparent;
+        padding: 1em;
+        border-radius: 10px;
     } 
     .container_img {
         width: 100%;

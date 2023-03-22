@@ -1,0 +1,21 @@
+.list {
+    padding: 1em;
+    list-style-type: none;
+}
+.list li {
+    display: flex;
+    font-size: 1.2em;
+}
+.list li p {
+    margin-right: 0.6em;
+}
+.cont_status {
+    padding: 1em;
+    background-color: #f7f7f7;
+    text-align: center;
+}
+.cont_status p {
+    margin-bottom: 0px;
+
+
+}

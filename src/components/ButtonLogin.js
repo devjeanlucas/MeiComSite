@@ -3,10 +3,11 @@ import { FaRegUser, FaSignOutAlt } from "react-icons/fa"
 import User from "../Hooks/User"
 import {firebase, auth} from "../Service/firebase"
 import { useState,useEffect } from "react"
+import { Link } from "react-router-dom"
 
 
 
-export default function ButtonLogin (props) {
+export default function ButtonLogin () {
 
     const [user, setUser] = useState();
     
@@ -71,7 +72,10 @@ export default function ButtonLogin (props) {
                         <strong>{User && User[0].email}</strong>
                     </div>
                     <div className={styles.logout}>
-                        <button onClick={handleClickLogOut}><FaSignOutAlt/> sair</button>
+                        <div>
+                            <Link to="/home">Perfil</Link>
+                            <button onClick={handleClickLogOut}><FaSignOutAlt/> sair</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import Footer from "./layouts/layoutsHome/Footer"
 import Response from "./layouts/layoutsSuporte/Response";
 import ControlSuporte from "./layouts/layoutsSuporte/ControlSuporte";
 import PlanosPreços from "./Pages/PlanosPreços"
+import Perfil from "./Pages/Perfil"
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App() {
@@ -21,6 +22,12 @@ function App() {
                 <Route path="/suporte/:query" element={<Response/>}/>
               </Route>
               <Route path="/planos" element={<PlanosPreços/>}/>
+
+              <Route path="/home" element={<Perfil/>}>
+
+
+              </Route>
+
             </Routes>
         </Container>
         <Footer/>

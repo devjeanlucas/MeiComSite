@@ -1,0 +1,11 @@
+.container_header {
+    width: 100%;
+}
+.content {
+    display: flex;
+    align-items: center;
+}
+.img {
+    border-radius: 50%;
+    margin: 1em;
+}
