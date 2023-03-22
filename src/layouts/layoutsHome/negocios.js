@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styles from "./negocios.module.css"
 
 
@@ -14,7 +15,10 @@ export default function Negocios() {
                 </div>
                 <div className={styles.cont_buttons}>
                     <button className={`button`}>Começar Grátis</button>
-                    <button className={`button_orange `}>Conheça os Planos</button>
+                    
+                    <Link>
+                        <button>Conheça os Planos</button>
+                    </Link>
                 </div>
             </div>
         </div>

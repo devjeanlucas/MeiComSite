@@ -1,11 +1,34 @@
 import styles from "./NavBar.module.css"
-import { FaRegUser } from "react-icons/fa"
+import { FaRegUser, FaSignOutAlt } from "react-icons/fa"
 import User from "../Hooks/User"
 import {firebase, auth} from "../Service/firebase"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 
 
-export default function ButtonLogin () {
+
+export default function ButtonLogin (props) {
+
+    const [user, setUser] = useState();
+    
+    useEffect(()=>{
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                const {uid, displayName, photoURL, email} = user
+                if (!displayName || !photoURL) {
+                    throw new Error('Usuário sem Nome ou foto')
+                }
+                setUser({
+                    id: uid,
+                    avatar: photoURL,
+                    name: displayName,
+                    email
+                })
+            }
+        })
+    }, [])
+
+
+
 
     const [userLogin, setUserLogin] = useState();
 
@@ -32,16 +55,32 @@ export default function ButtonLogin () {
         .catch(() => {alert('não foi possivel sair da conta')})
     }
 
-
+   
     return (
         <>
-            {!User ? 
+            {user ? 
+            <div>
+            <img src={User && User[0].avatar} className={styles.avatar}
+            type="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false"
+            />
+            <div className={`dropdown-menu ${styles.content_login}`}>
+                <div className={styles.cont_user}>
+                    <div className={styles.email}>
+                        <strong>{User && User[0].email}</strong>
+                    </div>
+                    <div className={styles.logout}>
+                        <button onClick={handleClickLogOut}><FaSignOutAlt/> sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            :
             <div>
                 <button className={`button_link ${styles.btn_login}`} onClick={HandleClickLoginGoogle}><FaRegUser className={styles.icon}/>Entrar</button>
-            </div>:
-            <div>
-                <button className={`button_link ${styles.btn_login}`} onClick={HandleClickLoginGoogle}><FaRegUser className={styles.icon}/>Sair</button>
             </div>
+            
             }
            
         </>

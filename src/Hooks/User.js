@@ -21,5 +21,5 @@ auth.onAuthStateChanged(user => {
 
 
 
-export default User && User[0]
+export default User
 

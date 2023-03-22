@@ -48,7 +48,7 @@
         padding: 0.5em 0.8em;
         border-radius: 30px;
         border: 1px solid #FFC801;
-        margin: 0em 1em;
+        margin: 0em 1em !important;
         height: 100%;
     }
     .login button:first-child {
@@ -57,6 +57,31 @@
     .icon_mobile {
         font-size: 1.4em;
         display: block;
+    }
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin: 0em 1em;
+    }
+    .cont_user {
+        padding: 0.6em;
+    }
+    .logout {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .logout button {
+        background-color:transparent;
+        border: none;
+        color: #000;
+    }
+    .content_login {
+        background-color: #fafafa;
+    }
+    .email {
+        font-size: 1em;
+        margin-bottom: 1em !important;
     }
 }
 @media screen and (min-width:790px) {

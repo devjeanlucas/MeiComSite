@@ -19,6 +19,17 @@
     justify-content: center;
     font-size: 0.9em;
     }
+    .cont_buttons a {
+        color: #000;
+        text-decoration: none;
+    }
+    .cont_buttons a button{
+        padding: 1em;
+        border-radius: 10px;
+        background-color: #ff9100 !important;
+        color: #fff;
+        border: none !important;
+    }
     .cont_buttons button:first-child {
         border: 1px solid #000;
         background-color: transparent;

@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom"
 import styles from "./NavBar.module.css"
-import {FaBars, FaRegUser} from "react-icons/fa"
+import {FaBars} from "react-icons/fa"
 import MenuMobile from "./MenuMobile"
 import ButtonLogin from "./ButtonLogin"
+import User from "../Hooks/User"
+
+
 
 export default function NavBar () {
+
+
+
+
 return (
     <div className={styles.container}>
         <div className={styles.content}>
@@ -17,8 +24,8 @@ return (
             <div className={styles.login}>
                 <div className={styles.border_left}></div>
 
-
                 <ButtonLogin/>
+                
 
 
 

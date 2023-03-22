@@ -19,7 +19,13 @@ export default function MenuMobile (props) {
                 aria-label={props.aria_label}
                 >Home</li></Link>
 
-                <Link to="/suporte"><li
+                <Link to="/planos"><li
+                type={props.type}
+                data-bs-dismiss={props.data_bs_dismiss}
+                aria-label={props.aria_label}
+                >Planos</li></Link>
+
+                <Link to="/suporte/query"><li
                 type={props.type}
                 data-bs-dismiss={props.data_bs_dismiss}
                 aria-label={props.aria_label}
