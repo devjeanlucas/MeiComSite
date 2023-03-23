@@ -1,0 +1,88 @@
+
+@media screen and (min-width:320px) {
+    .container {
+        width: 99%;
+        margin: 2em auto;
+    }
+    .container h4 {
+        margin-bottom: 1em;
+    }
+    
+    .form label {
+    display: block;
+    }
+    .form input {
+        width: 100%;
+        margin-bottom: 0.6em;
+    }
+    .cont_theme {
+        display: flex;
+        align-items: flex-end;
+        height: 100%;
+    }
+    .cont_theme label, .cont_theme strong {
+        margin-right: 1em;
+    }
+    .btn_theme {
+        border: none;
+        background-color:transparent;
+        text-decoration: underline;
+    }
+    .cont_dashed_no_padding {
+        width: 100%;
+        border: 1px dashed #c7c7c7;
+        padding: 0.3em;
+    }
+    .cont_dashed {
+        width: 100%;
+        border: 1px dashed #c7c7c7;
+        padding: 0.3em ;
+    }
+    .item {
+        width: 100%;
+    }
+    .item p {
+        margin-left: 1em;
+    }
+    .item:hover {
+        border: 1px solid #c7c7c7;
+    }
+    .cont_slides {
+        margin-top: 2em;
+        padding: 1em;
+    }
+    .img {
+        display: block;
+        width: 90%;
+        margin: 0.6em auto;
+    }
+    .title_small {
+        font-size: 0.8em;
+        font-weight: 600;
+    }
+    .btn_save, .cont_btn_save {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .cont_btn_save button {
+        border: none;
+        padding: 0.5em 1em;
+        margin: 0em 2.5em 0em 0em;
+        background-color: #FF9D00;
+        color: #fff;
+    }
+    .btn_save button {
+        border: none;
+        background-color: transparent;
+    }
+    .cont_escolha {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+    }
+}
+@media screen and (min-width:576px) {
+    .container {
+        width: 60%;
+    }
+}

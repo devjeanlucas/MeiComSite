@@ -1,5 +1,6 @@
 import styles from "./InfoPerfil.module.css"
 import User from "../../Hooks/User"
+import { Link } from "react-router-dom"
 
 
 export default function InfoPerfil () {
@@ -8,6 +9,7 @@ export default function InfoPerfil () {
             <div className={styles.container}>
                 <div className={styles.cont_status}>
                     <p>Seu perfil está incompleto</p>
+                    <Link to="/perfil/dados">Completar cadastro</Link>
                 </div>
                 <ul className={`row ${styles.list}`}>
                     <li className="col-sm-6">

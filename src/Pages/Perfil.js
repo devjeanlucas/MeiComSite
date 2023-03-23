@@ -1,13 +1,12 @@
-import Header from "../layouts/layoutsPerfil/Header";
-import InfoPerfil from "../layouts/layoutsPerfil/InfoPerfil";
-
+import { Outlet } from "react-router-dom";
+import Header from "../layouts/layoutsPerfil/Header"
 
 
 export default function Perfil () {
     return (
         <div>
             <Header/>
-            <InfoPerfil/>
+            <Outlet/>
         </div>
         )
 }

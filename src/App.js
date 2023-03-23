@@ -7,7 +7,9 @@ import Response from "./layouts/layoutsSuporte/Response";
 import ControlSuporte from "./layouts/layoutsSuporte/ControlSuporte";
 import PlanosPreços from "./Pages/PlanosPreços"
 import Perfil from "./Pages/Perfil"
+import InfoPerfil from "./layouts/layoutsPerfil/InfoPerfil"
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import FormularioCadastro from "./Formularios/Cadastro/FormularioCadastro";
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
               </Route>
               <Route path="/planos" element={<PlanosPreços/>}/>
 
-              <Route path="/home" element={<Perfil/>}>
 
 
+              <Route path="perfil" element={<Perfil/>}>
+                <Route path="/perfil/:id" element={<InfoPerfil/>}/>
+                <Route path="/perfil/dados" element={<FormularioCadastro/>}/>
               </Route>
 
             </Routes>

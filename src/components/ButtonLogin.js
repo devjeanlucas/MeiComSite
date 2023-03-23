@@ -73,7 +73,7 @@ export default function ButtonLogin () {
                     </div>
                     <div className={styles.logout}>
                         <div>
-                            <Link to="/home">Perfil</Link>
+                            <Link to={`/perfil/${User[0].id}`}>Perfil</Link>
                             <button onClick={handleClickLogOut}><FaSignOutAlt/> sair</button>
                         </div>
                     </div>

@@ -13,9 +13,10 @@
     padding: 1em;
     background-color: #f7f7f7;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 .cont_status p {
     margin-bottom: 0px;
-
-
+    margin-right: 1em;
 }
