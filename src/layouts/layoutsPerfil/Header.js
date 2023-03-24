@@ -1,6 +1,7 @@
 import styles from "./Header.module.css"
 import {auth} from "../../Service/firebase"
 import { useState,useEffect } from "react"
+import { useParams } from "react-router-dom";
 
 export default function Header () {
 
@@ -22,12 +23,12 @@ export default function Header () {
             }
         })
     }, [])
-
+    const {id} = useParams()
 
     return (
         <div>
             <div>
-                {user && 
+                {user && user.id == id && 
                 <div className={styles.container_header}>
                     <div className={`row ${styles.content}`}>
                         <div className="col-sm-2">

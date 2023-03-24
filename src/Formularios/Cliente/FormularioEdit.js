@@ -1,13 +1,14 @@
-import InfoNegocio from "./InfoNegocio"
-import styles from "./FormularioCadastro.module.css"
+import InfoNegocio from "../Cadastro/InfoNegocio"
+import styles from "../Cadastro/FormularioCadastro.module.css"
 import BoxConfirm from "../../components/BoxConfirm"
+
 import { useParams } from "react-router-dom"
 import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import { collection,  getFirestore, getDocs} from "@firebase/firestore";
 
-export default function FormularioCadastro () {
+export default function FormularioEdit () {
 
     const [user, setUser] = useState();
     const [produtos, setProdutos] = useState([])
@@ -87,10 +88,10 @@ export default function FormularioCadastro () {
         
         {user &&
         produtos && produtos.map(dados => {
-            if (user) {
+            if (dados.iduser == id) {
                 return (
                     <div className={styles.container}>
-                <h4>Dados Pessoais</h4>
+                <h4>Dados Pessoais Edit</h4>
                 <form className={`row ${styles.form}`}>
                     <div className={`row ${styles.dados}`}>
                         <div className="col-sm-6">
@@ -178,7 +179,7 @@ export default function FormularioCadastro () {
                             </div>
                         </div>
                         <div className={styles.cont_save}>
-                            {nome && phone && razao && token && rua && cidade && bairro && num && CEP ?
+                            {nome || phone || razao || token || rua || cidade || bairro || num || CEP ?
                                 <button
                                 type="button" 
                                 data-bs-toggle="modal" 

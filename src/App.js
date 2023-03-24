@@ -9,7 +9,7 @@ import PlanosPreços from "./Pages/PlanosPreços"
 import Perfil from "./Pages/Perfil"
 import InfoPerfil from "./layouts/layoutsPerfil/InfoPerfil"
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import FormularioCadastro from "./Formularios/Cadastro/FormularioCadastro";
+import Fomulario from "./Formularios/Formulario";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
 
               <Route path="perfil" element={<Perfil/>}>
                 <Route path="/perfil/:id" element={<InfoPerfil/>}/>
-                <Route path="/perfil/dados" element={<FormularioCadastro/>}/>
+                <Route path="/perfil/:id/dados" element={<Fomulario/>}/>
               </Route>
 
             </Routes>

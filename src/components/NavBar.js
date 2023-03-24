@@ -3,14 +3,8 @@ import styles from "./NavBar.module.css"
 import {FaBars} from "react-icons/fa"
 import MenuMobile from "./MenuMobile"
 import ButtonLogin from "./ButtonLogin"
-import User from "../Hooks/User"
-
-
 
 export default function NavBar () {
-
-
-
 
 return (
     <div className={styles.container}>
