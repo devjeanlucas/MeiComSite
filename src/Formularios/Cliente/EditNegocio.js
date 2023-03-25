@@ -40,7 +40,7 @@ export default function EditNegocio () {
                                     </Link>
                                 </div>
                                 </div>
-                                <div className="col-sm-6">
+                                <div className="col-md-6">
                                     <div className={styles.cont_theme}>
                                         <label>Modalidade</label>
                                         {stateMod && 
@@ -55,7 +55,7 @@ export default function EditNegocio () {
                                         {!stateMod && <strong>Loja Virtual</strong>}
                                     </div>
                                     </div>
-                                    <div className="col-sm-6">
+                                    <div className="col-md-6">
                                         <div className={styles.cont_theme}>
                                             <label>Tema:</label>
                                             {!stateTheme ? <strong>Dark</strong>:

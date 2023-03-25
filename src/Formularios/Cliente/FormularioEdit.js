@@ -96,7 +96,7 @@ export default function FormularioEdit () {
                             <h4>Dados Pessoais Edit</h4>
                             <form className={`row ${styles.form}`}>
                                 <div className={`row ${styles.dados}`}>
-                                    <div className="col-sm-6">
+                                    <div className="col-lg-6">
                                         <label>Nome Completo *</label>
                                         <input type="text"
                                         onChange={(el)=> {
@@ -123,11 +123,11 @@ export default function FormularioEdit () {
                                         defaultValue={dados.token}/>
                                 
                                     </div>
-                                    <div className="col-sm-6">
+                                    <div className="col-lg-6">
                                         <label className={styles.title_small}>Endereço</label>
                                         <div className={styles.cont_dashed_no_padding}>
                                             <div className="row">
-                                                <div className="col-sm-6">
+                                                <div className="col-md-6">
                                                     <label>Rua *</label>
                                                     <input type="text"
                                                     onChange={(el)=> {
@@ -147,7 +147,7 @@ export default function FormularioEdit () {
                                                     }}
                                                     defaultValue={dados.ref}/>
                                                 </div>
-                                                <div className="col-sm-6">
+                                                <div className="col-md-6">
                                                     <label>Cidade *</label>
                                                     <input type="text"
                                                     onChange={(el)=> {
