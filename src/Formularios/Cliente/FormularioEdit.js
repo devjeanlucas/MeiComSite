@@ -1,4 +1,4 @@
-import InfoNegocio from "../Cadastro/InfoNegocio"
+import EditNegocio from "./EditNegocio"
 import styles from "../Cadastro/FormularioCadastro.module.css"
 import BoxConfirm from "../../components/BoxConfirm"
 
@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom"
 import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
-import { collection,  getFirestore, getDocs} from "@firebase/firestore";
+import '@firebase/firestore';
+import { getFirestore, collection, getDocs} from "@firebase/firestore";
 
 export default function FormularioEdit () {
 
@@ -14,7 +15,6 @@ export default function FormularioEdit () {
     const [produtos, setProdutos] = useState([])
     const db = getFirestore(App)
     const [ação, setAção] = useState()
-    const [empty, setEmpty] = useState(true)
     const UserCollection = collection(db, "MeiComSite")
     
     useEffect(()=>{
@@ -52,7 +52,6 @@ export default function FormularioEdit () {
     
     const {id}= useParams()
 
-    const [alt, setAlt] = useState(false)
     const [nome, setNome] = useState()
     const [razao, setRazao] = useState()
     const [phone, setPhone] = useState()
@@ -75,6 +74,7 @@ export default function FormularioEdit () {
     cidade,
     num,
     CEP,
+    status:"analise",
     ação:ação
     }
     
@@ -86,125 +86,121 @@ export default function FormularioEdit () {
     return (
         <>
         
-        {user &&
+        {user && user.id == id &&
         produtos && produtos.map(dados => {
             if (dados.iduser == id) {
                 return (
-                    <div className={styles.container}>
-                <h4>Dados Pessoais Edit</h4>
-                <form className={`row ${styles.form}`}>
-                    <div className={`row ${styles.dados}`}>
-                        <div className="col-sm-6">
-                            <label>Nome Completo *</label>
-                            <input type="text"
-                            onChange={(el)=> {
-                                setNome(el.target.value)
-                            }}
-                            placeholder={dados.nome}
-                            required
-                            />
-                            <label>Razão Social *</label>
-                            <input type="text"
-                            onChange={(el)=> {
-                                setRazao(el.target.value)
-                            }}
-                            required
-                            />
-                            <label>Telefone *</label>
-                            <input type="phone"
-                            onChange={(el)=> {
-                                setPhone(el.target.value)
-                            }}
-                            required
-                            />
-                            <label>Token Mercado Pago *</label>
-                            <input type="text"
-                            onChange={(el)=> {
-                                setToken(el.target.value)
-                            }}
-                            required
-                            />
-                            
-                        </div>
-                        <div className="col-sm-6">
-                            <label className={styles.title_small}>Endereço</label>
-                            <div className={styles.cont_dashed_no_padding}>
-                                <div className="row">
+                    <>
+
+                        <div className={styles.container} key={dados.id}>
+                            <h4>Dados Pessoais Edit</h4>
+                            <form className={`row ${styles.form}`}>
+                                <div className={`row ${styles.dados}`}>
                                     <div className="col-sm-6">
-                                        <label>Rua *</label>
+                                        <label>Nome Completo *</label>
                                         <input type="text"
                                         onChange={(el)=> {
-                                            setRua(el.target.value)
+                                            setNome(el.target.value)
                                         }}
-                                        required
-                                        />
-                                        <label>Bairro *</label>
+                                        defaultValue={dados.nome}/>
+                                        <label>Razão Social *</label>
                                         <input type="text"
                                         onChange={(el)=> {
-                                            setBairro(el.target.value)
+                                            setRazao(el.target.value)
                                         }}
-                                        required
-                                        />
-                                        <label>P.de Referência</label>
+                                        defaultValue={dados.razao}/>
+                                        <label>Telefone *</label>
+                                        <input type="phone"
+                                        onChange={(el)=> {
+                                            setPhone(el.target.value)
+                                        }}
+                                        defaultValue={dados.telefone}/>
+                                        <label>Token Mercado Pago *</label>
                                         <input type="text"
                                         onChange={(el)=> {
-                                            setRef(el.target.value)
+                                            setToken(el.target.value)
                                         }}
-                                        />
+                                        defaultValue={dados.token}/>
+                                
                                     </div>
                                     <div className="col-sm-6">
-                                        <label>Cidade *</label>
-                                        <input type="text"
-                                        onChange={(el)=> {
-                                            setCidade(el.target.value)
+                                        <label className={styles.title_small}>Endereço</label>
+                                        <div className={styles.cont_dashed_no_padding}>
+                                            <div className="row">
+                                                <div className="col-sm-6">
+                                                    <label>Rua *</label>
+                                                    <input type="text"
+                                                    onChange={(el)=> {
+                                                        setRua(el.target.value)
+                                                    }}
+                                                    defaultValue={dados.rua}/>
+                                                    <label>Bairro *</label>
+                                                    <input type="text"
+                                                    onChange={(el)=> {
+                                                        setBairro(el.target.value)
+                                                    }}
+                                                    defaultValue={dados.bairro}/>
+                                                    <label>P.de Referência</label>
+                                                    <input type="text"
+                                                    onChange={(el)=> {
+                                                        setRef(el.target.value)
+                                                    }}
+                                                    defaultValue={dados.ref}/>
+                                                </div>
+                                                <div className="col-sm-6">
+                                                    <label>Cidade *</label>
+                                                    <input type="text"
+                                                    onChange={(el)=> {
+                                                        setCidade(el.target.value)
+                                                    }}
+                                                    defaultValue={dados.cidade}
+                                                    />
+                                                    <label>Número *</label>
+                                                    <input type="number"
+                                                    onChange={(el)=> {
+                                                        setNum(el.target.value)
+                                                    }}
+                                                    defaultValue={dados.numero}
+                                                    />
+                                                    <label>CEP *</label>
+                                                    <input type="number"
+                                                    onChange={(el)=> {
+                                                        setCEP(el.target.value)
+                                                    }}
+                                                    defaultValue={dados.CEP}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.cont_save}>
+                                        {nome || phone || razao || token || rua || cidade || bairro || num || CEP ?
+                                            <button
+                                            type="button" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#ModalAdd"
+                                            onClick={(el)=> {
+                                                el.preventDefault()
+                                                setAção("Editar")
+                                            }}
+                                            >
+                                                salvar
+                                            </button>
+                                        :
+                                        <button
+                                        className={styles.disabled}
+                                        onClick={(el)=> {
+                                            el.preventDefault()
                                         }}
-                                        required
-                                        />
-                                        <label>Número *</label>
-                                        <input type="number"
-                                        onChange={(el)=> {
-                                            setNum(el.target.value)
-                                        }}
-                                        required
-                                        />
-                                        <label>CEP *</label>
-                                        <input type="number"
-                                        onChange={(el)=> {
-                                            setCEP(el.target.value)
-                                        }}
-                                        required
-                                        />
+                                        >salvar</button>
+                                        }   
                                     </div>
                                 </div>
-                            </div>
+                            </form>    
                         </div>
-                        <div className={styles.cont_save}>
-                            {nome || phone || razao || token || rua || cidade || bairro || num || CEP ?
-                                <button
-                                type="button" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#ModalAdd"
-                                onClick={(el)=> {
-                                    el.preventDefault()
-                                    setAção("Iniciar Cadastro")
-                                }}
-                                >
-                                    salvar
-                                </button>
-                            :
-                            <button
-                            className={styles.disabled}
-                            onClick={(el)=> {
-                                el.preventDefault()
-                            }}
-                            >salvar</button>
-                            }   
-                        </div>
-                    </div>
-                    <InfoNegocio/>
-                </form>    
-            </div>
-            )
+                        <EditNegocio/>
+                    </>
+                )
             }
         })     
         }

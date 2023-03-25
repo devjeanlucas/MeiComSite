@@ -1,5 +1,5 @@
 import {Swiper, SwiperSlide} from "swiper/react"
-import styles from "./InfoNegocio.module.css"
+import styles from "../Cadastro/CadastroNegocio.module.css"
 import Themes from "../../Documents/Themes.json"
 import { useState } from "react"
 import { Link } from "react-router-dom"
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 
 
-export default function InfoNegocio () {
+export default function EditNegocio () {
 
     const [stateTheme,setStateTheme] = useState(false)
     const [stateMod,setStateMod] = useState(false)
@@ -23,7 +23,7 @@ export default function InfoNegocio () {
 
 
     return (
-        <div>
+        <div className={styles.container}>
             <h4>Seu negócio</h4>
                     <div className={`col-sm-12`}>
                         <div className={styles.cont_dashed}>

@@ -1,17 +1,14 @@
 
 @media screen and (min-width:320px) {
     .container {
-        width: 99%;
+        width: 90%;
         margin: 2em auto;
         background-color: #fafafa;
-        padding: 1.5em;
+        padding: 1em;
         box-shadow: 1px 1px 4px #00000063;
     }
     .container h4 {
         margin-bottom: 1em;
-    }
-    .dados {
-        margin-bottom: 2em;
     }
     .form label {
     display: block;
@@ -42,6 +39,75 @@
     }
     .disabled {
         background-color: #c7c7c7 !important;
+    }
+    /*Formulario Negocio*/
+    .cont_dashed {
+        width: 100%;
+        border: 1px dashed #c7c7c7;
+        padding: 0.3em ;
+    }
+    .cont_theme {
+        display: flex;
+        align-items: flex-end;
+        height: 100%;
+        padding: 1em 0em;
+    }
+    .cont_theme label, .cont_theme strong {
+        margin-right: 1em;
+    }
+    .img {
+        display: block;
+        width: 90%;
+        margin: 0.6em auto;
+    }
+    .btn_save, .cont_btn_save {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .cont_btn_save {
+        margin-bottom: 1em;
+    }
+    .cont_btn_save button {
+        border: none;
+        padding: 0.5em 1em;
+        margin: 0em 2.5em 0em 0em;
+        background-color: #dbdbdb;
+        color: #000;
+    
+    }
+    .cont_btn_save button:last-child {
+        border: none;
+        padding: 0.5em 1em;
+        margin: 0em 2.5em 0em 0em;
+        background-color: #FF9D00;
+        color: #fff;
+    }
+    .btn_theme {
+        border: none;
+        background-color:transparent;
+        text-decoration: underline;
+        color: #000;
+    }
+    .item {
+        width: 100%;
+    }
+    .item p {
+        margin-left: 1em;
+    }
+    .item:hover {
+        border: 1px solid #c7c7c7;
+    }
+    .cont_slides {
+        margin-top: 2em;
+        padding: 1em;
+    }
+    .cont_plan {
+        display: flex;
+        margin-top: 1em;
+    }
+    .cont_plan label,.cont_plan strong {
+    margin-right: 1em;
+    
     }
 }
 @media screen and (min-width:576px) {

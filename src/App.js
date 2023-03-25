@@ -9,7 +9,8 @@ import PlanosPreços from "./Pages/PlanosPreços"
 import Perfil from "./Pages/Perfil"
 import InfoPerfil from "./layouts/layoutsPerfil/InfoPerfil"
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Fomulario from "./Formularios/Formulario";
+import FormularioEdit from "./Formularios/Cliente/FormularioEdit";
+import FormularioCadastro from "./Formularios/Cadastro/FormularioCadastro";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
 
               <Route path="perfil" element={<Perfil/>}>
                 <Route path="/perfil/:id" element={<InfoPerfil/>}/>
-                <Route path="/perfil/:id/dados" element={<Fomulario/>}/>
+                <Route path="/perfil/:id/dados" element={<FormularioEdit/>}/>
+                <Route path="/perfil/:id/cadastro" element={<FormularioCadastro/>}/>
               </Route>
 
             </Routes>
