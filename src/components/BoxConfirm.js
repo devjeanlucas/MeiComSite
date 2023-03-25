@@ -105,8 +105,28 @@ export default function BoxConfirm (props) {
         await updateDoc(doc(db, "MeiComSite", user.email), {
             CEP: !obj.CEP ? prod[0].CEP : obj.CEP
         });
-
+        await updateDoc(doc(db, "MeiComSite", user.email), {
+            plan: !obj.plan ? prod[0].plan : obj.plan
+        });
+        window.location.reload()
     }
+
+    const EditaNegocio = async () => {
+        const prod = []
+
+        produtos && produtos.map(item=> {
+            if (user && user.id == item.iduser) {
+                prod.push(item)
+            }
+        }) 
+        await updateDoc(doc(db, `MeiComSite/${user.email}/negocio`, "dados"), {
+            mod: !obj.mod ? prod[0].mod : obj.mod
+        });
+        await updateDoc(doc(db, `MeiComSite/${user.email}/negocio`, "dados"), {
+            theme: !obj.theme ? prod[0].theme : obj.theme
+        });
+        window.location.reload()
+    }   
 
     
 
@@ -159,7 +179,30 @@ export default function BoxConfirm (props) {
                 >Cancelar</button>
             </div>
         </div>
-        
+        }
+
+        {obj.ação == "Editar negocio" &&
+        <div className={styles.container}>
+            <h4>Confirmar alterações?</h4>
+            <div className='line'></div>
+            <div className={styles.cont_btn}>
+
+                
+                <button className={styles.confirm}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                onClick={EditaNegocio}
+                >Confirmar</button>
+
+
+                <button className={styles.cancel}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                >Cancelar</button>
+            </div>
+        </div>
         }
         
         

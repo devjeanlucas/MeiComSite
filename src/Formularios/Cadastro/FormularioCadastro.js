@@ -13,7 +13,6 @@ export default function FormularioCadastro () {
     const [user, setUser] = useState();
     const [produtos, setProdutos] = useState([])
     const db = getFirestore(App)
-    const [ação, setAção] = useState()
     const [empty, setEmpty] = useState(true)
     const UserCollection = collection(db, "MeiComSite")
     
@@ -33,30 +32,25 @@ export default function FormularioCadastro () {
             }
         })
     }, [])
-
+    
     useEffect (()=>{
         try{
             const getUsers = async () => {
                 const data = await getDocs(UserCollection);
                 setProdutos((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
                     };
-                getUsers()
-        } catch (e) {
+                    getUsers()
+                } catch (e) {
             <button> tentar novamente </button>
         }
     },[])
-    const Edit = () => {
-         setStateTheme(!stateTheme)
-         setStateMod(!stateMod)
-     }
     
     
     
 
     
     const {id}= useParams()
-    const [stateTheme,setStateTheme] = useState(false)
-    const [stateMod,setStateMod] = useState(false)
+    const [ação, setAção] = useState()
     const [theme, setTheme] = useState()
     const [mod, setMod] = useState()
     

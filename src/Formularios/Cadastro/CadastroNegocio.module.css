@@ -30,6 +30,7 @@
     display: block;
     width: 90%;
     margin: 0.6em auto;
+    height: 300px !important;
 }
 .btn_save, .cont_btn_save {
     display: flex;

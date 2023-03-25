@@ -16,5 +16,41 @@
         "name":"Light",
         "modalidade":"Loja Virtual",
         "img":"https://cdn.dribbble.com/userupload/4788394/file/original-fcf99b9b2164f1ff7f3f447a17de9c42.png?compress=1&resize=1024x768"
+    },
+    {
+        "id":4,
+        "name":"Claro",
+        "modalidade":"Restaurante",
+        "img":"https://img.freepik.com/free-psd/american-food-website-app-template_23-2148477329.jpg?w=996&t=st=1679760353~exp=1679760953~hmac=ff84fcb1c600849e58d26a4c3d20326abab3fce24d77d4d9b5d7e9464df549fa"
+    },
+    {
+        "id":5,
+        "name":"Escuro",
+        "modalidade":"Restaurante",
+        "img":"https://img.freepik.com/free-psd/restaurant-landing-page-template_23-2148466849.jpg?w=996&t=st=1679760615~exp=1679761215~hmac=541038031fd2652ee68ee200660b0ebd187ab8e8157caff396487c54916d062c"
+    },
+    {
+        "id":6,
+        "name":"Verde",
+        "modalidade":"Restaurante",
+        "img":"https://img.freepik.com/free-psd/brunch-web-concept-template_23-2148470281.jpg?t=st=1679760438~exp=1679761038~hmac=03eacda163096cdc5afdde4bc6966c9003767df6afee88b99ec99f031fbd7c11"
+    },
+    {
+        "id":7,
+        "name":"Verde",
+        "modalidade":"Agendamento",
+        "img":"https://cdn.dribbble.com/userupload/4788394/file/original-fcf99b9b2164f1ff7f3f447a17de9c42.png?compress=1&resize=1024x768"
+    },
+    {
+        "id":8,
+        "name":"Amarelo",
+        "modalidade":"Agendamento",
+        "img":"https://cdn.dribbble.com/userupload/4788394/file/original-fcf99b9b2164f1ff7f3f447a17de9c42.png?compress=1&resize=1024x768"
+    },
+    {
+        "id":9,
+        "name":"Cinza",
+        "modalidade":"Agendamento",
+        "img":"https://cdn.dribbble.com/userupload/4788394/file/original-fcf99b9b2164f1ff7f3f447a17de9c42.png?compress=1&resize=1024x768"
     }
 ]

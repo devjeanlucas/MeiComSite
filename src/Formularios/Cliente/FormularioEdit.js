@@ -1,8 +1,9 @@
-import EditNegocio from "./EditNegocio"
 import styles from "../Cadastro/FormularioCadastro.module.css"
 import BoxConfirm from "../../components/BoxConfirm"
-
-import { useParams } from "react-router-dom"
+import Themes from "../../Documents/Themes.json"
+import {Swiper, SwiperSlide} from "swiper/react"
+import Loading from "../../components/Loading"
+import { Link, useParams } from "react-router-dom"
 import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
@@ -17,29 +18,29 @@ export default function FormularioEdit () {
     const [ação, setAção] = useState()
     const UserCollection = collection(db, "MeiComSite")
     
-    useEffect(()=>{
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                const {uid, displayName, photoURL, email} = user
-                if (!displayName || !photoURL) {
-                    throw new Error('Usuário sem Nome ou foto')
-                }
-                setUser({
-                    id: uid,
-                    avatar: photoURL,
-                    name: displayName,
-                    email
-                })
-            }
-        })
-    }, [])
-
     useEffect (()=>{
         try{
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    const {uid, displayName, photoURL, email} = user
+                    if (!displayName || !photoURL) {
+                        throw new Error('Usuário sem Nome ou foto')
+                    }
+                    setUser({
+                        id: uid,
+                        avatar: photoURL,
+                        name: displayName,
+                        email
+                    })
+                }
+            })
             const getUsers = async () => {
                 const data = await getDocs(UserCollection);
                 setProdutos((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
-                    };
+                setLoading(true)
+            };
+
+                
                 getUsers()
         } catch (e) {
             <button> tentar novamente </button>
@@ -52,6 +53,7 @@ export default function FormularioEdit () {
     
     const {id}= useParams()
 
+    const [load, setLoading] = useState(false)
     const [nome, setNome] = useState()
     const [razao, setRazao] = useState()
     const [phone, setPhone] = useState()
@@ -62,6 +64,18 @@ export default function FormularioEdit () {
     const [cidade, setCidade] = useState()
     const [num, setNum] = useState()
     const [CEP, setCEP] = useState()
+    const [plan, setPlan] = useState()
+    const [modplan, setModPlan] = useState(false)
+    const [stateTheme,setStateTheme] = useState(false)
+    const [stateMod,setStateMod] = useState(false)
+    const [theme, setTheme] = useState()
+    const [mod, setMod] = useState()
+    
+
+   const Edit = () => {
+        setStateTheme(!stateTheme)
+        setStateMod(!stateMod)
+    }
     
     const obj = {
     nome,
@@ -74,7 +88,7 @@ export default function FormularioEdit () {
     cidade,
     num,
     CEP,
-    status:"analise",
+    plan,
     ação:ação
     }
     
@@ -85,13 +99,13 @@ export default function FormularioEdit () {
 
     return (
         <>
+        {!load ? <Loading/> : 
         
-        {user && user.id == id &&
+        user && user.id == id &&
         produtos && produtos.map(dados => {
             if (dados.iduser == id) {
                 return (
                     <>
-
                         <div className={styles.container} key={dados.id}>
                             <h4>Dados Pessoais Edit</h4>
                             <form className={`row ${styles.form}`}>
@@ -121,6 +135,31 @@ export default function FormularioEdit () {
                                             setToken(el.target.value)
                                         }}
                                         defaultValue={dados.token}/>
+                                        
+                                <div className={styles.cont_plan}>
+                                        <label>Plano:</label>
+                                        {!modplan ? 
+                                        <strong>{dados.plan}</strong>:
+                                        
+                                        <select defaultChecked={dados.plan}
+                                        onChange={(el)=> setPlan(el.target.value)}
+                                        >
+                                            <option>Basic</option>
+                                            <option>Plus</option>
+                                            <option>Premium</option>
+                                        </select>
+
+                                        }
+
+                                        <button className="button_link"
+                                        onClick={(el)=> {
+                                            el.preventDefault()
+                                            setModPlan(!modplan)
+                                        }}
+                                        >
+                                            alterar
+                                        </button>
+                                    </div>
                                 
                                     </div>
                                     <div className="col-lg-6">
@@ -198,12 +237,112 @@ export default function FormularioEdit () {
                                 </div>
                             </form>    
                         </div>
-                        <EditNegocio/>
-                    </>
+                        <div className={styles.container}>
+            <h4>Seu negócio</h4>
+                    <div className={`col-sm-12`}>
+                        <div className={styles.cont_dashed}>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className={styles.cont_theme}>
+                                        <label>Modalidade</label>
+                                        {stateMod && 
+                                            <select id="modalidade" defaultValue="Loja Virtual"
+                                            onChange={(el)=> setMod(el.target.value)}
+                                             >
+                                                <option defaultChecked>Loja Virtual</option>
+                                                <option>Restaurante</option>
+                                                <option>Agendamento</option>
+                                            </select>
+                                        }
+                                        {!stateMod && <strong>Loja Virtual</strong>}
+                                    </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className={styles.cont_theme}>
+                                            <label>Tema:</label>
+                                            {!stateTheme ? <strong>Dark</strong>:
+                                            <strong>{theme}</strong>
+                                            }
+
+                                            {!stateTheme &&
+                                                <button
+                                                onClick={(el)=> 
+                                                {
+                                                    el.preventDefault()
+                                                    Edit()
+                                                }
+                                                }
+                                                className={styles.btn_theme}
+                                                >alterar</button>
+                                            }
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                {stateTheme && <div className={styles.container_themes}>
+                                <Swiper
+                                spaceBetween={10}
+                                className={styles.cont_slides}
+                                breakpoints={{
+                                    320: {
+                                      width: 320,
+                                      slidesPerView: 1,
+                                    },
+                                    768: {
+                                        width: 768,
+                                        slidesPerView: 2,
+                                      },
+                                  }}
+                                >
+                                    {Themes.map(item => {
+                                        if (!mod || mod == "null" ? "Loja Virtual" : mod == item.modalidade) {
+                                            return (
+                                                <SwiperSlide key={item.id} className={styles.item}
+                                                onClick={(el)=> {
+                                                    el.preventDefault()
+                                                    setTheme(item.name)
+                                                }}
+                                                >
+                                                    <img src={item.img} className={styles.img}/>
+                                                    <div className={styles.cont_escolha}>
+                                                        <p>{item.name}</p>
+                                                    </div>
+                                                </SwiperSlide>
+                                                )
+                                        }
+                                    })}
+                                </Swiper>
+                                <div className={styles.cont_btn_save}>
+                                    <button
+                                    onClick={(el)=> {
+                                    el.preventDefault()
+                                    Edit()
+                                    }}
+                                    >cancelar</button>
+                                    
+                                    <button
+                                    onClick={(el)=> {
+                                        setAção("Editar negocio")
+                                        el.preventDefault()
+                                        }}
+                                        type="button" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#ModalAdd"
+                                    >salvar</button>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        </div>
+                    </div>
+                </>
                 )
             }
-        })     
-        }
+        })        }
+         
+
+
+
         <div className="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className={`modal-dialog modal-md`}>
             <div className="modal-content">
