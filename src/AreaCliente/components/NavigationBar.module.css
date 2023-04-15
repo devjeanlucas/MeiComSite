@@ -1,0 +1,42 @@
+@media screen and (min-width:320px) {
+    .Light .navigation {
+        padding: 1.2em;
+        display: flex;
+        width: 100% !important;
+        justify-content: space-between !important;
+        align-items: center;
+    }
+    .Light .navigation a {
+        font-size: 1.2em;
+        text-decoration: none;
+    }
+    .icon_mobile {
+        font-size: 1.2em;
+        display: block;
+    }
+    .Light {
+        color: #000 !important;
+        display: flex;
+        position: fixed;
+        background-color: #fff;
+        z-index: 1000;
+        top: 0;
+        width: 100%;
+    }
+    .Light .navigation .menu_desk {
+        display: none;
+    }
+
+}
+@media screen and (min-width:576px) {
+    .icon_mobile {
+        display: none;
+    }
+    .Light .navigation .menu_desk {
+        display: flex;
+    }
+    .Light .navigation .menu_desk a{
+        margin-right: 0.8em;
+        color: #000;
+    }
+}

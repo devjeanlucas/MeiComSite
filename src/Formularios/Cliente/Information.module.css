@@ -1,0 +1,41 @@
+.list_produtos {
+    list-style-type: none;
+    padding: 1em;
+    margin: 1.6em auto 0em auto;
+    width: 90%;
+    border: 1px dashed #dbdbdb;
+}
+.item {
+    padding: 1em;
+    display: flex;
+    align-items: flex-end !important;
+    border-bottom: 1px solid #dbdbdb;
+}
+.cont_item {
+    height: 100%;
+    margin: 0.8em auto 0em auto;
+}
+.icon {
+    margin-right: 0.6em;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+.img {
+    width: 100%;
+    margin-bottom: 0.8em;
+}
+.item p {
+    margin-right: 1em;
+    margin-bottom: 0em;
+}
+.cont_btn {
+    width: 90%;
+    margin: 1em auto 0.2em auto;
+}
+.btn {
+    border: none;
+    padding: 0.6em;
+    background-color: #FF9100;
+    color: #fff;
+    border-radius: 20px;
+}

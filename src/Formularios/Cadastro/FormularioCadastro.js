@@ -66,6 +66,7 @@ export default function FormularioCadastro () {
     const [cidade, setCidade] = useState()
     const [num, setNum] = useState()
     const [CEP, setCEP] = useState()
+    const [idtheme, setIdTheme] = useState()
     
     const obj = {
     nome,
@@ -75,6 +76,7 @@ export default function FormularioCadastro () {
     rua,
     bairro,
     ref,
+    idtheme,
     cidade,
     num,
     CEP,
@@ -264,6 +266,7 @@ export default function FormularioCadastro () {
                                                     onClick={(el)=> {
                                                         el.preventDefault()
                                                         setTheme(item.name)
+                                                        setIdTheme(item.id)
                                                     }}
                                                     >
                                                         <img src={item.img} className={styles.img}/>

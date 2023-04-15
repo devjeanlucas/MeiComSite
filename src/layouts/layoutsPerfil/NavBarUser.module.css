@@ -1,0 +1,19 @@
+.navigation {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 5em auto 1em auto;
+    padding-top: 3em;
+}
+.navigation a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 1.2em;
+    position: relative;
+}
+.navigation a:hover {
+    background-color: rgb(219, 255, 255);
+    border-radius: 5px;
+    color: #000 !important;
+}

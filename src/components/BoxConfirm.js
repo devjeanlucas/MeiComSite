@@ -4,6 +4,7 @@ import '@firebase/firestore';
 import { doc, updateDoc,  deleteDoc, getFirestore, collection, getDocs,setDoc} from "@firebase/firestore";
 import { useState,useEffect } from "react"
 import {auth} from "../Service/firebase"
+import moment from 'moment/moment';
 
 export default function BoxConfirm (props) {
 
@@ -42,8 +43,13 @@ export default function BoxConfirm (props) {
     
     const AdicionarUSer = async () => {
         await setDoc(doc(db, `MeiComSite`, `${user.email}`), {
+            data: moment().format('DD/MM/YYYY'),
             email: user && user.email,
+            mod:obj.mod,
+            theme:obj.theme,
+            idtheme:obj.idtheme,
             iduser:user && user.id,
+            status:"Em análise",
             nome:obj.nome,
             telefone: obj.phone,
             razao:obj.razao,
@@ -119,10 +125,10 @@ export default function BoxConfirm (props) {
                 prod.push(item)
             }
         }) 
-        await updateDoc(doc(db, `MeiComSite/${user.email}/negocio`, "dados"), {
+        await updateDoc(doc(db, `MeiComSite`, user.email), {
             mod: !obj.mod ? prod[0].mod : obj.mod
         });
-        await updateDoc(doc(db, `MeiComSite/${user.email}/negocio`, "dados"), {
+        await updateDoc(doc(db, `MeiComSite`, user.email), {
             theme: !obj.theme ? prod[0].theme : obj.theme
         });
         window.location.reload()
@@ -183,7 +189,7 @@ export default function BoxConfirm (props) {
 
         {obj.ação == "Editar negocio" &&
         <div className={styles.container}>
-            <h4>Confirmar alterações?</h4>
+            <h4>Confirmar alterações? Neg</h4>
             <div className='line'></div>
             <div className={styles.cont_btn}>
 
