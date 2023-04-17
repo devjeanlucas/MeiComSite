@@ -32,7 +32,7 @@ export default function Negocios() {
             <div>
                 
                 <div className={`${styles.container_img} `}>
-                    <img src="https://img.freepik.com/vetores-gratis/ilustracao-do-conceito-de-dispositivos-da-web_114360-2651.jpg?w=740&t=st=1679006978~exp=1679007578~hmac=3aa52c24968ca879db4c85495845790dc4097f657ab19b8349aca11f65114d13" className={styles.img}/>
+                    <img src="https://img.freepik.com/free-vector/marketing-concept-illustration_114360-3903.jpg?w=740&t=st=1681761026~exp=1681761626~hmac=ae9f4d04dfb59c0e4755e367f792b1b7bdb0c662de24f556aeb1e550f4587406" className={styles.img}/>
                 </div>
                 <div>
                     <h1 className={styles.big_text}>Gerencie seu negócio na palma da sua mão</h1>

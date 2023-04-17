@@ -14,7 +14,7 @@ export default function HomeCliente () {
     const [clientes, setClientes] = useState([])
     const db = getFirestore(App)
     const UserCollection = collection(db, `MeiComSite`)
-    const cliente = clientes && clientes.filter(dado => dado.site.toLowerCase().replace(' ', '') == site)
+    const cliente = clientes.length > 0 && clientes.filter(dado => dado.site == site)
     
 
     

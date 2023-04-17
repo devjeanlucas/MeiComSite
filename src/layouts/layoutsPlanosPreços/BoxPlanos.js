@@ -22,6 +22,8 @@ export default function BoxPlanos () {
                                     <li><FaCheck className={styles.check}/>Finalizar por Whatsapp</li>
                                     <li><FaTimes className={styles.false}/>Adicionar fotos por upload</li>
                                     <li><FaTimes className={styles.false}/>Finalizar com Pix</li>
+                                    <li><FaTimes className={styles.false}/>Cálculo Frete automático</li>
+                                    <li><FaTimes className={styles.false}/>Favoritar produtos</li>
                                     <li><FaTimes className={styles.false}/>Login de Usuário</li>
                                 </ul>
                             </div>
@@ -43,6 +45,8 @@ export default function BoxPlanos () {
                                     <li><FaCheck className={styles.check}/>2 Membros</li>
                                     <li><FaCheck className={styles.check}/>Adicionar fotos com <abbr title="Você pode adicionar imagens pelo seu OnDrive ou imagens em link externo. Veja em Ajuda">url</abbr>
                                     </li>
+                                    <li><FaCheck className={styles.check}/>Cálculo Frete automático</li>
+                                    <li><FaCheck className={styles.check}/>Favoritar produtos</li>
                                     <li><FaCheck className={styles.check}/>5 escolhas para layout</li>
                                     <li><FaCheck className={styles.check}/>Finalizar por Whatsapp</li>
                                     <li><FaCheck className={styles.check}/>Adicionar fotos por upload</li>
@@ -70,6 +74,8 @@ export default function BoxPlanos () {
                                     <li><FaCheck className={styles.check}/>12 escolhas para layout</li>
                                     <li><FaCheck className={styles.check}/>Finalizar por Whatsapp</li>
                                     <li><FaCheck className={styles.check}/>Adicionar fotos por upload</li>
+                                    <li><FaCheck className={styles.check}/>Cálculo Frete automático</li>
+                                    <li><FaCheck className={styles.check}/>Favoritar produtos</li>
                                     <li><FaCheck className={styles.check}/>Finalizar com Pix</li>
                                 </ul>
                             </div>

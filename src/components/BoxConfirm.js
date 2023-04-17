@@ -53,17 +53,17 @@ export default function BoxConfirm (props) {
             nome:obj.nome,
             telefone: obj.phone,
             razao:obj.razao,
-            token:obj.token,
-            rua:obj.rua,
-            bairro:obj.bairro,
-            ref:!obj.ref ? "" : obj.ref,
             cidade:obj.cidade,
-            numero:obj.num,
             plan:obj.plan,
+            abre:obj.abre,
+            fecha:obj.fecha,
+            site:obj.site,
+            nascimento:obj.nascimento,
+            token:obj.token ? obj.token : "",
             CEP: obj.CEP
             });
 
-        window.history.back()
+        window.location.href('https://meicomsite.netlify.com')
     };
 
 

@@ -14,6 +14,10 @@
     display: block;
     }
     .form input {
+        border: 1px solid #d7d7d7;
+        border-radius: 20px;
+        padding: 0.3em;
+        text-indent: 5px;
         width: 100%;
         margin-bottom: 0.6em;
     }
@@ -21,6 +25,12 @@
         width: 100%;
         border: 1px dashed #c7c7c7;
         padding: 0.3em;
+    }
+    .cont_token {
+        margin: 1em 0em;
+    }
+    .cont_token input {
+        margin-left: 1em;
     }
     .title_small {
         font-size: 0.8em;
@@ -45,6 +55,12 @@
         width: 100%;
         border: 1px dashed #c7c7c7;
         padding: 0.3em ;
+    }
+    .cont_plan input {
+        border: 1px solid #c7c7c7;
+        border-radius: 10px;
+        text-indent: 5px;
+
     }
     .cont_theme {
         display: flex;
@@ -107,7 +123,10 @@
         margin-top: 1em;
     }
     .cont_plan label,.cont_plan strong {
-    margin-right: 1em;
+        margin-right: 1em;
+    }
+    .cont_plan a {
+        margin-left:1em;
     }
     .status {
         margin: 1em auto;
@@ -148,6 +167,9 @@
         height: 1px;
         background-color: #dbdbdb;
         margin: 1em 0em;
+    }
+    .block {
+        display: block;
     }
 }
 @media screen and (min-width:576px) {

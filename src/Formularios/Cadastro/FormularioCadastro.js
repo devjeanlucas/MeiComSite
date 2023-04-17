@@ -49,7 +49,6 @@ export default function FormularioCadastro () {
     
 
     
-    const {id}= useParams()
     const [ação, setAção] = useState()
     const [theme, setTheme] = useState()
     const [mod, setMod] = useState()
@@ -59,12 +58,12 @@ export default function FormularioCadastro () {
     const [nome, setNome] = useState()
     const [razao, setRazao] = useState()
     const [phone, setPhone] = useState()
-    const [token,setToken] = useState()
-    const [rua, setRua] = useState()
-    const [bairro, setBairro] = useState()
-    const [ref,setRef] = useState()
+    const [abre,setAbertura] = useState()
+    const [fecha, setFecha] = useState()
+    const [site, setSite] = useState()
+    const [nascimento,setNascimento] = useState()
+    const [token, setToken] = useState()
     const [cidade, setCidade] = useState()
-    const [num, setNum] = useState()
     const [CEP, setCEP] = useState()
     const [idtheme, setIdTheme] = useState()
     
@@ -72,43 +71,36 @@ export default function FormularioCadastro () {
     nome,
     razao,
     phone, 
-    token,
-    rua,
-    bairro,
-    ref,
     idtheme,
     cidade,
-    num,
     CEP,
     theme,
     mod,
+    nascimento,
     plan,
+    token,
+    abre,
+    site,
+    fecha,
     ação:ação,
 
     }
     
-   
 
 
-    let index = produtos && produtos.findIndex(prop => prop.iduser == id)
+    let index = produtos && produtos.findIndex(prop => prop.iduser == user.id)
+
+
 
     return (
         <>
         
-        {user &&
-        produtos && produtos.map(dados => {
-            if (index >= 0) {
-                if (dados.iduser == id) {
-                    return (
-                        <div>
-                            <p>usuario cadastrado</p>
-                        </div>
-                    )
-                }
-            } else {
-                return (
-                    <>
-                    <div className={styles.container}>
+        {index >= 0 ? 
+        <div>
+            <h1>Usuário já cadastrado</h1>
+        </div>:
+        <>
+        <div className={styles.container}>
                         <h4>Dados Pessoais</h4>
                         <form className={`row ${styles.form}`}>
                             <div className={`row ${styles.dados}`}>
@@ -117,6 +109,13 @@ export default function FormularioCadastro () {
                                     <input type="text"
                                     onChange={(el)=> {
                                         setNome(el.target.value)
+                                    }}
+                                    required
+                                    />
+                                    <label>Data de nascimento *</label>
+                                    <input type="date"
+                                    onChange={(el)=> {
+                                        setNascimento(el.target.value)
                                     }}
                                     required
                                     />
@@ -134,52 +133,43 @@ export default function FormularioCadastro () {
                                     }}
                                     required
                                     />
-                                    <label>Token Mercado Pago *</label>
-                                    <input type="text"
-                                    onChange={(el)=> {
-                                        setToken(el.target.value)
-                                    }}
-                                    required
-                                    />
                                 </div>
                                 <div className="col-sm-6">
-                                    <label className={styles.title_small}>Endereço</label>
+                                    <label className={styles.title_small}>Informações do negócio</label>
                                     <div className={styles.cont_dashed_no_padding}>
                                         <div className="row">
-                                            <div className="col-sm-6">
-                                                <label>Rua *</label>
-                                                <input type="text"
+                                            <div className="col-sm-12">
+                                                <label>Abertura *</label>
+                                                <input type="time"
                                                 onChange={(el)=> {
-                                                    setRua(el.target.value)
+                                                    setAbertura(el.target.value)
                                                 }}
                                                 required
                                                 />
-                                                <label>Bairro *</label>
+                                                <label>Fechamento *</label>
+                                                <input type="time"
+                                                onChange={(el)=> {
+                                                    setFecha(el.target.value)
+                                                }}
+                                                required
+                                                max={8}
+                                                />
+                                                <label>Site *</label>
+                                                <strong className={styles.block}>https://meicomsite.netlify.com/</strong>
+                                                <strong>
+                                                    {site &&
+                                                    site.toLowerCase().replace(' ', '')}
+                                                </strong>
                                                 <input type="text"
                                                 onChange={(el)=> {
-                                                    setBairro(el.target.value)
+                                                    setSite(el.target.value)
                                                 }}
                                                 required
                                                 />
-                                                <label>P.de Referência</label>
-                                                <input type="text"
-                                                onChange={(el)=> {
-                                                    setRef(el.target.value)
-                                                }}
-                                                />
-                                            </div>
-                                            <div className="col-sm-6">
                                                 <label>Cidade *</label>
                                                 <input type="text"
                                                 onChange={(el)=> {
                                                     setCidade(el.target.value)
-                                                }}
-                                                required
-                                                />
-                                                <label>Número *</label>
-                                                <input type="number"
-                                                onChange={(el)=> {
-                                                    setNum(el.target.value)
                                                 }}
                                                 required
                                                 />
@@ -197,12 +187,7 @@ export default function FormularioCadastro () {
                             </div>
                         </form>    
                     </div>
-                    </>
-                )
-            }
-        })     
-        }
-            <div className={styles.container}>
+                    <div className={styles.container}>
                 <h4>Seu negócio</h4>
                     <div className={`col-sm-12`}>
                         <div className={styles.cont_dashed}>
@@ -210,12 +195,13 @@ export default function FormularioCadastro () {
                                 <div className="col-sm-12">
                                     <div className={styles.cont_plan}>
                                         <label>Plano:</label>
-                                        <select defaultChecked="Basic"
+                                        <select 
                                         onChange={(el)=> setPlan(el.target.value)}
                                         >
-                                            <option>Basic</option>
-                                            <option>Plus</option>
-                                            <option>Premium</option>
+                                            <option>-</option>
+                                            <option value="Basic">Basic</option>
+                                            <option value="Plus">Plus</option>
+                                            <option value="Premium">Premium</option>
                                         </select>
                                         <Link 
                                         className={styles.btn_theme}
@@ -224,14 +210,28 @@ export default function FormularioCadastro () {
                                             ver planos
                                         </Link>
                                     </div>
+                                    {plan == "Plus" && 
+                                    <div className={styles.cont_token}>
+                                        <label>Token Mercado Pago:</label>
+                                        <input type="text"  onChange={(el)=> setToken(el.target.value)}/>
+                                    </div>
+                                    }
+                                    {plan == "Premium" && 
+                                    <div className={styles.cont_token}>
+                                        <label>Token Mercado Pago:</label>
+                                        <input type="text"  onChange={(el)=> setToken(el.target.value)}/>
+                                    </div>
+                                    }
                                 </div>
                                 <div className="col-sm-6">
                                     <div className={styles.cont_theme}>
                                         <label>Modalidade</label>
-                                            <select id="modalidade" defaultValue="Loja Virtual"
+                                            <select id="modalidade"
                                             onChange={(el)=> setMod(el.target.value)}
+                                            defaultValue="-"
                                              >
-                                                <option defaultChecked>Loja Virtual</option>
+                                                <option>-</option>
+                                                <option>Loja Virtual</option>
                                                 <option>Restaurante</option>
                                                 <option>Agendamento</option>
                                             </select>
@@ -260,7 +260,7 @@ export default function FormularioCadastro () {
                                         },
                                     }}>
                                         {Themes.map(item => {
-                                            if (!mod || mod == "null" ? "Loja Virtual" : mod == item.modalidade) {
+                                            if (mod == item.modalidade) {
                                                 return (
                                                     <SwiperSlide key={item.id} className={styles.item}
                                                     onClick={(el)=> {
@@ -284,8 +284,8 @@ export default function FormularioCadastro () {
                     </div>
                     <div className={styles.cont_save}>
                             {nome && theme && mod && phone 
-                            && razao && token && rua && plan &&
-                            cidade && bairro && num && CEP ?
+                            && razao && plan &&
+                            cidade && CEP ?
                                 <button
                                 type="button" 
                                 data-bs-toggle="modal" 
@@ -308,6 +308,8 @@ export default function FormularioCadastro () {
                         </div>
             </div>
 
+        </>      
+        }
 
         <div className="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className={`modal-dialog modal-md`}>
