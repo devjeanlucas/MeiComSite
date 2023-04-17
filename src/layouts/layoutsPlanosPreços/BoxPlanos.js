@@ -1,32 +1,52 @@
 import styles from "./BoxPlanos.module.css"
-import {FaCheck} from "react-icons/fa"
+import {FaCheck, FaTimes} from "react-icons/fa"
 
 export default function BoxPlanos () {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
                 <div className="row">
-                    <div className="col-sm-4">
+                    <div className="col-md-4">
                         <div className={styles.box}>
-                            <h4>Free</h4>
+                            <h4>Basic</h4>
                             <div className="line"></div>
                             <div className={styles.conteudo}>
                                 <ul className={styles.list}>
-                                    <li><FaCheck className={styles.check}/>Login Com Google</li>
+                                    <li><FaCheck className={styles.check}/>Gestão de Pedidos</li>
+                                    <li><FaCheck className={styles.check}/>Gestão de Estoque</li>
+                                    <li><FaCheck className={styles.check}/>1 Membro</li>
+                                    <li><FaCheck className={styles.check}/>Adicione até 40 produtos</li>
+                                    <li><FaCheck className={styles.check}/>Adicionar fotos com <abbr title="Você pode adicionar imagens pelo seu OnDrive ou imagens em link externo. Veja em Ajuda">url</abbr>
+                                    </li>
+                                    <li><FaCheck className={styles.check}/>3 escolhas para layout</li>
+                                    <li><FaCheck className={styles.check}/>Finalizar por Whatsapp</li>
+                                    <li><FaTimes className={styles.false}/>Adicionar fotos por upload</li>
+                                    <li><FaTimes className={styles.false}/>Finalizar com Pix</li>
+                                    <li><FaTimes className={styles.false}/>Login de Usuário</li>
                                 </ul>
                             </div>
                             <div className={styles.price}>
-                                <h4>Grátis</h4>
+                                <h4>R$ 80,00</h4>
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-4">
+                    <div className="col-md-4">
                         <div className={styles.box}>
                             <h4>Plus</h4>
                             <div className="line"></div>
                             <div className={styles.conteudo}>
                                 <ul className={styles.list}>
-                                    <li><FaCheck className={styles.check}/>Domínio personalizado</li>
+                                    <li><FaCheck className={styles.check}/>Gestão de Pedidos</li>
+                                    <li><FaCheck className={styles.check}/>Login de Usuário</li>
+                                    <li><FaCheck className={styles.check}/>Gestão de Estoque</li>
+                                    <li><FaCheck className={styles.check}/>Adicione até 100 produtos</li>
+                                    <li><FaCheck className={styles.check}/>2 Membros</li>
+                                    <li><FaCheck className={styles.check}/>Adicionar fotos com <abbr title="Você pode adicionar imagens pelo seu OnDrive ou imagens em link externo. Veja em Ajuda">url</abbr>
+                                    </li>
+                                    <li><FaCheck className={styles.check}/>5 escolhas para layout</li>
+                                    <li><FaCheck className={styles.check}/>Finalizar por Whatsapp</li>
+                                    <li><FaCheck className={styles.check}/>Adicionar fotos por upload</li>
+                                    <li><FaCheck className={styles.check}/>Finalizar com Pix</li>
                                 </ul>
                             </div>
                             <div className={styles.price}>
@@ -34,13 +54,23 @@ export default function BoxPlanos () {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-4">
+                    <div className="col-md-4">
                         <div className={styles.box}>
                             <h4>Premium</h4>
                             <div className="line"></div>
                             <div className={styles.conteudo}>
                                 <ul className={styles.list}>
-                                    <li><FaCheck className={styles.check}/>20gb de dados</li>
+                                    <li><FaCheck className={styles.check}/>Gestão de Pedidos</li>
+                                    <li><FaCheck className={styles.check}/>Login de Usuário</li>
+                                    <li><FaCheck className={styles.check}/>Gestão de Estoque</li>
+                                    <li><FaCheck className={styles.check}/>Adicione até 300 produtos</li>
+                                    <li><FaCheck className={styles.check}/>4 Membros</li>
+                                    <li><FaCheck className={styles.check}/>Adicionar fotos com <abbr title="Você pode adicionar imagens pelo seu OnDrive ou imagens em link externo. Veja em Ajuda">url</abbr>
+                                    </li>
+                                    <li><FaCheck className={styles.check}/>12 escolhas para layout</li>
+                                    <li><FaCheck className={styles.check}/>Finalizar por Whatsapp</li>
+                                    <li><FaCheck className={styles.check}/>Adicionar fotos por upload</li>
+                                    <li><FaCheck className={styles.check}/>Finalizar com Pix</li>
                                 </ul>
                             </div>
                             <div className={styles.price}>

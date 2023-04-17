@@ -67,7 +67,16 @@
     .cont_user {
         padding: 0.6em;
     }
+    .link {
+        display: block;
+        background-color: #fff;
+        width: 100% !important;
+        text-decoration: none;
+        color: #000;
+        padding: 0.3em;
+    }
     .logout {
+        width: 100% !important;
         display: flex;
         justify-content: flex-end;
     }

@@ -1,0 +1,17 @@
+.container {
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    width: 100%;
+}
+@media screen and (min-width:320px) {
+    .no_margin_no_padding {
+        margin-top: 1.5em;
+        padding: 0em;
+    }
+}
+@media screen and (min-width:1199px) {
+    .no_margin_no_padding {
+        margin-top: 3em;
+    }
+}

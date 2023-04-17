@@ -63,10 +63,6 @@ export default function BoxConfirm (props) {
             CEP: obj.CEP
             });
 
-            await setDoc(doc(db, `MeiComSite/${user.email}/negocio`, `dados`), {
-                mod:obj.mod,
-                theme:obj.theme
-            });
         window.history.back()
     };
 

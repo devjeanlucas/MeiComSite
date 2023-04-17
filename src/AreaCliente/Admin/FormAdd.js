@@ -14,6 +14,7 @@ export default function FormEdit (props) {
     const [preço, setPreço] = useState()
     const [categoria, setCategoria] = useState()
     const [estoque, setEstoque] = useState()
+    const [espera, setEspera] = useState()
 
     const db = getFirestore(App)
 
@@ -82,6 +83,8 @@ export default function FormEdit (props) {
                                             <input type="number" onChange={(el)=> setPreço(el.target.value)}/>
                                             <strong>Servem quantas pessoas:</strong>
                                             <input type="number" onChange={(el)=> setQtdPessoas(el.target.value)}/>
+                                            <strong>Temp. Espera:</strong>
+                                            <input type="time" onChange={(el)=> setEspera(el.target.value)}/>
                                             <strong>Estoque:</strong>
                                             <input type="number" onChange={(el)=> setEstoque(el.target.value)}/>
                                         </div>

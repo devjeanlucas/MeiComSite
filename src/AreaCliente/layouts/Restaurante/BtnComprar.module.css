@@ -1,0 +1,9 @@
+.Light {
+    width: 100%;
+    border: none;
+    padding: 0.7em;
+    border-radius: 20px;
+    color: #ffff;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+}

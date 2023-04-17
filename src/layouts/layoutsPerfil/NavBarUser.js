@@ -12,7 +12,7 @@ export default function NavBarUser () {
                 <li className={`nav-item`}>
                     <Link 
                     to="/perfil/user/dados"
-                    className="nav-link active" aria-current="page">Produtos</Link>
+                    className="nav-link" aria-current="page">Produtos</Link>
                 </li>
                 <li className={`nav-item`}>
                     <Link 

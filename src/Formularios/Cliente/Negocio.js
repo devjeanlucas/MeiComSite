@@ -16,9 +16,6 @@ export default function Negocio () {
 
     const [load, setLoading] = useState(false)
     const [user, setUser] = useState();
-    const [alt, setAlt] = useState (false)
-    const [imgalt, setImgAlt] = useState()
-    const [frasealt, setFraseAlt] = useState()
     const [Users, setUsers] = useState([])
     const db = getFirestore(App)
     const UserCollection = collection(db, "MeiComSite")
@@ -51,24 +48,6 @@ export default function Negocio () {
             <button> tentar novamente </button>
         }
     },[])
-
-    const AlteraHome = async () => {
-        const prod = []
-
-        Users && user && Users.map(item=> {
-            if (item.id ==  user.email) {
-                prod.push(item)
-            }
-        }) 
-
-        await updateDoc(doc(db, "MeiComSite", user && user.email), {
-            imgprincipal: !imgalt ? prod[0].imgprincipal : imgalt
-        });
-        await updateDoc(doc(db, "MeiComSite", user && user.email), {
-            fraseprincipal: !frasealt ? prod[0].fraseprincipal : frasealt
-        });
-        window.location.reload()
-    }
 
 
     
@@ -112,48 +91,6 @@ export default function Negocio () {
                                                             <div className={styles.cont_img}>
                                                                 <img src={item.img} className={styles.img}/>
                                                                 <div className={styles.line}/>
-                                                                {alt ?
-                                                                <div className={styles.cont_button}>
-                                                                    <button
-                                                                    onClick={()=> {
-                                                                        setAlt(!alt)
-                                                                    }}
-                                                                    >cancelar</button>
-                                                                    <button
-                                                                    onClick={() => AlteraHome()}
-                                                                    >salvar</button>
-                                                                </div>
-                                                                :
-                                                                <div className={styles.cont_button}>
-                                                                    <button
-                                                                    onClick={()=> {
-                                                                        setAlt(!alt)
-                                                                    }}
-                                                                    >alterar</button>
-                                                                </div>
-                                                                }
-                                                                {alt ?
-                                                                <div>
-                                                                <p>Texto Principal: </p>
-                                                                <textarea type="text"
-                                                                defaultValue={dados.fraseprincipal}
-                                                                onChange={(el)=> setFraseAlt(el.target.value)}
-                                                                />
-                                                                <p>Imagem Principal:</p>
-                                                                <input type="text"
-                                                                onChange={(el)=> setImgAlt(el.target.value)}
-                                                                defaultValue={dados.imgprincipal}
-                                                                />
-                                                                <img src={!imgalt && dados.imgprincipal} className={styles.img_small}/>
-                                                            </div>
-                                                                :
-                                                                <div>
-                                                                    <p>Texto Principal: " <span className={styles.dash_text}>{dados.fraseprincipal}</span> "</p>
-                                                                    <p>Imagem Principal:
-                                                                        <img src={dados.imgprincipal} alt="" className={styles.img_small}/>
-                                                                    </p>
-                                                                </div>
-                                                                }
                                                             </div>
                                                             )
                                                         }

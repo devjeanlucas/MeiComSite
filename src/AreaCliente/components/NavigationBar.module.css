@@ -1,42 +1,71 @@
 @media screen and (min-width:320px) {
-    .Light .navigation {
-        padding: 1.2em;
-        display: flex;
-        width: 100% !important;
-        justify-content: space-between !important;
-        align-items: center;
-    }
-    .Light .navigation a {
-        font-size: 1.2em;
-        text-decoration: none;
-    }
-    .icon_mobile {
-        font-size: 1.2em;
-        display: block;
-    }
-    .Light {
-        color: #000 !important;
-        display: flex;
-        position: fixed;
-        background-color: #fff;
-        z-index: 1000;
-        top: 0;
-        width: 100%;
-    }
-    .Light .navigation .menu_desk {
+    .Light .cont_left {
         display: none;
+    }
+    .Light .menu_mob {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        text-align: center;
+        top: 0em;
+        padding-top: 0.4em;
+        background-color: #fff;
+    }
+    .icon_bars {
+        display: block;
+        font-size: 1.2em;
+        margin: 0.3em;
     }
 
 }
-@media screen and (min-width:576px) {
-    .icon_mobile {
+@media screen and (min-width:1199px) {
+    .Light .menu_mob, .Light .icon_bars {
         display: none;
     }
-    .Light .navigation .menu_desk {
-        display: flex;
+    .Light {
+        width: 100% !important;
     }
-    .Light .navigation .menu_desk a{
-        margin-right: 0.8em;
+    .Light .cont_options {
+        position: relative;
+    }
+    .Light .cont_left {
+        position: relative;
+        display: block;
+    }
+    .Light .cont_title {
+        position: relative;
+        width: 100% ;
+    }
+    .Light .title {
+        width: 100% !important;
+        top: 0em;
+        padding: 0.8em 0em;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: -1px 4px 4px #ececec;
+        position: fixed;
+        z-index: 1000;
+    }
+    .Light .list {
+        list-style-type: none;
+        padding: 7em 0.8em;
+        position: fixed;
+    }
+    .Light .list li {
+        margin-bottom: 4em;
+    }
+    .Light .list li a {
+        text-decoration: none;
         color: #000;
+        font-size: 1.2em;
     }
+}
+.icon {
+    font-size: 1em;
+    margin-right: 1em;
+}
+.no_margin_no_padding {
+    margin: 0em;
+    padding: 0em;
 }

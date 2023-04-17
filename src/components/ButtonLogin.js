@@ -71,9 +71,9 @@ export default function ButtonLogin () {
                     <div className={styles.email}>
                         <strong>{User && User[0].email}</strong>
                     </div>
+                    <Link to={`/perfil/user/negocio`} className={styles.link}>Perfil</Link>
                     <div className={styles.logout}>
                         <div>
-                            <Link to={`/perfil/user/negocio`}>Perfil</Link>
                             <button onClick={handleClickLogOut}><FaSignOutAlt/> sair</button>
                         </div>
                     </div>

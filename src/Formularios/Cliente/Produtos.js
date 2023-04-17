@@ -1,7 +1,4 @@
-import styles from "./Information.module.css"
-import BoxConfirm from "../../components/BoxConfirm"
-import Themes from "../../Documents/Themes.json"
-import {Swiper, SwiperSlide} from "swiper/react"
+import styles from "./Produtos.module.css"
 import Loading from "../../components/Loading"
 import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
@@ -10,6 +7,7 @@ import '@firebase/firestore';
 import {FaEdit, FaPlusCircle, FaTrashAlt} from "react-icons/fa"
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import FormAdd from "../../AreaCliente/Admin/FormAdd"
+import FormEdit from "../../AreaCliente/Admin/FormEdit"
 
 
 
@@ -19,7 +17,9 @@ export default function Informations () {
     const [user, setUser] = useState();
     const [state, setState] = useState(false)
     const [Users, setUsers] = useState([])
+    const [produto, setProduto] = useState()
     const db = getFirestore(App)
+    const Collec = collection(db, "MeiComSite")
     const UserCollection = collection(db, `MeiComSite/${user && user.email}/produtos`)
 
     useEffect (()=>{
@@ -63,7 +63,10 @@ export default function Informations () {
     }, -Infinity);
     
     var id = max + 1
-
+    const FormataValor = (valor) => {
+        var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        return valorFormatado
+    }
     
 
     return (
@@ -85,15 +88,17 @@ export default function Informations () {
                                             <div className={styles.cont_item}>
                                                 <div className={styles.cont_buttons}>
                                                     <FaEdit className={styles.icon}
-
+                                                    type="button" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target={`#ModalEdit`}
+                                                    onClick={()=> setProduto(dados)}
                                                     />
                                                     <FaTrashAlt className={styles.icon}
-
                                                     />
                                                 </div>
                                                 <div className={styles.item}>
                                                     <p>Nome: <strong>{dados.nome}</strong></p>
-                                                    <p>Preço: <strong>R${dados.preço}</strong></p>
+                                                    <p>Preço: <strong>{FormataValor(dados.preço)}</strong></p>
                                                     <p>Categoria: <strong>{dados.categoria}</strong></p>
                                                 </div>
                                             </div>
@@ -117,6 +122,22 @@ export default function Informations () {
                             aria_label="Close"
                             id = {id && id}
                             email = {user && user.email}
+                            />
+                    </div>
+                </div>
+            </div>
+            <div className="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div className={`modal-dialog modal-xl`}>
+                    <div className="modal-content">
+                        <FormEdit
+                            type="button"
+                            dismiss="modal"
+                            aria_label="Close"
+                            data_bs_toggle="modal" 
+                            data_bs_target={`#ModalEdit`}
+                            
+                            dados={produto}
+                            id={user && user.email}
                             />
                     </div>
                 </div>
