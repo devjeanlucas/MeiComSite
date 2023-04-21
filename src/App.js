@@ -12,8 +12,9 @@ import Produto from "./AreaCliente/layouts/Restaurante/Produto";
 import Negocio from "./Formularios/Cliente/Negocio";
 import Membros from "./Formularios/Cliente/Membros";
 import HomeCliente from "./AreaCliente/HomeCliente"
-import Categories from "./AreaCliente/layouts/Restaurante/Cardapio";
+import Cardapio from "./AreaCliente/layouts/Restaurante/Cardapio";
 import Produtos from "./Formularios/Cliente/Produtos"
+import MarketHome from "./AreaCliente/layouts/Loja Virtual/MarketHome";
 
 function App() {
   return (
@@ -42,7 +43,8 @@ function App() {
 
 
               <Route path="/:site" element={<HomeCliente/>}>
-                <Route path="/:site/cardapio" element={<Categories/>}/>
+                <Route path="/:site/estoque" element={<MarketHome/>}/>
+                <Route path="/:site/cardapio" element={<Cardapio/>}/>
                 <Route path="/:site/cardapio/:nome" element={<Produto/>}/>
               </Route>
 

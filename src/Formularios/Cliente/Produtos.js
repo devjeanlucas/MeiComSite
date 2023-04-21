@@ -5,7 +5,7 @@ import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
 import {FaEdit, FaPlusCircle, FaTrashAlt} from "react-icons/fa"
-import { getFirestore, collection, getDocs} from "@firebase/firestore";
+import { getFirestore, collection, getDocs, doc,setDoc} from "@firebase/firestore";
 import FormAdd from "../../AreaCliente/Admin/FormAdd"
 import FormEdit from "../../AreaCliente/Admin/FormEdit"
 
@@ -60,20 +60,31 @@ export default function Informations () {
     
     var max = listIDs.reduce(function(a, b) {
         return Math.max(a, b);
-    }, -Infinity);
+    }, 0);
     
     var id = max + 1
+
     const FormataValor = (valor) => {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         return valorFormatado
     }
     
+    const count = 1
+
+    async function addItem () {
+        await setDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, 1), {
+            nome:"start",
+            status: "inerit"
+            });
+    }
 
     return (
             <>
                 <div className={styles.cont_btn}>
                     <button className={styles.btn}
-                    type="button" data-bs-toggle="modal" data-bs-target={`#ModalAdd`}
+                    type="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target={`#ModalAdd`}
                     ><FaPlusCircle/> Adicionar Novo</button>
                 </div>
                 <ul className={styles.list_produtos}>

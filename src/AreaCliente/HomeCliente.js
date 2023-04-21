@@ -6,6 +6,7 @@ import { Outlet, useParams } from "react-router-dom"
 import styles from "./HomeCliente.module.css"
 import NavigationBar from "./components/NavegationBar";
 import Footer from "./components/Footer";
+import NavShop from "./layouts/Loja Virtual/NavShop";
 
 
 export default function HomeCliente () {
@@ -30,20 +31,41 @@ export default function HomeCliente () {
         }
     },[])
 
+    
+
 
     return (
-            <div className={styles.container}>
-                <div className="row">
-                    <div className={`${styles.no_margin_no_padding} col-xl-2`}>
-                        <div className={styles.navBar}>
-                            <NavigationBar info={cliente && cliente[0]}/>
+        <>
+            {cliente && cliente[0].theme == "Light" &&
+                <div className={styles.container}>
+                    <div className="row">
+                        <div className={`${styles.no_margin_no_padding} col-xl-2`}>
+                            <div className={styles.navBar}>
+                                <NavigationBar info={cliente && cliente[0]}/>
+                            </div>
+                        </div>
+                        <div className={`${styles.no_margin_no_padding} col-xl-10`}>
+                            <Outlet/>
+                            <Footer/>
                         </div>
                     </div>
-                    <div className={`${styles.no_margin_no_padding} col-xl-10`}>
-                        <Outlet/>
-                        <Footer/>
+                </div>
+            }
+            {cliente && cliente[0].theme == "Dark" &&
+                <div className={styles.container}>
+                    <div className="row">
+                        <div className={`${styles.no_margin_no_padding} col-xl-3`}>
+                            <NavigationBar info={cliente && cliente[0]}/>
+                            <NavShop/>
+                        </div>
+                        <div className={`${styles.no_margin_no_padding} col-xl-9`}>
+                            <Outlet />
+                            <Footer/>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+        
+        </>
         )
 }

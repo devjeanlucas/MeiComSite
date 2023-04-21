@@ -8,7 +8,7 @@ import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import Categorias from "./Categorias";
 
-export default function Categories () {
+export default function Cardapio () {
     const db = getFirestore(App)
     const UserCollection = collection(db, `MeiComSite`)
     const [produtos, setProdutos] = useState([])

@@ -1,0 +1,15 @@
+.Dark .list {
+    margin-top: 2em;
+}
+.Dark .list ul {
+    list-style-type: none;
+}
+.Dark .cont_desc {
+    display: flex;
+    justify-content: space-between;
+}
+.Dark .img {
+    border-radius: 5px;
+    margin-bottom: 1em;
+    width: 100%;
+}

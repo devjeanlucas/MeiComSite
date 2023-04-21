@@ -84,6 +84,11 @@ export default function Categorias (props) {
                 </ul>
             </div>
             }
+            {props.theme && props.theme == "Dark" &&
+            <div className={styles[props.theme && props.theme]}>
+                <h1>Olá</h1>
+            </div>
+            }
 
             </>
         )
