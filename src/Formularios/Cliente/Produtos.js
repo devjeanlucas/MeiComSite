@@ -17,6 +17,7 @@ export default function Informations () {
     const [user, setUser] = useState();
     const [state, setState] = useState(false)
     const [Users, setUsers] = useState([])
+    const [usuarios, setUsuarios] = useState([])
     const [produto, setProduto] = useState()
     const db = getFirestore(App)
     const Collec = collection(db, "MeiComSite")
@@ -43,6 +44,8 @@ export default function Informations () {
         }
     },[])
     const getUsers = async () => {
+        const dataUser = await getDocs(Collec)
+        setUsuarios((dataUser.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         const data = await getDocs(UserCollection);
         setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         setLoading(true)
@@ -69,15 +72,14 @@ export default function Informations () {
         return valorFormatado
     }
     
-    const count = 1
+    const usuario = []
 
-    async function addItem () {
-        await setDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, 1), {
-            nome:"start",
-            status: "inerit"
-            });
-    }
-
+    usuarios && user && usuarios.filter(dados => {
+        if (dados.iduser == user.id) {
+            usuario.push(dados)
+        }
+    })
+    
     return (
             <>
                 <div className={styles.cont_btn}>
@@ -133,6 +135,8 @@ export default function Informations () {
                             aria_label="Close"
                             id = {id && id}
                             email = {user && user.email}
+                            modalidade= {usuario.length > 0 && usuario[0].mod}
+                            tema = {usuario.length > 0 && usuario[0].theme}
                             />
                     </div>
                 </div>

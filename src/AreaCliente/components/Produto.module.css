@@ -1,6 +1,6 @@
 @media screen and (min-width:320px) {
     .container {
-        margin-top: 1em;
+        margin-top: 3em;
         width: 100%;
     }
     .Light {
@@ -101,7 +101,52 @@
         padding: 0.7em;
         margin-bottom: 1em;
         font-size: 1.2em;
-
+    }
+    /*Dark*/
+    .Dark {
+        padding-bottom: 5em;
+    }
+    .Dark .cont_right .name {
+        text-transform: capitalize;
+    }
+    .Dark .cont_right .desc {
+        font-size: 1rem;
+        color: #969696;
+    }
+    .Dark .cont_right {
+        padding-left: 2em;
+        font-family: 'Outfit', sans-serif;  
+    }
+    .Dark .header {
+        margin-bottom: 4em;
+    }
+    .Dark strong {
+        display: block;
+        margin-bottom: 0.6em;
+    }
+    .Dark .cont_colors input{
+        display: flex;
+        margin-right: 1.5em;
+    }   
+    .Dark .cont_colors {
+        display: flex;
+        margin-bottom: 1.5em;
+    }
+    .Dark .cont_tam button {
+        margin-right: 1em;
+        border: none;
+        padding: 0.6em 0.9em;
+        border-radius: 5px;
+    }
+    .Dark .btn_buy {
+        margin: 2em 0em 1em 0em;
+        width: 100%;
+        padding: 0.8em;
+        border: none;
+        background-color: #000;
+        color: #fff;
+        font-size: 1.1em;
+        border-radius: 5px;
     }
 }
 .line {

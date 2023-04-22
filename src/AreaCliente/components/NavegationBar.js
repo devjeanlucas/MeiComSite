@@ -67,7 +67,7 @@ export default function NavigationBar (props) {
                     <div className={styles.navigation}>
                         <h4>{list && list.razao}</h4>
                         <div className={styles.options}>
-                            <Link to={`/${list && list.site}/estoque`}>Ver tudo</Link>
+                            <Link to={`/${list && list.site}/estoque`}>Catálogo</Link>
                             <Link>Promoções</Link>
                         </div>
                         <div className={styles.cont_search}>

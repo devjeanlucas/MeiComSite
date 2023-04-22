@@ -59,7 +59,9 @@ export default function Categorias (props) {
                                         <div className={styles.item}>
                                             <div className="row">
                                                 <div className={`col-4 col-md-12 ${styles.no_padding_no_margin}`}>
-                                                    <img src={dados.img} className={styles.img}/>
+                                                    <div className={styles.cont_img}>
+                                                        <img src={dados.img} className={styles.img}/>
+                                                    </div>
                                                 </div>
                                                 <div className={`col-8 col-md-12 ${styles.no_padding_no_margin}`}>
                                                     <div className={styles.cont_text}>
@@ -68,7 +70,7 @@ export default function Categorias (props) {
                                                         <p className={styles.preço_prod}>{FormataValor(dados.preço)}</p>
                                                         <div className={styles.cont_buttons}>
                                                             <Link
-                                                             to={`/${site}/cardapio/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
+                                                             to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
                                                             >Comprar</Link>
                                                             <button><FaShoppingBag/></button>
                                                         </div>

@@ -22,6 +22,7 @@ export default function MarketHome () {
         setProdutos((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         setState("fim")
     }
+
     const getCliente = async () => {
         const data = await getDocs(UserCollection)
         setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
@@ -61,7 +62,7 @@ export default function MarketHome () {
         }
     });
 
-    const [busca, setBusca] = useState()
+    console.log(produtos)
 
 
     return (
@@ -69,30 +70,37 @@ export default function MarketHome () {
             {usuario.length > 0 && usuario[0].theme == "Dark" &&
                 <>
                 <div className={`${styles.container} ${styles[usuario && usuario[0].theme]}`}>
-                    
                         <div className={styles.list}>
                             <ul className="row">
                             {produtos && produtos.map(dados => {
-                                return (
-                                        <li key={dados.id} className="col-md-4">
-                                            <div>
-                                                <img src={dados.img} className={styles.img}/>
-                                                <div className={styles.cont_desc}>
-                                                    <div>
-                                                        <h5>{dados.nome}</h5>
-                                                        <p>{dados.colors}</p>
+                                    return (
+                                            <li key={dados.id} className="col-md-4">
+                                                <div>
+                                                    <div className={styles.cont_img}>
+                                                        <Link
+                                                        to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
+                                                        >
+                                                            <img src={dados.img} className={styles.img}/>
+                                                        </Link>
                                                     </div>
-                                                    <div>
-                                                        <h5>{FormataValor(dados.preço)}</h5>
+                                                    <div className={styles.cont_desc}>
+                                                        <div>
+                                                            <h5>{dados.nome}</h5>
+                                                            <p>{dados.colors}</p>
+                                                        </div>
+                                                        <div>
+                                                            <h5>{FormataValor(parseFloat(dados.preço))}</h5>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    )
-                            })}
+                                            </li>
+                                        )
+                                
+                            })
+                            }
                          </ul>
                     </div>
-                        </div>
+                    </div>
                 </>
             }
         </>

@@ -8,7 +8,7 @@ import Perfil from "./Pages/Perfil"
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import FormularioEdit from "./Formularios/Cliente/FormularioEdit";
 import FormularioCadastro from "./Formularios/Cadastro/FormularioCadastro";
-import Produto from "./AreaCliente/layouts/Restaurante/Produto";
+import Produto from "./AreaCliente/components/Produto";
 import Negocio from "./Formularios/Cliente/Negocio";
 import Membros from "./Formularios/Cliente/Membros";
 import HomeCliente from "./AreaCliente/HomeCliente"
@@ -45,7 +45,7 @@ function App() {
               <Route path="/:site" element={<HomeCliente/>}>
                 <Route path="/:site/estoque" element={<MarketHome/>}/>
                 <Route path="/:site/cardapio" element={<Cardapio/>}/>
-                <Route path="/:site/cardapio/:nome" element={<Produto/>}/>
+                <Route path="/:site/produto/:nome" element={<Produto/>}/>
               </Route>
 
             </Routes>

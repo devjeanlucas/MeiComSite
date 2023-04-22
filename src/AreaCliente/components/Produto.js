@@ -1,7 +1,7 @@
 import {  useParams } from "react-router-dom";
 import styles from "./Produto.module.css"
 import { useState } from "react"
-import App from "../../../Hooks/App"
+import App from "../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import {FaAngleLeft, FaRegClock, FaUtensils} from "react-icons/fa"
@@ -104,6 +104,57 @@ export default function Produto () {
                                         </div>
                                         <div className={styles.btn_comprar}>
                                             <button>Comprar <span>{FormataValor(total)}</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                {usuario.length > 0 && produto.length > 0  && usuario[0].theme == "Dark" &&
+                    <div className={styles[usuario[0].theme]}>
+                        <div className="row">
+                            <div className="col-lg-7">
+                                <img src={produto[0].img} className={styles.img}/>
+                            </div>
+                            <div className="col-lg-5">
+                                <div className={styles.cont_right}>
+                                    <div className={styles.header}>
+                                        <h3 className={styles.name}>{produto[0].nome}</h3>
+                                        <p className={styles.desc}>{produto[0].desc}</p>
+                                        <h4>{FormataValor(produto[0].preço)}</h4>
+                                    </div>
+                                    <strong>cores disponiveis</strong>
+                                    <div className={styles.cont_colors}>
+                                        <div className={styles.item}>
+                                            <input type="color" disabled/>
+                                        </div>
+                                        <div className={styles.item}>
+                                            <input type="color" disabled/>
+                                        </div>
+                                        <div className={styles.item}>
+                                            <input type="color" disabled/>
+                                        </div>
+                                    </div>
+                                    <strong>tamanho</strong>
+                                    <div className={styles.cont_tam}>
+                                        <button>P</button>
+                                        <button>M</button>
+                                        <button>G</button>
+                                    </div>
+                                    <button className={styles.btn_buy}>Comprar</button>
+                                    <div className="accordion" id="accordionExample">
+
+                                        <div className="accordion-item">
+                                            <h2 className="accordion-header">
+                                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#detalhes" aria-expanded="false" aria-controls="collapseOne">
+                                                Detalhes
+                                                </button>
+                                            </h2>
+                                            <div id="detalhes" className="accordion-collapse collapse">
+                                                <div className="accordion-body">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

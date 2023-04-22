@@ -1,7 +1,11 @@
 .footer {
-    margin-top: 8em;
+    padding-top: 8em;
     padding: 0.8em 0em;
     text-align: center;
+    position: absolute;
+    bottom: 1em;
+    right: 2em;
+
 }
 .footer a {
     color: #000;
