@@ -1,30 +1,65 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBarUser.module.css"
+import {Swiper,SwiperSlide} from "swiper/react";
 
 export default function NavBarUser () {
     return (
-            <ul className={`${styles.navigation} nav`}> 
-                <li className={`nav-item`}>
-                    <Link 
-                    to="/perfil/user/negocio"
-                    className="nav-link">Meu Negócio</Link>
-                </li>
-                <li className={`nav-item`}>
-                    <Link 
-                    to="/perfil/user/dados"
-                    className="nav-link" aria-current="page">Produtos</Link>
-                </li>
-                <li className={`nav-item`}>
-                    <Link 
-                    to="/perfil/user/membros"
-                    className="nav-link">Membros</Link>
-                </li>
-                <li className={`nav-item`}>
-                    <Link 
+    <>
+    
+            <Swiper 
+            breakpoints={{
+                320: {
+                  width: 320,
+                  slidesPerView: 2,
+                },
+                768: {
+                  width: 768,
+                  slidesPerView: 4,
+                },
+              }}
+            className={`${styles.navigation} nav`}
+            >
+                <SwiperSlide
+                >
+                    <div
+                     className={`nav-item`}
+                    >
+                        <Link
+                        to="/perfil/user/negocio"
+                        className="nav-link">Meu Negócio</Link>
+                    </div>
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <div
+                     className={`nav-item`}
+                    >
+                        <Link
+                        to="/perfil/user/dados"
+                        className="nav-link" aria-current="page">Produtos</Link>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div
+                     className={`nav-item`}
+                    >
+                        <Link 
+                        to="/perfil/user/membros"
+                        className="nav-link">Membros</Link>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                <div
+                     className={`nav-item`}
+                    >
+                        <Link 
                     to="/perfil/user/config"
                     className="nav-link">Configurações</Link>
-                </li>
-            </ul>
+                    </div>
+                </SwiperSlide>
+
+            </Swiper>
+    </>
         )
 
 }

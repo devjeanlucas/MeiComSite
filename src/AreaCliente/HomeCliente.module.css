@@ -25,7 +25,6 @@
     .no_margin_no_padding {
         margin-top: 1.5em;
         padding: 0em;
-        height: calc(100vh);
         position: relative;
     }
 }

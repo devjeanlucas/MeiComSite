@@ -72,15 +72,15 @@ export default function Negocio () {
                                                     <strong> {dados.abre}:00h </strong> às  
                                                     <strong> {dados.fecha}:00h </strong>
                                                 </p>
-                                                <p>Token: <strong>{dados.token}</strong></p>
-                                                <p>Site: {dados.status == "pronto" ? 
-                                                <Link to={`/${dados.site}`} className={styles.link}
-                                                target="_blank"
-                                                >https://meicomsite.netlify.app/{dados.site}</Link>:
+                                                <p>Site: </p>{dados.status == "pronto" ? 
+                                                <span>
+                                                    <Link to={`/${dados.site}`} className={styles.link}
+                                                    target="_blank"
+                                                    >meicomsite.netlify.app/{dados.site}</Link>
+                                                </span>:
                                                 <strong className={styles.link}>{dados.status}</strong>
                                                 }
                                                 
-                                                </p>
                                             </div>
                                         </div>
                                         <div className="col-sm-6 order-1">

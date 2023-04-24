@@ -6,12 +6,14 @@ import { Link, Outlet, useParams } from "react-router-dom"
 import styles from "./HomeCliente.module.css"
 import NavigationBar from "./components/NavegationBar";
 import Footer from "./components/Footer";
+import Loading from "../components/Loading";
 import NavShop from "./layouts/Loja Virtual/NavShop";
 
 
 export default function HomeCliente () {
 
     const {site} = useParams()
+    const [load, setLoading] = useState(false)
     const [clientes, setClientes] = useState([])
     const db = getFirestore(App)
     const UserCollection = collection(db, `MeiComSite`)
@@ -24,6 +26,7 @@ export default function HomeCliente () {
             const getUsers = async () => {
                 const data = await getDocs(UserCollection);
                 setClientes((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
+                setLoading(true)
             };
             getUsers()
         } catch (e) {
@@ -31,7 +34,6 @@ export default function HomeCliente () {
         }
     },[])
 
-    const [state, setState] = useState(false)
 
 
     return (
@@ -45,12 +47,6 @@ export default function HomeCliente () {
                             </div>
                         </div>
                         <div className={`${styles.no_margin_no_padding} col-xl-10`}>
-                            <div className={!state ? styles.cont_start: styles.none}>
-                                <h3>Clique para nos conhecer </h3>
-                                <Link 
-                                to={`/${site}/cardapio`}
-                                onClick={()=> setState(true)}>Cardapio</Link>
-                            </div>
                             <Outlet/>
                         </div>
                     </div>
@@ -59,22 +55,18 @@ export default function HomeCliente () {
             {cliente && cliente[0].theme == "Dark" &&
                 <div className={`${styles[cliente && cliente[0].theme]} ${styles.container}`}>
                     <div className="row">
-                        <div className={`${styles.no_margin_no_padding} col-xl-3`}>
+                        <div className={`${styles.no_margin_no_padding} col-md-3 order-lg-1`}>
                             <NavigationBar info={cliente && cliente[0]}/>
                             <NavShop/>
                         </div>
-                        <div className={`${styles.no_margin_no_padding} col-xl-9`}>
-                            <div className={!state ? styles.cont_start: styles.none}>
-                                <h3>Clique para nos conhecer </h3>
-                                <Link 
-                                to={`/${site}/estoque`}
-                                onClick={()=> setState(true)}>Catálogo</Link>
-                            </div>
+                        <div className={`${styles.no_margin_no_padding} order-lg-2 col-sm-12 col-md-9`}>
                             <Outlet/>
                         </div>
                     </div>
                 </div>
             }
+            {!load && <Loading/>}
+
         
         </>
         )

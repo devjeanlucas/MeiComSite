@@ -61,12 +61,21 @@ export default function MarketHome () {
             reduced.push(item);
         }
     });
+    
+    function createWhatsAppLink(phoneNumber, message) {
+        return `https://api.whatsapp.com/send?phone=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
+      }
+    
+      
+    const phoneNumber = '71981298548'; // Substitua pelo número de telefone do destinatário
+    const message = 'Olá! Me chamo Jean Lucas'; // Substitua pela mensagem que você deseja enviar
+    const href = createWhatsAppLink(phoneNumber, message);
 
-    console.log(produtos)
-
+    /*<a href={href} target="_blank" rel="noopener noreferrer">Clique</a>*/
 
     return (
         <>
+                    
             {usuario.length > 0 && usuario[0].theme == "Dark" &&
                 <>
                 <div className={`${styles.container} ${styles[usuario && usuario[0].theme]}`}>
@@ -74,7 +83,7 @@ export default function MarketHome () {
                             <ul className="row">
                             {produtos && produtos.map(dados => {
                                     return (
-                                            <li key={dados.id} className="col-md-4">
+                                            <li key={dados.id} className="col-6 col-md-6 col-lg-4">
                                                 <div>
                                                     <div className={styles.cont_img}>
                                                         <Link
@@ -84,11 +93,8 @@ export default function MarketHome () {
                                                         </Link>
                                                     </div>
                                                     <div className={styles.cont_desc}>
-                                                        <div>
-                                                            <h5>{dados.nome}</h5>
-                                                            <p>{dados.colors}</p>
-                                                        </div>
-                                                        <div>
+                                                        <div className={styles.text}>
+                                                            <h4>{dados.nome}</h4>
                                                             <h5>{FormataValor(parseFloat(dados.preço))}</h5>
                                                         </div>
                                                     </div>

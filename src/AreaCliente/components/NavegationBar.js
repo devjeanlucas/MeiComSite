@@ -21,7 +21,7 @@ export default function NavigationBar (props) {
                         <FaBars className={styles.icon_bars}
                         type="button" 
                         data-bs-toggle="offcanvas" 
-                        data-bs-target="#offcanvasNavbar" 
+                        data-bs-target="#offcanvasNavbarLight" 
                         aria-controls="offcanvasNavbar"
                         />
                     </div>
@@ -72,21 +72,43 @@ export default function NavigationBar (props) {
                         </div>
                         <div className={styles.cont_search}>
                             <input type="text"
-                            placeholder={` Pesquisar`}
+                            placeholder={`Pesquisar`}
+                            className={styles.input}
                             />
                             <FaShoppingCart className={styles.icon}/>
+                            <FaBars className={styles.icon_bars}
+                            type="button" 
+                            data-bs-toggle="offcanvas" 
+                            data-bs-target="#offcanvasNavbarDark" 
+                            aria-controls="offcanvasNavbar"
+                            />
                         </div>
                     </div>
                 </div>
             </>
             }
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight" aria-labelledby="offcanvasNavbarLabel">
             <div class="h-100%">
                 <div class="overflow-auto"> 
                     <MenuMobileCliente 
                     type="button"
                     data_bs_dismiss="offcanvas" 
-                    aria_label="Close"/>
+                    aria_label="Close"
+                    tema={list && list.theme}
+                    />
+                </div>
+            </div>
+        </div>
+        
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarLabel">
+            <div class="h-100%">
+                <div class="overflow-auto"> 
+                    <MenuMobileCliente 
+                    type="button"
+                    data_bs_dismiss="offcanvas" 
+                    aria_label="Close"
+                    tema={list && list.theme}
+                    />
                 </div>
             </div>
         </div>
