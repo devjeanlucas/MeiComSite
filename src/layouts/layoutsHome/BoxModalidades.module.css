@@ -31,12 +31,21 @@
     font-weight: 600;
     font-size: 1em;
     margin-top: 0.2em;
-}
+    text-decoration: none !important;
+    color: #000;
+    }
+    .link {
+        text-decoration: none !important;
+    }
 }
 @media screen and (min-width:576px) {
     .description {
         font-weight: 600;
         font-size: 1.2em;
         margin-top: 0.2em;
+    }
+    .description p {
+        text-decoration: none !important;
+        color: #000 !important;
     }
 }

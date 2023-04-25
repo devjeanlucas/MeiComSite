@@ -15,6 +15,7 @@ import HomeCliente from "./AreaCliente/HomeCliente"
 import Cardapio from "./AreaCliente/layouts/Restaurante/Cardapio";
 import Produtos from "./Formularios/Cliente/Produtos"
 import MarketHome from "./AreaCliente/layouts/Loja Virtual/MarketHome";
+import Catalogo from "./Pages/Catálogo";
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
                 <Route path="/perfil/user/config" element={<FormularioEdit/>}/>
                 <Route path="/perfil/cadastro" element={<FormularioCadastro/>}/>
               </Route>
+
+              <Route path="/catalogo/:modalidade" element={<Catalogo/>}/>
 
 
 
