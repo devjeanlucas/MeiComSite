@@ -11,7 +11,16 @@ return (
         <div className={styles.content}>
             <Link to="/" className={styles.logo}>MeiComSite</Link>
             <div className={styles.menu}>
-                <p>Soluções</p>
+            <div className={`dropdown`}>
+                <a className={`btn btn-secondary dropdown-toggle ${styles.link_drop}`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                >
+                    Parceiros
+                </a>
+                <ul className={`${styles.list} dropdown-menu`}>
+                    <li><Link to="/catalogo/alimentação" className={`${styles.item} dropdown-item`}>Restaurantes</Link></li>
+                    <li><Link to="/catalogo/shopping" className={`${styles.item} dropdown-item`}>Lojas</Link></li>
+                </ul>
+            </div>
                 <Link to="/planos">Planos e Preços</Link>
                 <Link to="/suporte/query">Ajuda</Link>
             </div>

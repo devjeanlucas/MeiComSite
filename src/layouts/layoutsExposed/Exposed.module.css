@@ -7,10 +7,15 @@
     padding: 1em;
 }
 .list li {
-    box-shadow: 1px 1px 4px #000;
+    border-bottom: 1px solid #000;
     margin: 1em 0em;
     padding: 1em;
+    border-radius: 5px;
 }
 .link {
+    color: #000;
+}
+.cont_link {
+    text-decoration: none;
     color: #000;
 }
