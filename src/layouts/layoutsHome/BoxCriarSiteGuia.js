@@ -1,7 +1,65 @@
 import styles from "./BoxCriarSiteGuia.module.css"
 import {FaAngleDoubleRight} from "react-icons/fa"
+import {firebase, auth} from "../../Service/firebase"
+import { useEffect, useState } from "react"
+import App from "../../Hooks/App"
+import { collection,  getFirestore, getDocs} from "@firebase/firestore";
+import { Link } from "react-router-dom"
 
 export default function BoxCriarSiteGuia () {
+
+    const [userLogin, setUserLogin] = useState();
+    const [user, setUser] = useState([]);
+    const [produtos, setProdutos] = useState([])
+    
+    const db = getFirestore(App)
+    const UserCollection = collection(db, "MeiComSite")
+
+    const HandleClickLoginGoogle = async() => {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        const result = await auth.signInWithPopup(provider);
+
+        if (!result.user) {
+            const {uid, displayName, photoURL} = result.user
+            if (!displayName && !photoURL) {
+                throw new Error('Usuário sem Nome ou foto')
+            }
+            setUserLogin({
+                id: uid,
+                avatar: photoURL,
+                name: displayName
+            })
+        }
+    }
+    useEffect(()=>{
+        const getUsers = async () => {
+            const data = await getDocs(UserCollection);
+            setProdutos((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
+        };
+        getUsers()
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                const {uid, displayName, photoURL, email} = user
+                if (!displayName || !photoURL) {
+                    throw new Error('Usuário sem Nome ou foto')
+                }
+                setUser({
+                    id: uid,
+                    avatar: photoURL,
+                    name: displayName,
+                    email
+                })
+            }
+        })
+    }, [])
+
+
+    let index = produtos && user && produtos.findIndex(prop => prop.iduser == user.id)
+
+
+
+
 return (
     <div className={styles.container}>
         <div className="row">
@@ -18,9 +76,17 @@ return (
                         <li><strong>Adicione fotos do seu One drive.</strong> Acompanhe como</li>
                         <li><strong>Adicione seus produtos.</strong></li>
                     </ol>
-                    <div className={styles.cont_links}>
-                        <a href="#" className={styles.link}>Criar agora <FaAngleDoubleRight/></a>
-                    </div>
+
+                    {user.length == 0  ?
+                            <button className={styles.btn_start}
+                            onClick={HandleClickLoginGoogle}
+                            >Criar agora <FaAngleDoubleRight/></button>
+                    :
+                        <Link to={index ? "/cadastro": "/perfil/user/negocio"}>
+                            <button className={styles.btn_start}>Começar Grátis</button>
+                        </Link>
+                        
+                    }
                 </div>
             </div>
             <div className="col-md-7 order-1 col-lg-6">

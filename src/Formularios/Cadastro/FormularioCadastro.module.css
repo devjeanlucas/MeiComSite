@@ -107,6 +107,7 @@
     }
     .item {
         width: 100%;
+        cursor: pointer;
     }
     .item p {
         margin-left: 1em;

@@ -36,38 +36,25 @@ export default function HomeCliente () {
 
 
 
+    const redirect = cliente && cliente[0].site
+
     return (
         <>
             {cliente && cliente[0].theme == "Light" &&
-                <div className={styles.container}>
-                    <div className="row">
-                        <div className={`${styles.no_margin_no_padding} col-xl-2`}>
-                            <div className={styles.navBar}>
-                                <NavigationBar info={cliente && cliente[0]}/>
-                            </div>
-                        </div>
-                        <div className={`${styles.no_margin_no_padding} col-xl-10`}>
-                            <Outlet/>
-                        </div>
-                    </div>
+                redirect ? window.location.replace(`https://meicomsite.netlify.com/${redirect}/cardapio`):
+                <div className={styles.center}>
+                    <Loading/>
+                    <p>Redirecionando...</p>
                 </div>
             }
             {cliente && cliente[0].theme == "Dark" &&
-                <div className={`${styles[cliente && cliente[0].theme]} ${styles.container}`}>
-                    <div className="row">
-                        <div className={`${styles.no_margin_no_padding} col-md-3 order-lg-1`}>
-                            <NavigationBar info={cliente && cliente[0]}/>
-                            <NavShop/>
-                        </div>
-                        <div className={`${styles.no_margin_no_padding} order-lg-2 col-sm-12 col-md-9`}>
-                            <Outlet/>
-                        </div>
-                    </div>
+                redirect ? window.location.replace(`https://meicomsite.netlify.com/${redirect}/estoque`):
+                <div className={styles.center}>
+                    <Loading/>
+                    <p>Redirecionando...</p>
                 </div>
             }
-            {!load && <Loading/>}
 
-        
         </>
         )
 }

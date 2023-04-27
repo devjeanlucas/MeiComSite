@@ -72,9 +72,10 @@ export default function FormularioEdit () {
     const [mod, setMod] = useState()
     
 
-   const Edit = () => {
+   const Edit = (tema) => {
         setStateTheme(!stateTheme)
         setStateMod(!stateMod)
+        setTheme(tema)
     }
     
     const obj = {
@@ -82,12 +83,7 @@ export default function FormularioEdit () {
     razao,
     phone, 
     token,
-    rua,
-    bairro,
-    ref,
     cidade,
-    num,
-    CEP,
     plan,
     mod,
     theme,
@@ -131,19 +127,24 @@ export default function FormularioEdit () {
                                             setPhone(el.target.value)
                                         }}
                                         defaultValue={dados.telefone}/>
-                                        <label>Token Mercado Pago *</label>
-                                        <input type="text"
-                                        onChange={(el)=> {
-                                            setToken(el.target.value)
-                                        }}
-                                        defaultValue={dados.token}/>
+                                        {dados.plan != "Basic" &&
+                                            <div>
+                                                <label>Token Mercado Pago *</label>
+                                                <input type="text"
+                                                onChange={(el)=> {
+                                                    setToken(el.target.value)
+                                                }}
+                                                defaultValue={dados.token}/>
+                                            </div>
+                                        
+                                        }
                                         
                                 <div className={styles.cont_plan}>
                                         <label>Plano:</label>
                                         {!modplan ? 
                                         <strong>{dados.plan}</strong>:
                                         
-                                        <select defaultChecked={dados.plan}
+                                        <select defaultValue={dados.plan}
                                         onChange={(el)=> setPlan(el.target.value)}
                                         >
                                             <option>Basic</option>
@@ -169,46 +170,12 @@ export default function FormularioEdit () {
                                         <div className={styles.cont_dashed_no_padding}>
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <label>Rua *</label>
-                                                    <input type="text"
-                                                    onChange={(el)=> {
-                                                        setRua(el.target.value)
-                                                    }}
-                                                    defaultValue={dados.rua}/>
-                                                    <label>Bairro *</label>
-                                                    <input type="text"
-                                                    onChange={(el)=> {
-                                                        setBairro(el.target.value)
-                                                    }}
-                                                    defaultValue={dados.bairro}/>
-                                                    <label>P.de Referência</label>
-                                                    <input type="text"
-                                                    onChange={(el)=> {
-                                                        setRef(el.target.value)
-                                                    }}
-                                                    defaultValue={dados.ref}/>
-                                                </div>
-                                                <div className="col-md-6">
                                                     <label>Cidade *</label>
                                                     <input type="text"
                                                     onChange={(el)=> {
                                                         setCidade(el.target.value)
                                                     }}
                                                     defaultValue={dados.cidade}
-                                                    />
-                                                    <label>Número *</label>
-                                                    <input type="number"
-                                                    onChange={(el)=> {
-                                                        setNum(el.target.value)
-                                                    }}
-                                                    defaultValue={dados.numero}
-                                                    />
-                                                    <label>CEP *</label>
-                                                    <input type="number"
-                                                    onChange={(el)=> {
-                                                        setCEP(el.target.value)
-                                                    }}
-                                                    defaultValue={dados.CEP}
                                                     />
                                                 </div>
                                             </div>
@@ -218,7 +185,7 @@ export default function FormularioEdit () {
                                         <p>status : <strong>{dados.status}</strong></p>
                                     </div>
                                     <div className={styles.cont_save}>
-                                        {nome || phone || razao || token || rua || cidade || bairro || num || CEP ?
+                                        {nome || phone || razao || token || rua || cidade || bairro || num || CEP || plan ?
                                             <button
                                             type="button" 
                                             data-bs-toggle="modal" 
@@ -250,19 +217,7 @@ export default function FormularioEdit () {
                                 <div className="col-md-6">
                                     <div className={styles.cont_theme}>
                                         <label>Modalidade</label>
-                                        {stateMod ?
-                                                <select id="modalidade" defaultValue={dados.mod}
-                                                onChange={(el)=> setMod(el.target.value)}
-                                                >
-                                                    <option defaultChecked>Loja Virtual</option>
-                                                    <option>Restaurante</option>
-                                                    <option>Agendamento</option>
-                                                </select>
-                                        
-                                        :
-                                        
-                                            <strong>{dados.mod}</strong>
-                                        }
+                                        <strong>{dados.mod}</strong>
                                     </div>
                                     </div>
                                     <div className="col-md-6">
@@ -271,20 +226,20 @@ export default function FormularioEdit () {
                                             {!stateTheme ? 
                                                 <div className={styles.flex}>
                                                     <strong>{dados.theme}</strong>
-                                                    <button
-                                                    onClick={(el)=>
-                                                    {
-                                                        el.preventDefault()
-                                                        Edit()
-                                                    }
-                                                    }
-                                                    className={styles.btn_theme}
-                                                    >alterar</button>
                                                 </div>
                                             
                                             :
-                                                <strong>{theme}</strong>
-                                            }
+                                            <strong>{theme}</strong>
+                                        }
+                                        <button
+                                        onClick={(el)=>
+                                        {
+                                            el.preventDefault()
+                                            Edit(dados.theme)
+                                        }
+                                        }
+                                        className={styles.btn_theme}
+                                        >alterar</button>
                                             
                                         </div>
                                     </div>

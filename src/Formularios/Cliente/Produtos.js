@@ -8,6 +8,7 @@ import {FaEdit, FaPlusCircle, FaTrashAlt} from "react-icons/fa"
 import { getFirestore, collection, getDocs, doc,setDoc} from "@firebase/firestore";
 import FormAdd from "../../AreaCliente/Admin/FormAdd"
 import FormEdit from "../../AreaCliente/Admin/FormEdit"
+import BoxConfirm from "../../components/BoxConfirm"
 
 
 
@@ -18,6 +19,7 @@ export default function Informations () {
     const [state, setState] = useState(false)
     const [Users, setUsers] = useState([])
     const [usuarios, setUsuarios] = useState([])
+    const [ação, setAção] = useState([])
     const [produto, setProduto] = useState()
     const db = getFirestore(App)
     const Collec = collection(db, "MeiComSite")
@@ -79,6 +81,10 @@ export default function Informations () {
             usuario.push(dados)
         }
     })
+    const obj ={
+        ação
+    }
+
     
     return (
             <>
@@ -107,6 +113,12 @@ export default function Informations () {
                                                     onClick={()=> setProduto(dados)}
                                                     />
                                                     <FaTrashAlt className={styles.icon}
+                                                    type="button" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target={`#ModalConfirm`}
+                                                    onClick={()=> {
+                                                        setAção("Deletar")
+                                                        setProduto(dados)}}
                                                     />
                                                 </div>
                                                 <div className={styles.item}>
@@ -121,10 +133,11 @@ export default function Informations () {
                                 )
                         }
                     })}
+                    {!load &&
+                    <Loading/>
+                    }
                 </ul>
-                {!load &&
-                <Loading/>
-                }
+                
 
                 <div className="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel">
                 <div className={`modal-dialog modal-xl`}>
@@ -151,6 +164,23 @@ export default function Informations () {
                             data_bs_toggle="modal" 
                             data_bs_target={`#ModalEdit`}
                             
+                            dados={produto}
+                            id={user && user.email}
+                            />
+                    </div>
+                </div>
+            </div>
+            
+            <div className="modal fade" id="ModalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div className={`modal-dialog modal-sm`}>
+                    <div className="modal-content">
+                        <BoxConfirm
+                            type="button"
+                            dismiss="modal"
+                            aria_label="Close"
+                            data_bs_toggle="modal" 
+                            data_bs_target={`#ModalConfirm`}
+                            obj={obj}
                             dados={produto}
                             id={user && user.email}
                             />

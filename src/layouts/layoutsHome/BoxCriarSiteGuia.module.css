@@ -16,7 +16,12 @@
         font-size: 1.5em;
         color: #000;
     }
-    
+    .btn_start {
+        border: none;
+        background-color: transparent;
+        font-size: 1.6em;
+        text-decoration: underline;
+    }
 }
 @media screen and (min-width:766px) {
     .container_text {

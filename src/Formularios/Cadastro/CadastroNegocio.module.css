@@ -6,6 +6,10 @@
         padding: 1em;
         box-shadow: 1px 1px 4px #00000063;
     }
+    .item {
+        width: 100%;
+        cursor: pointer !important;
+    }
 }
 @media screen and (min-width:576px) {
     .container {
@@ -62,6 +66,7 @@
 }
 .item {
     width: 100%;
+    cursor: pointer;
 }
 .item p {
     margin-left: 1em;

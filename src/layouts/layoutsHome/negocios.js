@@ -68,17 +68,14 @@ export default function Negocios() {
                     <h1 className={styles.big_text}>Gerencie seu negócio na palma da sua mão</h1>
                 </div>
                 <div className={styles.cont_buttons}>
-                    {user ? !index ? 
-                        <Link to="/cadastro">
-                            <button className={styles.btn_start}>Começar Grátis</button>
-                        </Link>:
-                        <Link to="/perfil/user/negocio">
+                    {user.length == 0  ?
+                            <button className={styles.btn_start}
+                            onClick={HandleClickLoginGoogle}
+                            >Começar Grátis</button>
+                    :
+                        <Link to={index ? "/cadastro": "/perfil/user/negocio"}>
                             <button className={styles.btn_start}>Começar Grátis</button>
                         </Link>
-                    :
-                        <button className={styles.btn_start}
-                        onClick={HandleClickLoginGoogle}
-                        >Começar Grátis</button>
                         
                     }
 

@@ -8,7 +8,7 @@ import moment from 'moment/moment';
 
 export default function BoxConfirm (props) {
 
-    const obj = props.obj
+    const obj = props.obj && props.obj
     const db = getFirestore(App)
     const [user, setUser] = useState();
     const [produtos, setProdutos] = useState([])
@@ -90,19 +90,7 @@ export default function BoxConfirm (props) {
             token: !obj.token ? prod[0].token : obj.token
         });
         await updateDoc(doc(db, "MeiComSite", user.email), {
-            rua: !obj.rua ? prod[0].rua : obj.rua
-        });
-        await updateDoc(doc(db, "MeiComSite", user.email), {
             cidade: !obj.cidade ? prod[0].cidade : obj.cidade
-        });
-        await updateDoc(doc(db, "MeiComSite", user.email), {
-            bairro: !obj.bairro ? prod[0].bairro : obj.bairro
-        });
-        await updateDoc(doc(db, "MeiComSite", user.email), {
-            numero: !obj.num ? prod[0].numero : obj.num
-        });
-        await updateDoc(doc(db, "MeiComSite", user.email), {
-            ref: !obj.ref ? prod[0].ref : obj.ref
         });
         await updateDoc(doc(db, "MeiComSite", user.email), {
             CEP: !obj.CEP ? prod[0].CEP : obj.CEP
@@ -130,6 +118,12 @@ export default function BoxConfirm (props) {
         window.location.reload()
     }   
 
+    const DeletarProduto = async () => {
+
+        const Doc = doc(db, `MeiComSite/${props.id}/produtos`, `${props.dados.id}`);
+        await deleteDoc(Doc)
+        window.location.reload()
+    }
     
 
 
@@ -195,6 +189,31 @@ export default function BoxConfirm (props) {
                 data-bs-toggle={props.data_bs_toggle} 
                 data-bs-target={props.data_bs_target}
                 onClick={EditaNegocio}
+                >Confirmar</button>
+
+
+                <button className={styles.cancel}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                >Cancelar</button>
+            </div>
+        </div>
+        }
+        
+        {obj.ação == "Deletar" &&
+        <div className={styles.container}>
+            <h4>Deletar Produto?</h4>
+            <p>- {props.dados.nome}</p>
+            <div className='line'></div>
+            <div className={styles.cont_btn}>
+
+                
+                <button className={styles.confirm}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                onClick={DeletarProduto}
                 >Confirmar</button>
 
 
