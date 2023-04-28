@@ -6,6 +6,9 @@ import { useState } from "react"
 import App from "../../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
+import NavigationBar from "../../components/NavegationBar";
+import Footer from "../../components/Footer";
+import NavShop from "./NavShop";
 
 
 export default function MarketHome () {
@@ -14,6 +17,7 @@ export default function MarketHome () {
     const [produtos, setProdutos] = useState([])
     const [users, setUsers] = useState([])
     const [state, setState] = useState("start")
+    const [load, setLoading] = useState(false)
     const {site} = useParams()
     
     const getProdutos = async () => {
@@ -21,6 +25,7 @@ export default function MarketHome () {
         const data = await getDocs(ProdutosCollection)
         setProdutos((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         setState("fim")
+        setLoading(true)
     }
 
     const getCliente = async () => {
@@ -75,38 +80,38 @@ export default function MarketHome () {
 
     return (
         <>
-                    
             {usuario.length > 0 && usuario[0].theme == "Dark" &&
-                <>
-                <div className={`${styles.container} ${styles[usuario && usuario[0].theme]}`}>
-                        <div className={styles.list}>
-                            <ul className="row">
-                            {produtos && produtos.map(dados => {
-                                    return (
-                                            <li key={dados.id} className="col-6 col-md-6 col-lg-4">
-                                                <div>
-                                                    <div className={styles.cont_img}>
-                                                        <Link
-                                                        to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
-                                                        >
-                                                            <img src={dados.img} className={styles.img}/>
-                                                        </Link>
-                                                    </div>
-                                                    <div className={styles.cont_desc}>
-                                                        <div className={styles.text}>
-                                                            <h4>{dados.nome}</h4>
-                                                            <h5>{FormataValor(parseFloat(dados.preço))}</h5>
-                                                        </div>
+            <>
+            {!load && <Loading/>}
+            <div className={`${styles.container} ${styles[usuario && usuario[0].theme]}`}>
+                    <div className={styles.list}>
+                        <ul className="row">
+                        {produtos && produtos.map(dados => {
+                                return (
+                                        <li key={dados.id} className="col-6 col-md-6 col-lg-4">
+                                            <div>
+                                                <div className={styles.cont_img}>
+                                                    <Link
+                                                    to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
+                                                    >
+                                                        <img src={dados.img} className={styles.img}/>
+                                                    </Link>
+                                                </div>
+                                                <div className={styles.cont_desc}>
+                                                    <div className={styles.text}>
+                                                        <h4>{dados.nome}</h4>
+                                                        <h5>{FormataValor(parseFloat(dados.preço))}</h5>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        )
-                                
-                            })
-                            }
-                         </ul>
-                    </div>
-                    </div>
+                                            </div>
+                                        </li>
+                                    )
+                            
+                        })
+                        }
+                    </ul>
+                </div>
+            </div>
                 </>
             }
         </>

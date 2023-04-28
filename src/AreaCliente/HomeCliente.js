@@ -8,6 +8,7 @@ import NavigationBar from "./components/NavegationBar";
 import Footer from "./components/Footer";
 import Loading from "../components/Loading";
 import NavShop from "./layouts/Loja Virtual/NavShop";
+import MarketHome from "./layouts/Loja Virtual/MarketHome";
 
 
 export default function HomeCliente () {
@@ -37,21 +38,30 @@ export default function HomeCliente () {
 
 
     const redirect = cliente && cliente[0].site
+    const {sites} = useParams()
+    
 
     return (
         <>
-            {cliente && cliente[0].theme == "Light" &&
-                redirect ? window.location.replace(`https://meicomsite.netlify.com/${redirect}/cardapio`):
-                <div className={styles.center}>
-                    <Loading/>
-                    <p>Redirecionando...</p>
-                </div>
-            }
             {cliente && cliente[0].theme == "Dark" &&
-                redirect ? window.location.replace(`https://meicomsite.netlify.com/${redirect}/estoque`):
-                <div className={styles.center}>
-                    <Loading/>
-                    <p>Redirecionando...</p>
+                <>
+                    {!load ? <></>:
+                    <div className="row">
+                        <NavigationBar info={cliente && cliente[0]}/>
+                        <div className="col-md-3">
+                            <NavShop/>
+                        </div>
+                        <div className="col-md-9">
+                            <Outlet/>
+                        </div>
+                    </div>
+                    }
+                </>
+            }
+            {cliente && cliente[0].theme == "Light" &&
+                <div>
+                    <NavigationBar info={cliente && cliente[0]}/>
+                    <Outlet/>
                 </div>
             }
 

@@ -7,6 +7,10 @@
     padding: 1em;
     color: #000;
     text-decoration: none;
+    margin-bottom: 0.6em;
+}
+.list li {
+    margin-bottom: 0.6em;
 }
 .icon {
     font-size: 1.2em;

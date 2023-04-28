@@ -95,6 +95,7 @@ export default function NavigationBar (props) {
                     data_bs_dismiss="offcanvas" 
                     aria_label="Close"
                     tema={list && list.theme}
+                    dados={list && list}
                     />
                 </div>
             </div>
@@ -108,6 +109,7 @@ export default function NavigationBar (props) {
                     data_bs_dismiss="offcanvas" 
                     aria_label="Close"
                     tema={list && list.theme}
+                    dados={list && list}
                     />
                 </div>
             </div>

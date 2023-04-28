@@ -5,6 +5,7 @@ import App from "../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import {FaAngleLeft, FaRegClock, FaUtensils} from "react-icons/fa"
+import Loading from "../../components/Loading";
 
 
 export default function Produto () {
@@ -12,6 +13,7 @@ export default function Produto () {
     const UserCollection = collection(db, `MeiComSite`)
     const [produtos, setProdutos] = useState([])
     const [users, setUsers] = useState([])
+    const [load, setLoading] = useState(false)
     const [state, setState] = useState("start")
     var [counter, setCounter] = useState(1)
     const {site, nome} = useParams()
@@ -21,6 +23,7 @@ export default function Produto () {
         const data = await getDocs(ProdutosCollection)
         setProdutos((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         setState("fim")
+        setLoading(true)
     }
     const getCliente = async () => {
         const data = await getDocs(UserCollection)
@@ -62,6 +65,7 @@ export default function Produto () {
             <div className={styles.container}>
                 {usuario.length > 0 && produto.length > 0  && usuario[0].theme == "Light" &&
                     <div className={styles[usuario[0].theme]}>
+                        {!load && <Loading/>}
                         <button className={styles.btn_return}
                         onClick={retorna}
                         ><FaAngleLeft/></button>
@@ -113,6 +117,7 @@ export default function Produto () {
                 }
                 {usuario.length > 0 && produto.length > 0  && usuario[0].theme == "Dark" &&
                     <div className={styles[usuario[0].theme]}>
+                        {!load && <Loading/>}
                         <div className="row">
                             <div className="col-lg-7">
                                 <img src={produto[0].img} className={styles.img}/>

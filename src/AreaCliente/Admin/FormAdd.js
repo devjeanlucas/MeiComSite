@@ -41,7 +41,13 @@ export default function FormEdit (props) {
             estoque: parseInt(estoque),
             iden: props.id,
             categoria:categoria.trim(),
-            desc:desc.trim()
+            desc:desc.trim(),
+            small_desc:small_desc.trim(),
+            cor,
+            p,
+            m,
+            g,
+            material
             });
         window.location.reload()
     }
@@ -226,7 +232,7 @@ export default function FormEdit (props) {
 
                                         <div className="col-sm-6">
                                             <strong>Material:</strong>
-                                            <input type="text" onChange={(el)=> setCor(el.target.value)}/>
+                                            <input type="text" onChange={(el)=> setMaterial(el.target.value)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +245,8 @@ export default function FormEdit (props) {
                                     data-bs-dismiss={props.dismiss}
                                     aria-label={props.aria_label}
                                     >Cancelar</button>
-                                    {nome && categoria && preço && imagem && desc && estoque && qtdpessoas?
+
+                                    {nome && imagem && small_desc && desc && categoria && preço && cor && material? 
                                         <button
                                         onClick={(el)=> {
                                             el.preventDefault()
@@ -251,10 +258,11 @@ export default function FormEdit (props) {
                                         <button
                                         onClick={(el)=> {
                                             el.preventDefault()
-
                                         }}
+                                        
                                         disabled
                                         >Confirmar</button>
+                                    
                                     }
                                 </div>
                         </div>

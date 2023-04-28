@@ -185,7 +185,7 @@ export default function FormularioEdit () {
                                         <p>status : <strong>{dados.status}</strong></p>
                                     </div>
                                     <div className={styles.cont_save}>
-                                        {nome || phone || razao || token || rua || cidade || bairro || num || CEP || plan ?
+                                        {nome || phone || razao || token || cidade  || plan ?
                                             <button
                                             type="button" 
                                             data-bs-toggle="modal" 

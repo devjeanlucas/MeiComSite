@@ -11,6 +11,7 @@
     font-weight: 600;
     font-size: 1.2em;
     position: relative;
+    text-align: center;
 }
 .navigation a:hover {
     background-color: rgb(219, 255, 255);
