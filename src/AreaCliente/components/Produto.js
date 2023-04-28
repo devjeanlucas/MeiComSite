@@ -58,7 +58,33 @@ export default function Produto () {
     }
 
     var total = produto.length > 0  && produto[0].preço * counter
-    
+
+    const addSacola = (id, produto) => {
+        let produtosSalvos = new Array()
+
+        if (localStorage.hasOwnProperty("itenscarrinho")) {
+            produtosSalvos = JSON.parse(localStorage.getItem("itenscarrinho"))
+        }
+
+        let index = produtosSalvos.findIndex(prop => prop.id == id)
+        if (index < 0) {
+            produtosSalvos.push({
+                id: id,
+                nome: produto.nome,
+                imagem: produto.imagem,
+                preco: produto.precoDesconto ? produto.precoDesconto : produto.preco,
+                qtd: 1,
+                estoque: produto.estoque
+            })
+            localStorage.setItem("itenscarrinho",JSON.stringify(produtosSalvos))
+            toast.success("Adicionando a sacola")
+        } else {
+            const obj = produtosSalvos[index]
+            obj['qtd'] += 1 
+            localStorage.setItem("itenscarrinho",JSON.stringify(produtosSalvos))
+            toast.success("Adicionando mais um a sacola")
+        }
+    }
 
     return (
         <>
@@ -147,7 +173,9 @@ export default function Produto () {
                                         <button>M</button>
                                         <button>G</button>
                                     </div>
-                                    <button className={styles.btn_buy}>Comprar</button>
+                                    <button className={styles.btn_buy}
+                                    onClick={addSacola}
+                                    >Comprar</button>
                                     <div className="accordion" id="accordionExample">
 
                                         <div className="accordion-item">

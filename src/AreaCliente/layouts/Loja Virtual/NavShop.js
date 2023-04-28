@@ -3,7 +3,7 @@ import { useState } from "react"
 import App from "../../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
-import {  useParams } from "react-router-dom";
+import {  Link, useParams } from "react-router-dom";
 
 
 export default function NavShop () {
@@ -76,7 +76,9 @@ export default function NavShop () {
                                         {reduced && reduced.map(item => {
                                             return (
                                                     <li key={item.id}>
-                                                        <button>{item.categoria}</button>
+                                                        <Link
+                                                        to={`/${site}/${item.categoria.toLowerCase()}`}
+                                                        >{item.categoria}</Link>
                                                     </li>
                                                 )
                                         })}

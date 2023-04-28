@@ -16,6 +16,7 @@ import Cardapio from "./AreaCliente/layouts/Restaurante/Cardapio";
 import Produtos from "./Formularios/Cliente/Produtos"
 import MarketHome from "./AreaCliente/layouts/Loja Virtual/MarketHome";
 import Catalogo from "./Pages/Catálogo";
+import Categorias from "./AreaCliente/layouts/Loja Virtual/Categorias";
 
 function App() {
   return (
@@ -47,8 +48,10 @@ function App() {
 
               <Route path="/:site" element={<HomeCliente/>}>
                 <Route path="/:site/estoque" element={<MarketHome/>}/>
+                <Route path="/:site/:categoria" element={<Categorias/>}/>
                 <Route path="/:site/cardapio" element={<Cardapio/>}/>
                 <Route path="/:site/produto/:nome" element={<Produto/>}/>
+
               </Route>
 
             </Routes>

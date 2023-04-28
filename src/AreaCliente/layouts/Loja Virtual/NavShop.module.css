@@ -16,12 +16,12 @@
         list-style-type: none;
         padding: 0.6em;
     }
-    .Dark .list_categories button {
-        border: none;
-        background-color: transparent;
+    .Dark .list_categories a {
         text-transform: capitalize;
-        margin-bottom: 0.7em;
+        margin-bottom: 0.9em;
         width: 100%;
         text-align: left;
+        text-decoration: none;
+        color: #000;
     }
 }

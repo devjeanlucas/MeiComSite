@@ -6,9 +6,6 @@ import { useState } from "react"
 import App from "../../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
-import NavigationBar from "../../components/NavegationBar";
-import Footer from "../../components/Footer";
-import NavShop from "./NavShop";
 
 
 export default function MarketHome () {
