@@ -1,9 +1,10 @@
 import styles from "./NavShop.module.css"
 import { useState } from "react"
-import App from "../../../Hooks/App"
+import App from "../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import {  Link, useParams } from "react-router-dom";
+import {FaBookReader, FaFireAlt, FaShoppingBag} from "react-icons/fa"
 
 
 export default function NavShop () {
@@ -104,6 +105,38 @@ export default function NavShop () {
                 </div>
             </div>
         }
+        {usuario.length > 0 && usuario[0].theme == "Light" &&
+            <div className={`${styles.container} ${styles[usuario && usuario[0].theme]}`}>
+                <div className={`${styles.cont_options}`}>
+                    <ul className={styles.list}>
+                        <li>
+                            <Link
+                            to={`/${usuario[0].site}/compras`}
+                            >
+                            <FaShoppingBag className={`item ${styles.icon}`}/>Sacola
+                            </Link>
+                        </li>
+
+                        <li>
+
+                            <Link
+                            to={`/${usuario[0].site}`}
+                            >
+                                <FaBookReader className={styles.icon}/>Cardápio
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link
+                            >
+                                <FaFireAlt className={styles.icon}/>Promoções
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+
         </>
         )
 }

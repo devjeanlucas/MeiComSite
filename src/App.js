@@ -12,11 +12,11 @@ import Produto from "./AreaCliente/components/Produto";
 import Negocio from "./Formularios/Cliente/Negocio";
 import Membros from "./Formularios/Cliente/Membros";
 import HomeCliente from "./AreaCliente/HomeCliente"
-import Cardapio from "./AreaCliente/layouts/Restaurante/Cardapio";
 import Produtos from "./Formularios/Cliente/Produtos"
-import MarketHome from "./AreaCliente/layouts/Loja Virtual/MarketHome";
+import MarketHome from "./AreaCliente/components/MarketHome";
 import Catalogo from "./Pages/Catálogo";
-import Categorias from "./AreaCliente/layouts/Loja Virtual/Categorias";
+import Categorias from "./AreaCliente/components/Categorias";
+import Carrinho from "./AreaCliente/components/Carrinho";
 
 function App() {
   return (
@@ -47,9 +47,9 @@ function App() {
 
 
               <Route path="/:site" element={<HomeCliente/>}>
-                <Route path="/:site/estoque" element={<MarketHome/>}/>
+                <Route index element={<MarketHome/>}/>
                 <Route path="/:site/:categoria" element={<Categorias/>}/>
-                <Route path="/:site/cardapio" element={<Cardapio/>}/>
+                <Route path="/:site/compras" element={<Carrinho/>}/>
                 <Route path="/:site/produto/:nome" element={<Produto/>}/>
 
               </Route>

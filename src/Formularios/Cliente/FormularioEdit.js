@@ -58,12 +58,9 @@ export default function FormularioEdit () {
     const [razao, setRazao] = useState()
     const [phone, setPhone] = useState()
     const [token,setToken] = useState()
-    const [rua, setRua] = useState()
-    const [bairro, setBairro] = useState()
-    const [ref,setRef] = useState()
     const [cidade, setCidade] = useState()
-    const [num, setNum] = useState()
-    const [CEP, setCEP] = useState()
+    const [site, setSite]= useState()
+    const [logo, setLogo] = useState()
     const [plan, setPlan] = useState()
     const [modplan, setModPlan] = useState(false)
     const [stateTheme,setStateTheme] = useState(false)
@@ -87,6 +84,8 @@ export default function FormularioEdit () {
     plan,
     mod,
     theme,
+    site,
+    logo, 
     ação:ação
     }
     
@@ -121,6 +120,19 @@ export default function FormularioEdit () {
                                             setRazao(el.target.value)
                                         }}
                                         defaultValue={dados.razao}/>
+                                        <label>Site *</label>
+                                        <strong>meicomsite.netlify.app/{!site ? dados.site: site}</strong>
+                                        <input type="text"
+                                        onChange={(el)=> {
+                                            setSite(el.target.value)
+                                        }}
+                                        defaultValue={dados.site}/>
+                                        <label>Logo *</label>
+                                        <input type="text"
+                                        onChange={(el)=> {
+                                            setLogo(el.target.value)
+                                        }}
+                                        defaultValue={dados.logo}/>
                                         <label>Telefone *</label>
                                         <input type="phone"
                                         onChange={(el)=> {
@@ -185,7 +197,7 @@ export default function FormularioEdit () {
                                         <p>status : <strong>{dados.status}</strong></p>
                                     </div>
                                     <div className={styles.cont_save}>
-                                        {nome || phone || razao || token || cidade  || plan ?
+                                        {nome || phone || razao || token || cidade  || plan || site || logo ?
                                             <button
                                             type="button" 
                                             data-bs-toggle="modal" 

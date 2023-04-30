@@ -6,6 +6,9 @@ import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import {FaAngleLeft, FaRegClock, FaUtensils} from "react-icons/fa"
 import Loading from "../../components/Loading";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default function Produto () {
@@ -62,27 +65,30 @@ export default function Produto () {
     const addSacola = (id, produto) => {
         let produtosSalvos = new Array()
 
-        if (localStorage.hasOwnProperty("itenscarrinho")) {
-            produtosSalvos = JSON.parse(localStorage.getItem("itenscarrinho"))
+        if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
+            produtosSalvos = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
         }
-
+        
+        
         let index = produtosSalvos.findIndex(prop => prop.id == id)
+
         if (index < 0) {
             produtosSalvos.push({
                 id: id,
                 nome: produto.nome,
-                imagem: produto.imagem,
-                preco: produto.precoDesconto ? produto.precoDesconto : produto.preco,
+                img: produto.img,
+                preço: produto.precoDesconto ? produto.precoDesconto : produto.preço,
                 qtd: 1,
                 estoque: produto.estoque
             })
-            localStorage.setItem("itenscarrinho",JSON.stringify(produtosSalvos))
-            toast.success("Adicionando a sacola")
+            localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+            toast.success('Produto adicionado ao carrinho')
         } else {
             const obj = produtosSalvos[index]
             obj['qtd'] += 1 
-            localStorage.setItem("itenscarrinho",JSON.stringify(produtosSalvos))
-            toast.success("Adicionando mais um a sacola")
+            console.log(produtosSalvos)
+            localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+            toast.success('Produto já adicionado ao carrinho')
         }
     }
 
@@ -174,7 +180,7 @@ export default function Produto () {
                                         <button>G</button>
                                     </div>
                                     <button className={styles.btn_buy}
-                                    onClick={addSacola}
+                                    onClick={()=> addSacola(produto[0].id, produto[0])}
                                     >Comprar</button>
                                     <div className="accordion" id="accordionExample">
 
@@ -196,6 +202,10 @@ export default function Produto () {
                     </div>
                 }
             </div>
+            <ToastContainer
+            position="top-left"
+            reverseOrder={false}
+            />
         </>
         )
 }

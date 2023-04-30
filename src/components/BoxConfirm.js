@@ -84,6 +84,9 @@ export default function BoxConfirm (props) {
             razao: !obj.razao ? prod[0].razao : obj.razao
         });
         await updateDoc(doc(db, "MeiComSite", user.email), {
+            logo: !obj.logo ? prod[0].logo : obj.logo
+        });
+        await updateDoc(doc(db, "MeiComSite", user.email), {
             telefone: !obj.phone ? prod[0].telefone : obj.phone
         });
         await updateDoc(doc(db, "MeiComSite", user.email), {
@@ -94,6 +97,9 @@ export default function BoxConfirm (props) {
         });
         await updateDoc(doc(db, "MeiComSite", user.email), {
             CEP: !obj.CEP ? prod[0].CEP : obj.CEP
+        });
+        await updateDoc(doc(db, "MeiComSite", user.email), {
+            site: !obj.site ? prod[0].site : obj.site
         });
         await updateDoc(doc(db, "MeiComSite", user.email), {
             plan: !obj.plan ? prod[0].plan : obj.plan

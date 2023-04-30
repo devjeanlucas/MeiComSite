@@ -1,11 +1,13 @@
 import styles from "./MarketHome.module.css"
-import { Link, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import {Swiper, SwiperSlide} from "swiper/react";
-import Loading from "../../../components/Loading"
+import NavShop from "./NavShop"
+import Loading from "../../components/Loading"
 import { useState } from "react"
-import App from "../../../Hooks/App"
+import App from "../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
+import { FaShoppingBag } from "react-icons/fa";
 
 
 export default function MarketHome () {
@@ -74,13 +76,17 @@ export default function MarketHome () {
     const href = createWhatsAppLink(phoneNumber, message);
 
     /*<a href={href} target="_blank" rel="noopener noreferrer">Clique</a>*/
-
+    
     return (
         <>
             {usuario.length > 0 && usuario[0].theme == "Dark" &&
             <>
             {!load && <Loading/>}
-            <div className={`${styles.container} ${styles[usuario && usuario[0].theme]}`}>
+            <div className={`${styles.container} row ${styles[usuario && usuario[0].theme]}`}>
+                <div className="col-lg-3">
+                    <NavShop/>
+                </div>
+                <div className="col-md-9">
                     <div className={styles.list}>
                         <ul className="row">
                         {produtos && produtos.map(dados => {
@@ -106,11 +112,51 @@ export default function MarketHome () {
                             
                         })
                         }
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
                 </>
             }
+            {usuario.length > 0 && usuario[0].theme == "Light" && 
+                    <div className={`${styles.container} row ${styles[usuario && usuario[0].theme]}`}>
+                        <div className="col-lg-3">
+                            <NavShop/>
+                        </div>
+                        <div className="col-lg-9">
+                        <ul className={`row ${styles.list}`}>
+                                {produtos && produtos.map(dados=> {
+                                    if (dados.status != "inerit") {
+                                        return (
+                                                <li key={dados.id} className="col-lg-4 col-md-6">
+                                                    <div className={styles.item}>
+                                                        <div className="row">
+                                                            <div className={`col-4 col-lg-12 ${styles.no_padding_no_margin}`}>
+                                                                <div className={styles.cont_img}><img src={dados.img} className={styles.img}/></div>
+                                                            </div>
+                                                            <div className={`col-8 col-lg-12 ${styles.no_padding_no_margin}`}>
+                                                                <div className={styles.cont_text}>
+                                                                    <h4 className={styles.nome_prod}>{dados.nome}</h4>
+                                                                    <p className={styles.desc_prod}>{dados.desc}</p>
+                                                                    <p className={styles.preço_prod}>{FormataValor(dados.preço)}</p>
+                                                                    <div className={styles.cont_buttons}>
+                                                                        <Link
+                                                                        to={`/${site}/produto/${dados.nome.replaceAll(' ', '').toLowerCase()}`}
+                                                                        >Comprar</Link>
+                                                                        <button><FaShoppingBag/></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            )
+                                    }
+                                })}
+                            </ul>
+                        </div>
+                    </div>
+                }
         </>
         )
 }

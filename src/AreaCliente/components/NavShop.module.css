@@ -2,6 +2,9 @@
     .Dark .cont_left {
         display: none;
     }
+    .Light .cont_options {
+        display: none;
+    }
 }
 @media screen and (min-width:768px) {
     .Dark .cont_left {
@@ -23,5 +26,27 @@
         text-align: left;
         text-decoration: none;
         color: #000;
+    }
+    /*Light*/
+    .Light .cont_options {
+        position: relative;
+        display: block;
+    }
+    .Light .icon {
+        font-size: 1em;
+        margin-right: 1em;
+    }
+    .Light .list {
+        list-style-type: none;
+        padding: 7em 0.8em;
+        position: fixed;
+    }
+    .Light .list li {
+        margin-bottom: 4em;
+    }
+    .Light .list li a {
+        text-decoration: none;
+        color: #000;
+        font-size: 1.2em;
     }
 }

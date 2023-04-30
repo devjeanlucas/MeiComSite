@@ -1,0 +1,34 @@
+.Dark .list {
+    list-style-type: none;
+}
+.Dark .list li {
+    margin-bottom: 1em;
+}
+.img {
+    width: 100%;
+}
+.Dark .cont_total {
+    padding: 1em;
+    box-shadow: -3px 6px 4px 0px #b1b1b1;
+    border-radius: 0px 0px 0px 20px;
+}
+.Dark .icon {
+    margin: 0em 0.7em;
+    cursor: pointer;
+}
+.Dark .btn_comprar {
+    display: block !important;
+    color: #fff;
+    text-decoration: none;
+    width: 100% !important;
+    border: none;
+    border-radius: 10px;
+    margin: 0.8em 0em;
+    background-color: #b1b1b1;
+    padding: 1em;
+    text-align: center;
+}
+.Dark .no_padding_right {
+    padding-right: 0em;
+    margin-right: 0em;
+}

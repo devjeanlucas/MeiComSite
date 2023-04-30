@@ -13,10 +13,23 @@
         padding-top: 0.4em;
         background-color: #fff;
     }
+    .Light .menu_mob h3 {
+        margin-right: 1.4em;
+    }
     .icon_bars {
         display: block;
         font-size: 1.2em;
         margin: 0.3em;
+    }
+    .Light .title {
+        width: 100% !important;
+        top: 0em;
+        padding: 0.8em 0em;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: -1px 4px 4px #ececec;
+        position: fixed;
+        z-index: 1000;
     }
     /*Dark*/
     .Dark .navigation {
@@ -39,6 +52,7 @@
     .Dark .icon {
         margin-left: 0.7em;
         font-size: 1.3em;
+        color: #000;
     }
     .Dark .input {
         display: none;
@@ -63,55 +77,18 @@
     .Dark .input {
         display: flex;
     }
-    .Dark .icon_bars {
+    .Dark .icon_bars, .Light .icon_bars {
         display: none;
     }
-}
-@media screen and (min-width:1199px) {
-    .Light .menu_mob, .Light .icon_bars {
-        display: none;
-    }
-    .Light {
-        width: 100% !important;
-    }
-    .Light .cont_options {
-        position: relative;
-    }
-    .Light .cont_left {
-        position: relative;
-        display: block;
-    }
-    .Light .cont_title {
-        position: relative;
-        width: 100% ;
-    }
-    .Light .title {
-        width: 100% !important;
-        top: 0em;
-        padding: 0.8em 0em;
-        text-align: center;
-        background-color: #fff;
-        box-shadow: -1px 4px 4px #ececec;
-        position: fixed;
-        z-index: 1000;
-    }
-    .Light .list {
-        list-style-type: none;
-        padding: 7em 0.8em;
-        position: fixed;
-    }
-    .Light .list li {
-        margin-bottom: 4em;
-    }
-    .Light .list li a {
-        text-decoration: none;
-        color: #000;
-        font-size: 1.2em;
-    }
+
 }
 .icon {
     font-size: 1em;
     margin-right: 1em;
+}
+.logo {
+    width: 50px;
+    height: 50px;
 }
 .no_margin_no_padding {
     margin: 0em;

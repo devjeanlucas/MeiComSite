@@ -71,7 +71,7 @@ export default function Exposed (props) {
                                                             <img src={dados.logo} className={styles.img}/>
                                                         </div>
                                                         <div className="col-9">
-                                                            <div>
+                                                            <div className={styles.flex_center}>
                                                                 <h5>{dados.razao}</h5>
                                                                 {moment(dados.abre).format('DD/MM/YYY') <
                                                                     moment().format('DD/MM/YYY') < moment(dados.fecha).format('DD/MM/YYYT') &&
@@ -80,7 +80,9 @@ export default function Exposed (props) {
                                                             </div>
                                                         </div>
                                                         <div className="col-1">
-                                                            <FaRegHeart className={styles.icon}/>
+                                                            <div className={styles.flex_center}>
+                                                                <FaRegHeart className={styles.icon}/>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </li>

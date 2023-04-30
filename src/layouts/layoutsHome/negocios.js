@@ -73,7 +73,7 @@ export default function Negocios() {
                             onClick={HandleClickLoginGoogle}
                             >Começar Grátis</button>
                     :
-                        <Link to={index ? "/cadastro": "/perfil/user/negocio"}>
+                        <Link to={index < 0 ? "/cadastro": "/perfil/user/negocio"}>
                             <button className={styles.btn_start}>Começar Grátis</button>
                         </Link>
                         
