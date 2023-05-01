@@ -84,6 +84,7 @@ export default function Produto () {
                 img: produto.img,
                 preço: produto.precoDesconto ? produto.precoDesconto : produto.preço,
                 qtd: 1,
+                site: site,
                 estoque: produto.estoque
             })
             localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))

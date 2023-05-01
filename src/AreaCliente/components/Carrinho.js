@@ -1,10 +1,12 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, Outlet, useParams } from "react-router-dom"
 import styles from "./Carrinho.module.css"
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import App from "../../Hooks/App";
 import { useEffect, useState } from "react";
 import {FaPlus, FaMinus, FaTrash} from "react-icons/fa"
 import NavShop from "../components/NavShop"
+import BoxConfirm from "../../components/BoxConfirm";
+import Loading from "../../components/Loading"
 
 export default function Carrinho () {
     
@@ -12,12 +14,16 @@ export default function Carrinho () {
     const db = getFirestore(App)
     const UserCollection = collection(db, `MeiComSite`)
     const [user, setUser] = useState([])
+    const [id, setId] = useState()
+    const [ação, setAção] = useState()
+    const [load, setLoading] = useState(false)
 
     useEffect(()=>{
         const getUsers = async () => {
             const data = await getDocs(UserCollection)
             setUser((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
-        }
+            setLoading(true)
+        }   
         getUsers()
     }, [])
 
@@ -36,55 +42,45 @@ export default function Carrinho () {
 
         return produtosSalvos
     }
-
-    function pegaItems() {
-        let listGeral = []
-        if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
-            listGeral = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
-        }
-        
-        if (listGeral.length == 0) {
-            return 0
-        } else {
-            let listPrecos = []
-            
-            listGeral.map(item => {listPrecos.push(item.qtd)})
-            var soma = listPrecos.reduce((soma, i) => {return soma + i})
-            return soma
-        }
-        
-    }
-    
-    function pegaPreco() {
-        let listGeral = []
-        if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
-            listGeral = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
-        }
-        if (listGeral.length === 0) {
-            return 0
-        } else {
-            let listPrecos = []
-            let list = []
-            listGeral.map(item => {return listPrecos.push({qtd: item.qtd, preço: item.preço})})
-            listPrecos.map(item => {return list.push(item.qtd * item.preço)})
-            var soma = list.reduce((soma, i) => {return soma + i})
-
-            return soma
-        }
-    }
     const FormataValor = (valor) => {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         return valorFormatado
     }
+    const addQtd = (id) => {
+        let produtosSalvos = new Array()
 
+        if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
+            produtosSalvos = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
+        }
 
+        let index = produtosSalvos.findIndex(prop => prop.id == id)
+
+        
+        const obj = produtosSalvos[index]
+        obj['qtd'] += 1 
+        localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+        window.location.reload()
+    }
+    const subQtd = (id) => {
+        let produtosSalvos = new Array()
+
+        if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
+            produtosSalvos = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
+        }
+
+        let index = produtosSalvos.findIndex(prop => prop.id == id)
+
+        
+        const obj = produtosSalvos[index]
+        obj['qtd'] -= 1 
+        localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+        window.location.reload()
+    }
     
     
     
+    const obj = {id, ação}
     const dados = pegaDados()
-    var total = pegaPreco()
-    var qtd = pegaItems()
-    
     
     function createWhatsAppLink(phoneNumber, message) {
         return `https://api.whatsapp.com/send?phone=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
@@ -104,7 +100,8 @@ export default function Carrinho () {
                         <div>
                             <ul className={`row ${styles.list}`}>
                             {dados && dados.map(dados => {
-                                return (
+                                if (dados.site == site) {
+                                    return (
                                         <li key={dados.id}>
                                             <div className="row">
                                                 <div className="col-4 col-sm-5">
@@ -123,11 +120,23 @@ export default function Carrinho () {
                                                         <div className="row">
                                                             <div className="col-10">
                                                                 <strong>x{dados.qtd}</strong>
-                                                                <FaPlus className={styles.icon}/>
-                                                                <FaMinus className={styles.icon}/>
+                                                                <FaPlus className={styles.icon}
+                                                                onClick={() => addQtd(dados.id)}
+                                                                />
+                                                                <FaMinus className={styles.icon}
+                                                                onClick={() => subQtd(dados.id)}
+                                                                />
                                                             </div>
                                                             <div className="col-2">
-                                                                <FaTrash className={styles.icon}/>
+                                                                <FaTrash className={styles.icon}
+                                                                type="button" 
+                                                                data-bs-toggle="modal" 
+                                                                data-bs-target={`#ModalDeleteCompra`}
+                                                                onClick={()=> {
+                                                                    setAção("Deletar Compra")
+                                                                    setId(dados.id)
+                                                                }}
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,23 +144,16 @@ export default function Carrinho () {
                                             </div>
                                         </li>
                                     )
+                                }
                                 })}
                             </ul>
                         </div>
                     </div>
                     <div className={`${styles.no_padding_right} col-sm-5`}>
-                        <div className={styles.cont_total}>
-                            <h4>Minhas Compras</h4>
-                            <h5>Itens: {qtd}</h5>
-                            <h3>Total: {FormataValor(total)}</h3>
-                            <a className={styles.btn_comprar}
-                            href={createWhatsAppLink('71981298548', message)}
-                            target="_blank"
-                            >Finalizar</a>
-                        </div>
+                        <Outlet context={usuario && usuario[0]}/>
                     </div>
-                                </div>
                 </div>
+            </div>
             }
             {usuario.length >0 && usuario[0].theme == "Light" && 
                 <div className={`${styles[usuario && usuario[0].theme]}`}>
@@ -183,11 +185,23 @@ export default function Carrinho () {
                                                                 <div className="row">
                                                                     <div className="col-10">
                                                                         <strong>x{dados.qtd}</strong>
-                                                                        <FaPlus className={styles.icon}/>
-                                                                        <FaMinus className={styles.icon}/>
+                                                                        <FaPlus className={styles.icon}
+                                                                        onClick={() => addQtd(dados.id)}
+                                                                        />
+                                                                        <FaMinus className={styles.icon}
+                                                                        onClick={() => subQtd(dados.id)}
+                                                                        />
                                                                     </div>
                                                                     <div className="col-2">
-                                                                        <FaTrash className={styles.icon}/>
+                                                                        <FaTrash className={styles.icon}
+                                                                        ype="button" 
+                                                                        data-bs-toggle="modal" 
+                                                                        data-bs-target={`#ModalDeleteCompra`}
+                                                                        onClick={()=> {
+                                                                            setAção("Deletar Compra")
+                                                                            setId(dados.id)
+                                                                        }}
+                                                                        />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -199,18 +213,28 @@ export default function Carrinho () {
                                         </ul>
                                 </div>
                                 <div className={`${styles.no_padding_right} col-sm-5`}>
-                                    <div className={styles.cont_total}>
-                                        <h4>Minhas Compras</h4>
-                                        <h5>Itens: {qtd}</h5>
-                                        <h3>Total: {FormataValor(total)}</h3>
-                                        <button className={styles.btn_comprar}>Finalizar</button>
-                                    </div>
+                                    <Outlet context={usuario && usuario[0]}/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             }
+            <div className="modal fade" id="ModalDeleteCompra" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div className={`modal-dialog modal-sm`}>
+                    <div className="modal-content">
+                        <BoxConfirm
+                            type="button"
+                            dismiss="modal"
+                            aria_label="Close"
+                            data_bs_toggle="modal" 
+                            data_bs_target={`#ModalDeleteCompra`}
+                            obj = {obj}
+                            />
+                    </div>
+                </div>
+            </div>
+            {!load && <Loading/>}
             </>
         )
 }

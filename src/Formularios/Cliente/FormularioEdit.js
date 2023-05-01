@@ -178,7 +178,7 @@ export default function FormularioEdit () {
                                 
                                     </div>
                                     <div className="col-lg-6">
-                                        <label className={styles.title_small}>Endereço</label>
+                                        <label className={styles.title_small}>Áreas Atendidas</label>
                                         <div className={styles.cont_dashed_no_padding}>
                                             <div className="row">
                                                 <div className="col-md-6">

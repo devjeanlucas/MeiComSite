@@ -5,6 +5,7 @@ import { doc, updateDoc,  deleteDoc, getFirestore, collection, getDocs,setDoc} f
 import { useState,useEffect } from "react"
 import {auth} from "../Service/firebase"
 import moment from 'moment/moment';
+import { useParams } from 'react-router-dom';
 
 export default function BoxConfirm (props) {
 
@@ -13,6 +14,7 @@ export default function BoxConfirm (props) {
     const [user, setUser] = useState();
     const [produtos, setProdutos] = useState([])
     const UserCollection = collection(db, "MeiComSite")
+    const {site} = useParams()
     
     useEffect (()=>{
         try{
@@ -130,7 +132,19 @@ export default function BoxConfirm (props) {
         await deleteDoc(Doc)
         window.location.reload()
     }
-    
+    const deletacompra = (id) => {
+        let produtosSalvos = new Array()
+
+        if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
+            produtosSalvos = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
+        }
+
+        let index = produtosSalvos.findIndex(prop => prop.id == id)
+        
+        produtosSalvos.splice(index, 1) 
+        
+        localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+    }
 
 
 
@@ -220,6 +234,30 @@ export default function BoxConfirm (props) {
                 data-bs-toggle={props.data_bs_toggle} 
                 data-bs-target={props.data_bs_target}
                 onClick={DeletarProduto}
+                >Confirmar</button>
+
+
+                <button className={styles.cancel}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                >Cancelar</button>
+            </div>
+        </div>
+        }
+
+        {obj.ação == "Deletar Compra" &&
+        <div className={styles.container}>
+            <h4>Deletar produto?</h4>
+            <div className='line'></div>
+            <div className={styles.cont_btn}>
+
+                
+                <button className={styles.confirm}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                onClick={()=> deletacompra(obj.id)}
                 >Confirmar</button>
 
 

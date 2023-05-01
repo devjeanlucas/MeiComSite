@@ -17,6 +17,8 @@ import MarketHome from "./AreaCliente/components/MarketHome";
 import Catalogo from "./Pages/Catálogo";
 import Categorias from "./AreaCliente/components/Categorias";
 import Carrinho from "./AreaCliente/components/Carrinho";
+import ItensSacola from "./AreaCliente/components/ItensSacola";
+import FormularioDetalhesComprador from "./AreaCliente/Formularios/FormularioDetalhesComprador"
 
 function App() {
   return (
@@ -49,7 +51,11 @@ function App() {
               <Route path="/:site" element={<HomeCliente/>}>
                 <Route index element={<MarketHome/>}/>
                 <Route path="/:site/:categoria" element={<Categorias/>}/>
-                <Route path="/:site/compras" element={<Carrinho/>}/>
+                <Route path="/:site/compras" element={<Carrinho/>}>
+                  <Route index element={<ItensSacola/>}/>
+                  <Route path="/:site/compras/detalhes" element={<FormularioDetalhesComprador/>}/>
+                </Route>
+
                 <Route path="/:site/produto/:nome" element={<Produto/>}/>
 
               </Route>

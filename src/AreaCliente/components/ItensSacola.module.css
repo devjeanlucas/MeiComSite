@@ -1,0 +1,22 @@
+.btn_finalizar {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: #000000;
+    margin: 1em 0em;
+    font-size: 1.1em;
+    transition: 0.2s ease;
+    transform-origin: right;
+}
+.Dark .btn_finalizar:hover {
+    background-color: #585858;
+    font-size: 1em;
+    width: 98%;
+}
+.Dark {
+    padding: 1em;
+}
