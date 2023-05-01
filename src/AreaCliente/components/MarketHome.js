@@ -1,6 +1,5 @@
 import styles from "./MarketHome.module.css"
 import { Link, useOutletContext, useParams } from "react-router-dom";
-import {Swiper, SwiperSlide} from "swiper/react";
 import NavShop from "./NavShop"
 import Loading from "../../components/Loading"
 import { useState } from "react"

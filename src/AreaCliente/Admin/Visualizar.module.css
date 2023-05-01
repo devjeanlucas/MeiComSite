@@ -1,17 +1,30 @@
+
 .img {
     width: 100%;
     height: 100%;
-    }
+}
+.btn_img {
+    border: none;
+    background-color: transparent;
+}
+.img_small {
+    width: 50px;
+    height: 50px;
+    margin: 1em 0.2em 0em 0em;
+    cursor: pointer;
+}
 .Dark .cont_bottom {
     display: flex;
     justify-content: space-between;
 }
+.Dark .cont_img {
+    width: 100%;
+    height: 200px;
+}
 .item {
     border-right: 1px solid #000;
     padding-right: 0.7em;
-}
-.cont_img {
-    height: 200px;
+    width: 100%;
 }
 .Dark .cont_text {
     font-size: 1em;

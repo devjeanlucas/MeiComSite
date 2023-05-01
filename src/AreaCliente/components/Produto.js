@@ -8,6 +8,11 @@ import {FaAngleLeft, FaRegClock, FaUtensils} from "react-icons/fa"
 import Loading from "../../components/Loading";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {Swiper, SwiperSlide} from "swiper/react"
+import { Pagination, Navigation } from "swiper";
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import 'swiper/css';
 
 
 
@@ -152,7 +157,44 @@ export default function Produto () {
                         {!load && <Loading/>}
                         <div className="row">
                             <div className="col-lg-7">
-                                <img src={produto[0].img} className={styles.img}/>
+                                <Swiper
+                                spaceBetween={10}
+                                pagination={{ clickable: true }}
+                                className={styles.cont_slides}
+                                modules={[Navigation, Pagination]}
+                                breakpoints={{
+                                    320: {
+                                      width: 320,
+                                      slidesPerView: 1,
+                                    },
+                                    768: {
+                                        width: 768,
+                                        slidesPerView: 1,
+                                      },
+                                  }}
+                                >
+                                    {produto[0].img &&
+                                        <SwiperSlide>
+                                            <img src={produto[0].img} className={styles.img}/>
+                                        </SwiperSlide>
+                                    }
+                                    {produto[0].img2 &&
+                                        <SwiperSlide>
+                                            <img src={produto[0].img2} className={styles.img}/>
+                                        </SwiperSlide>
+                                    }
+                                    {produto[0].img3 &&
+                                        <SwiperSlide>
+                                            <img src={produto[0].img3} className={styles.img}/>
+                                        </SwiperSlide>
+                                    }
+                                    {produto[0].img4 &&
+                                        <SwiperSlide>
+                                            <img src={produto[0].img4} className={styles.img}/>
+                                        </SwiperSlide>
+                                    }
+
+                                </Swiper>
                             </div>
                             <div className="col-lg-5">
                                 <div className={styles.cont_right}>
@@ -206,6 +248,7 @@ export default function Produto () {
             position="top-left"
             reverseOrder={false}
             />
+            {!load && <Loading/>}
         </>
         )
 }

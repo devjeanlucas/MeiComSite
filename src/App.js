@@ -17,7 +17,6 @@ import MarketHome from "./AreaCliente/components/MarketHome";
 import Catalogo from "./Pages/Catálogo";
 import Categorias from "./AreaCliente/components/Categorias";
 import Carrinho from "./AreaCliente/components/Carrinho";
-import Teste from "./AreaCliente/components/TesteUpload";
 
 function App() {
   return (
@@ -54,8 +53,6 @@ function App() {
                 <Route path="/:site/produto/:nome" element={<Produto/>}/>
 
               </Route>
-              <Route path="/teste" element={<Teste/>}/>
-
             </Routes>
         </Container>
       </Router>

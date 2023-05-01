@@ -10,6 +10,9 @@ export default function FormEdit (props) {
 
     const [nome, setNome]= useState()
     const [imagem, setImagem] = useState()
+    const [imagem2, setImagem2] = useState()
+    const [imagem3, setImagem3] = useState()
+    const [imagem4, setImagem4] = useState()
     const [desc, setDesc] = useState()
     const [qtdpessoas, setQtdPessoas] = useState()
     const [preço, setPreço] = useState()
@@ -36,6 +39,9 @@ export default function FormEdit (props) {
     async function addItem () {
         await setDoc(doc(db, `MeiComSite/${props.email}/produtos`, `${props.id}`), {
             img: imagem,
+            img2:imagem2 ? imagem2 : '',
+            img3:imagem3 ? imagem3 : '',
+            img4:imagem4 ? imagem3 : '',
             nome:nome.trim(),
             preço:parseFloat(preço),
             estoque: parseInt(estoque),
@@ -44,9 +50,9 @@ export default function FormEdit (props) {
             desc:desc.trim(),
             small_desc:small_desc.trim(),
             cor,
-            p,
-            m,
-            g,
+            p: p ? p : '',
+            m:  m ? m : '',
+            g:  g ? g : '',
             material
             });
         window.location.reload()
@@ -71,6 +77,9 @@ export default function FormEdit (props) {
                                         tema={props.tema}
                                         nome={nome}
                                         imagem={imagem}
+                                        imagem2={imagem2}
+                                        imagem3={imagem3}
+                                        imagem4={imagem4}
                                         preço={preço}
                                         desc={desc}
                                         small_desc={small_desc}
@@ -175,6 +184,9 @@ export default function FormEdit (props) {
                                         tema={props.tema}
                                         nome={nome}
                                         imagem={imagem}
+                                        imagem2={imagem2}
+                                        imagem3={imagem3}
+                                        imagem4={imagem4}
                                         preço={preço}
                                         desc={desc}
                                         small_desc={small_desc}
@@ -195,6 +207,25 @@ export default function FormEdit (props) {
                                         <div className="col-sm-6">
                                             <strong>Imagem:</strong>
                                             <input type="text" onChange={(el)=> setImagem(el.target.value)}/>
+                                            <div className="accordion" id="accordionExample">
+                                                <div className="accordion-item">
+                                                    <h2 className="accordion-header">
+                                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#imagens" aria-expanded="false" aria-controls="collapseOne">
+                                                        Imagens
+                                                        </button>
+                                                    </h2>
+                                                    <div id="imagens" className="accordion-collapse collapse">
+                                                        <div className="accordion-body">
+                                                        <strong>Imagem 2:</strong>
+                                                            <input type="text" onChange={(el)=> setImagem2(el.target.value)}/>
+                                                            <strong>Imagem 3:</strong>
+                                                            <input type="text" onChange={(el)=> setImagem3(el.target.value)}/>
+                                                            <strong>Imagem 4:</strong>
+                                                            <input type="text" onChange={(el)=> setImagem4(el.target.value)}/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <strong>Nome:</strong>
                                             <input type="text" onChange={(el)=> setNome(el.target.value)}/>
                                             <strong>Descrição Curta:</strong>

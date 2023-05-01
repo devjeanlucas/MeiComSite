@@ -1,5 +1,8 @@
 import {FaShoppingBag, FaUtensils, FaRegClock} from "react-icons/fa"
 import styles from "./Visualizar.module.css"
+import {Swiper, SwiperSlide} from "swiper/react";
+import 'swiper/css';
+import { useState } from "react";
 
 export default function Visualizar (props) {
 
@@ -8,7 +11,9 @@ export default function Visualizar (props) {
         return valorFormatado
     }
 
-  
+    const [select, setSelect] = useState()
+
+
     return (
             <div>
                 {props.tema == "Dark" &&
@@ -31,7 +36,57 @@ export default function Visualizar (props) {
                                         <div className="row">
                                             <div className="col-md-7">
                                                 <div className={styles.cont_img}>
-                                                    <img src={props.imagem} className={styles.img}/>
+                                                    <img src={!select ? props.imagem : select} className={styles.img}/>
+                                                </div>
+                                                <div>
+                                                    {props.imagem &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
+                                                    {props.imagem2 &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem2)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem2}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
+                                                    {props.imagem3 &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem3)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem3}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
+                                                    {props.imagem4 &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem4)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem4}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
                                                 </div>
                                             </div>
                                             <div className="col-md-5">
@@ -117,7 +172,57 @@ export default function Visualizar (props) {
                                         <div className="row">
                                             <div className="col-md-7">
                                                 <div className={styles.cont_img}>
-                                                    <img src={props.imagem} className={styles.img}/>
+                                                    <img src={!select ? props.imagem : select} className={styles.img}/>
+                                                </div>
+                                                <div>
+                                                    {props.imagem &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
+                                                    {props.imagem2 &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem2)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem2}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
+                                                    {props.imagem3 &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem3)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem3}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
+                                                    {props.imagem4 &&
+                                                        <button
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            setSelect(props.imagem4)}}
+                                                        className={styles.btn_img}
+                                                        >
+                                                            <img src={props.imagem4}
+                                                            className={styles.img_small}
+                                                            />
+                                                        </button>
+                                                    }
                                                 </div>
                                             </div>
                                             <div className="col-md-5">
