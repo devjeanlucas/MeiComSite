@@ -7,19 +7,24 @@ import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
-import { getFirestore, collection, getDocs} from "@firebase/firestore";
+import { getFirestore, collection, getDocs, updateDoc, doc} from "@firebase/firestore";
 
 export default function FormularioEdit () {
 
     const [user, setUser] = useState();
     const [Users, setUsers] = useState([])
-    const [dadosusers, setDados] = useState([])
     const db = getFirestore(App)
     const [ação, setAção] = useState()
+    const [li, setLi] = useState()
+    const [novaCidade, setNovaCidade] = useState()
+    const [novoBairro, setNovoBairro] = useState()
+    const [stop, setStop] = useState(false)
     const UserCollection = collection(db, "MeiComSite")
-    const dadosCollection = collection(db, `MeiComSite/${user && user.email}/negocio`)
+
+    const usuario = user && Users && Users.filter(dados => dados.iduser == user.id)
 
     
+
     useEffect (()=>{
         try{
             auth.onAuthStateChanged(user => {
@@ -39,18 +44,16 @@ export default function FormularioEdit () {
             const getUsers = async () => {
                 const data = await getDocs(UserCollection);
                 setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
-                const dataDados = await getDocs(dadosCollection)
-                setDados((dataDados.docs.map((doc) => ({...doc.data(), id: doc.id}))))
                 setLoading(true)
             };
+            
 
                 
-                getUsers()
+            getUsers()
         } catch (e) {
             <button> tentar novamente </button>
         }
     },[])
-    
     
 
     const [load, setLoading] = useState(false)
@@ -58,7 +61,6 @@ export default function FormularioEdit () {
     const [razao, setRazao] = useState()
     const [phone, setPhone] = useState()
     const [token,setToken] = useState()
-    const [cidade, setCidade] = useState()
     const [site, setSite]= useState()
     const [logo, setLogo] = useState()
     const [plan, setPlan] = useState()
@@ -67,6 +69,8 @@ export default function FormularioEdit () {
     const [stateMod,setStateMod] = useState(false)
     const [theme, setTheme] = useState()
     const [mod, setMod] = useState()
+    const [addCidade, setAddCidade] = useState(false)
+    const [addBairro, setAddBairro] = useState(false)
     
 
    const Edit = (tema) => {
@@ -76,11 +80,10 @@ export default function FormularioEdit () {
     }
     
     const obj = {
-    nome,
+        nome,
     razao,
     phone, 
     token,
-    cidade,
     plan,
     mod,
     theme,
@@ -88,9 +91,42 @@ export default function FormularioEdit () {
     logo, 
     ação:ação
     }
-    
-   
 
+
+    const listCidades = []
+    const listBairros = []
+
+    Users && Users.map(dados => {
+        if (dados.iduser == user.id) {
+            dados.cidades.map(item => {
+                listCidades.push({cidade: item.cidade})
+            })
+            dados.bairros.map(item => {
+                listBairros.push({bairro: item.bairro})
+            })
+        }
+    })
+    console.log(listBairros)
+    const salvarLocal = async () => {
+        listCidades.push({cidade: novaCidade})
+        listBairros.push({bairro: novoBairro})
+
+        if (novaCidade) {
+            await updateDoc(doc(db, `MeiComSite`, user.email), {
+                cidades: listCidades
+            });
+        }
+        if (novoBairro) {
+            await updateDoc(doc(db, `MeiComSite`, user.email), {
+                bairros: listBairros
+            });
+        }
+        
+        window.location.reload()
+    }
+
+            
+    
 
 
 
@@ -182,13 +218,72 @@ export default function FormularioEdit () {
                                         <div className={styles.cont_dashed_no_padding}>
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <label>Cidade *</label>
-                                                    <input type="text"
-                                                    onChange={(el)=> {
-                                                        setCidade(el.target.value)
+                                                    <label>Cidades</label>
+                                                    {addCidade && 
+                                                    <div>
+                                                        <input type="text" 
+                                                        onChange={(el)=> setNovaCidade(el.target.value)}
+                                                        />
+                                                        <button
+                                                        className={styles.btn_save}
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            salvarLocal()
+                                                        }}
+                                                        >salvar</button>
+                                                    </div>
+                                                    }
+                                                    <button
+                                                    className={styles.btn_add_cidade}
+                                                    onClick={(e)=> {
+                                                        e.preventDefault()
+                                                        setAddCidade(!addCidade)
                                                     }}
-                                                    defaultValue={dados.cidade}
-                                                    />
+                                                    >{!addCidade ? "Adicionar": "Cancelar"}</button>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <select>
+                                                        {dados.cidades && dados.cidades.map(item => {
+                                                            return (
+                                                                <option value={item.cidade}>{item.cidade}</option>
+                                                                )
+                                                        })}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <label>Bairros</label>
+                                                    {addBairro && 
+                                                    <div>
+                                                        <input type="text" 
+                                                        onChange={(el)=> setNovoBairro(el.target.value)}
+                                                        />
+                                                        <button
+                                                        className={styles.btn_save}
+                                                        onClick={(e)=> {
+                                                            e.preventDefault()
+                                                            salvarLocal()
+                                                        }}
+                                                        >salvar</button>
+                                                    </div>
+                                                    }
+                                                    <button
+                                                    className={styles.btn_add_cidade}
+                                                    onClick={(e)=> {
+                                                        e.preventDefault()
+                                                        setAddBairro(!addBairro)
+                                                    }}
+                                                    >{!addBairro ? "Adicionar": "Cancelar"}</button>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <select>
+                                                        {dados.bairros && dados.bairros.map(item => {
+                                                            return (
+                                                                <option value={item.bairro}>{item.bairro}</option>
+                                                                )
+                                                        })}
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -197,7 +292,7 @@ export default function FormularioEdit () {
                                         <p>status : <strong>{dados.status}</strong></p>
                                     </div>
                                     <div className={styles.cont_save}>
-                                        {nome || phone || razao || token || cidade  || plan || site || logo ?
+                                        {nome || phone || razao || token  || plan || site || logo ?
                                             <button
                                             type="button" 
                                             data-bs-toggle="modal" 

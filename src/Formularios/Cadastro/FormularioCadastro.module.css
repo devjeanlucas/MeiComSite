@@ -172,6 +172,16 @@
     .block {
         display: block;
     }
+    .btn_save {
+        border: none;
+        border-radius: 10px;
+    }
+    .btn_add_cidade {
+        border: none;
+        background-color: transparent;
+        margin: 0.6em 0em;
+        text-decoration: underline;
+    }
 }
 @media screen and (min-width:576px) {
     .container {
