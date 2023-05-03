@@ -1,10 +1,14 @@
-import { useState } from "react";
-import { Form, Link, useOutletContext, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useOutletContext, useParams } from "react-router-dom";
 import styles from "./FormularioDetalhesComprador.module.css"
+import '@firebase/firestore';
+import { getFirestore, collection, getDocs, updateDoc, doc} from "@firebase/firestore";
+import App from "../../Hooks/App";
+
 
 export default function FormularioDetalhesComprador () {
     const {site} = useParams()
-    const {theme, name} = useOutletContext()
+    const {theme} = useOutletContext()
     const [nome, setNome] = useState()
     const [rua, setRua] = useState()
     const [cidade, setCidade] = useState()
@@ -12,6 +16,31 @@ export default function FormularioDetalhesComprador () {
     const [numero, setNumero] = useState()
     const [pagamento, setPagamento] = useState()
     const [telefone, setTelefone] = useState()
+    const db = getFirestore(App)
+    const [Users, setUsers] = useState([])
+    const UserCollection = collection(db, "MeiComSite")
+
+    useEffect(()=> {
+        const getUsers = async () => {
+            const data = await getDocs(UserCollection);
+            setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
+        };
+        getUsers()
+    }, [])
+
+    const listCidades = []
+    const listBairros = []
+
+    Users && Users.map(dados => {
+        if (dados.site.toLowerCase().replaceAll(' ','') == site) {
+            dados.cidades.map(item => {
+                listCidades.push({cidade: item.cidade})
+            })
+            dados.bairros.map(item => {
+                listBairros.push({bairro: item.bairro})
+            })
+        }
+    })
 
 
     function pegaItems() {
@@ -94,10 +123,20 @@ export default function FormularioDetalhesComprador () {
                     <h5>Telefone *</h5>
                     <input type="text" onChange={(el)=> setTelefone(el.target.value)}/>
                     <h5>Cidade *</h5>
-                    <input type="text" onChange={(el)=> setCidade(el.target.value)}/>
+                    <select>
+                        {listCidades && listCidades.map(item => {
+                            return (
+                                <option value={item.cidade}>{item.cidade}</option>
+                                )
+                        })}
+                    </select>
                     <h5>Bairro *</h5>
-                    <select onChange={(el) => setBairro(el.target.value)}>
-                        <option value="barbalho">Barbalho</option>
+                    <select>
+                        {listBairros && listBairros.map(item => {
+                            return (
+                                <option value={item.bairro}>{item.bairro}</option>
+                                )
+                        })}
                     </select>
                     <h5>Rua *</h5>
                     <input type="text" onChange={(el)=> setRua(el.target.value)}/>

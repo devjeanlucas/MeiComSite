@@ -57,34 +57,23 @@ export default function ItensSacola () {
     }
 
     const dados = pegaDados()
+    const dadosUser = dados && dados.filter(dados => dados.site == site)
     var total = pegaPreco()
     var qtd = pegaItems()
     
-
-    function createWhatsAppLink(phoneNumber, message) {
-        return `https://api.whatsapp.com/send?phone=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
-      }
-
-    const message = `Olá! Me chamo Jean Lucas estou comprando no ${site}, segue minhas compras:
-    ${dados && dados.map(dados => {
-        if (dados.site == site) {
-            return `${dados.nome} x${dados.qtd} ${FormataValor(dados.preço)}`
-        }
-    
-        })}
-    `; 
-    /*<a 
-    href={createWhatsAppLink('71981298548', message)}
-    target="_blank"
-    >Finalizar</a>*/
     return (
             <div className={styles[theme && theme]}>
                 <h4>Compras</h4>
                 <h5>Itens: {qtd}</h5>
                 <h3>Total: {FormataValor(total)}</h3>
-                <Link to={`/${site}/compras/detalhes`}
-                className={styles.btn_finalizar}
-                >Continuar </Link>
+                {dadosUser.length > 0 ?
+                    <Link to={`/${site}/compras/detalhes`}
+                    className={styles.btn_finalizar}
+                    >Continuar </Link>:
+                    <button
+                    className={styles.btn_finalizar_disabled}
+                    >Continuar </button>
+                }
             </div>
         )
 }

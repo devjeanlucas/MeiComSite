@@ -82,78 +82,86 @@ export default function Carrinho () {
     const obj = {id, ação}
     const dados = pegaDados()
     
-    function createWhatsAppLink(phoneNumber, message) {
-        return `https://api.whatsapp.com/send?phone=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
-      }
-
-    const message = `Olá! Me chamo Jean Lucas estou comprando no ${site}, segue minhas compras:
-    ${dados && dados.map(dados => {return (`${dados.nome} x${dados.qtd} ${FormataValor(dados.preço)}`)})}
-    `; 
+    const dadosUser = dados.filter(dados => dados.site == site)
+    
 
 
     return (
             <>
             {usuario.length >0 && usuario[0].theme == "Dark" &&
                 <div className={`${styles[usuario && usuario[0].theme]}`}>
+                {dadosUser.length > 0 ?
                     <div className="row">
-                        <div className="col-sm-7">
-                        <div>
-                            <ul className={`row ${styles.list}`}>
-                            {dados && dados.map(dados => {
-                                if (dados.site == site) {
-                                    return (
-                                        <li key={dados.id}>
-                                            <div className="row">
-                                                <div className="col-4 col-sm-5">
-                                                    <Link
-                                                        to={`/${site}/produto/${dados.nome.replaceAll(' ', '').toLowerCase()}`}
-                                                    >
-                                                        <img src={dados.img} className={styles.img}/>
-                                                    </Link>
-                                                </div>
-                                                <div className="col-8 col-sm-7">
-                                                    <div className={styles.cont_desc}>
-                                                        <div className="row">
-                                                            <h5>{dados.nome}</h5>
-                                                            <p>{FormataValor(dados.preço)}</p>
+                    <div className="col-sm-7">
+                    <div>
+                        <ul className={`row ${styles.list}`}>
+                        {dados && dados.map(dados => {
+                            if (dados.site == site) {
+                                return (
+                                    <li key={dados.id}>
+                                        <div className="row">
+                                            <div className="col-4 col-sm-5">
+                                                <Link
+                                                    to={`/${site}/produto/${dados.nome.replaceAll(' ', '').toLowerCase()}`}
+                                                >
+                                                    <img src={dados.img} className={styles.img}/>
+                                                </Link>
+                                            </div>
+                                            <div className="col-8 col-sm-7">
+                                                <div className={styles.cont_desc}>
+                                                    <div className="row">
+                                                        <h5>{dados.nome}</h5>
+                                                        <p>{FormataValor(dados.preço)}</p>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-10">
+                                                            <strong>x{dados.qtd}</strong>
+                                                            <FaPlus className={styles.icon}
+                                                            onClick={() => addQtd(dados.id)}
+                                                            />
+                                                            <FaMinus className={styles.icon}
+                                                            onClick={() => subQtd(dados.id)}
+                                                            />
                                                         </div>
-                                                        <div className="row">
-                                                            <div className="col-10">
-                                                                <strong>x{dados.qtd}</strong>
-                                                                <FaPlus className={styles.icon}
-                                                                onClick={() => addQtd(dados.id)}
-                                                                />
-                                                                <FaMinus className={styles.icon}
-                                                                onClick={() => subQtd(dados.id)}
-                                                                />
-                                                            </div>
-                                                            <div className="col-2">
-                                                                <FaTrash className={styles.icon}
-                                                                type="button" 
-                                                                data-bs-toggle="modal" 
-                                                                data-bs-target={`#ModalDeleteCompra`}
-                                                                onClick={()=> {
-                                                                    setAção("Deletar Compra")
-                                                                    setId(dados.id)
-                                                                }}
-                                                                />
-                                                            </div>
+                                                        <div className="col-2">
+                                                            <FaTrash className={styles.icon}
+                                                            type="button" 
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target={`#ModalDeleteCompra`}
+                                                            onClick={()=> {
+                                                                setAção("Deletar Compra")
+                                                                setId(dados.id)
+                                                            }}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                    )
-                                }
-                                })}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className={`${styles.no_padding_right} col-sm-5`}>
-                        <Outlet context={usuario && usuario[0]}/>
+                                        </div>
+                                    </li>
+                                )
+                            }
+                            })}
+                        </ul>
                     </div>
                 </div>
+                <div className={`${styles.no_padding_right} col-sm-5`}>
+                    <Outlet context={usuario && usuario[0]}/>
+                </div>
             </div>
+            :
+            <div className="row">
+                <div className="col-sm-7">
+                    <h1>Ainda não há compras aqui</h1>
+                </div>
+                <div className="col-sm-5">
+                    <Outlet context={usuario && usuario[0]}/>
+                </div>
+            </div>
+            }    
+                    
+            </div>
+                    
             }
             {usuario.length >0 && usuario[0].theme == "Light" && 
                 <div className={`${styles[usuario && usuario[0].theme]}`}>

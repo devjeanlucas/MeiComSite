@@ -144,6 +144,24 @@ export default function BoxConfirm (props) {
         produtosSalvos.splice(index, 1) 
         
         localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+        window.location.reload()
+    }
+
+    const deletarBairro = async () => {
+        const index = obj.listBairros.findIndex(prop => prop.bairro == obj.novoBairro)
+        obj.listBairros.splice(index, 1)
+        await updateDoc(doc(db, `MeiComSite`, user.email), {
+            bairros: obj.listBairros
+        });
+        window.location.reload()
+    }
+    const deletarCidade = async () => {
+        const index = obj.listCidades.findIndex(prop => prop.cidade == obj.novaCidade)
+        obj.listCidades.splice(index, 1)
+        await updateDoc(doc(db, `MeiComSite`, user.email), {
+            cidades: obj.listCidades
+        });
+        window.location.reload()
     }
 
 
@@ -258,6 +276,54 @@ export default function BoxConfirm (props) {
                 data-bs-toggle={props.data_bs_toggle} 
                 data-bs-target={props.data_bs_target}
                 onClick={()=> deletacompra(obj.id)}
+                >Confirmar</button>
+
+
+                <button className={styles.cancel}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                >Cancelar</button>
+            </div>
+        </div>
+        }
+        {obj.ação == "Deletar Bairro" &&
+        <div className={styles.container}>
+            <h4>Deletar Bairro?</h4>
+            <strong>{obj.novoBairro}</strong>
+            <div className='line'></div>
+            <div className={styles.cont_btn}>
+
+                
+                <button className={styles.confirm}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                onClick={()=> deletarBairro()}
+                >Confirmar</button>
+
+
+                <button className={styles.cancel}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                >Cancelar</button>
+            </div>
+        </div>
+        }
+        {obj.ação == "Deletar Cidade" &&
+        <div className={styles.container}>
+            <h4>Deletar Cidade?</h4>
+            <strong>{obj.novaCidade}</strong>
+            <div className='line'></div>
+            <div className={styles.cont_btn}>
+
+                
+                <button className={styles.confirm}
+                type={props.type} 
+                data-bs-toggle={props.data_bs_toggle} 
+                data-bs-target={props.data_bs_target}
+                onClick={()=> deletarCidade()}
                 >Confirmar</button>
 
 

@@ -3,9 +3,14 @@
     .container {
         width: 90%;
         margin: 2em auto;
-        background-color: #fafafa;
-        padding: 1em;
+        background-color: #fff;
+        padding: 1.4em;
         box-shadow: 1px 1px 4px #00000063;
+        border-radius: 30px;
+    }
+    .logo {
+        width: 30px;
+        height: 30px;
     }
     .container h4 {
         margin-bottom: 1em;
@@ -33,7 +38,6 @@
         margin-left: 1em;
     }
     .title_small {
-        font-size: 0.8em;
         font-weight: 600;
     }
     .cont_save {
@@ -173,8 +177,8 @@
         display: block;
     }
     .btn_save {
-        border: none;
-        border-radius: 10px;
+        font-size: 1.1em;
+        margin-left: 0.7em;
     }
     .btn_add_cidade {
         border: none;
@@ -185,6 +189,11 @@
     .flex {
         display: flex;
         align-items: center;
+    }
+    .flex_space_around {
+        display: flex;
+        align-items: center;
+        height: 100%;
         justify-content: space-around;
     }
 }

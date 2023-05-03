@@ -12,6 +12,21 @@
     transition: 0.2s ease;
     transform-origin: right;
 }
+.Dark .btn_finalizar_disabled {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: #6e6e6e;
+    margin: 1em 0em;
+    font-size: 1.1em;
+    transition: 0.2s ease;
+    transform-origin: right;
+    border: none;
+}
 .Dark .btn_finalizar:hover {
     background-color: #585858;
     font-size: 1em;
