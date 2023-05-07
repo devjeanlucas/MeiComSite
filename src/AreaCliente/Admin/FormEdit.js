@@ -2,7 +2,10 @@ import { useState } from "react"
 import styles from "./FormEdit.module.css"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
-import { doc, updateDoc,  deleteDoc, getFirestore, collection, getDocs,setDoc} from "@firebase/firestore";
+import { doc, updateDoc, getFirestore} from "@firebase/firestore";
+import { FaPlusCircle, FaRegSave, FaTimesCircle, FaTrash } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function FormEdit (props) {
 
@@ -13,10 +16,48 @@ export default function FormEdit (props) {
     const [desc, setDesc] = useState()
     const [preço, setPreço] = useState()
     const [categoria, setCategoria] = useState()
+    var [ação, setAção] = useState()
+    const [addsabor, setAddSabor] = useState(false)
+    const [sabor, setSabor] = useState()
+    const [escolhaSabor, setEscolhaSabor] = useState()
+    const [ingredientes, setIngredientes] = useState()
     const db = getFirestore(App)
 
 
-    async function Update () {   
+    var saborPizza = {sabor, ingredientes}
+
+    async function UpdateSabores (ação) {
+        if (ação == "Excluir") {
+            let index = obj.listaSabores.findIndex(prop => prop.sabor == escolhaSabor)
+            obj.listaSabores.splice(index,1)
+            await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
+                listaSabores: obj.listaSabores
+            });
+            window.location.reload()
+            return
+        }
+        if (ação == "add") {
+            let index = obj.listaSabores.findIndex(prop => prop.sabor == sabor)
+            
+            if (index < 0) {
+                obj.listaSabores.push(saborPizza)
+                await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
+                    listaSabores: obj.listaSabores
+                });
+                window.location.reload()
+                return
+            } else {
+                toast.error('Sabor já existe')
+                return
+            }
+            
+        }
+    }
+
+
+    async function Update () {  
+
+        
         await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
             nome: !nome ? obj.nome : nome
         });
@@ -29,9 +70,13 @@ export default function FormEdit (props) {
         await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
             categoria: !categoria ? obj.categoria : categoria
         });
+        
         window.location.reload()
+        
+
     }
     
+
 
     return (
             <>
@@ -88,6 +133,76 @@ export default function FormEdit (props) {
                                     onChange={(el) => setCategoria(el.target.value)}
                                     className={styles.input}
                                     defaultValue={obj &&  obj.categoria}/>
+
+                                    {obj && obj.listaSabores &&
+                                        <div>
+                                            <p
+                                            className={styles.label}
+                                            >Sabores:</p>
+                                                {!addsabor ?
+                                                    <div>
+                                                        <div className={styles.listaSabores}>
+                                                            <select
+                                                            onChange={(el) => setEscolhaSabor(el.target.value)}
+                                                            className={styles.select}
+                                                            >
+                                                                {obj.listaSabores.map(dados => {
+                                                                    return (
+                                                                        <option
+                                                                        value={dados.sabor}
+                                                                        key={dados.sabor}                             >{dados.sabor}
+                                                                        </option>
+                                                                        )
+                                                                })}
+                                                            </select>
+                                                            {escolhaSabor &&
+                                                            <FaTrash
+                                                            type="button"
+                                                            onClick={()=> {
+                                                                UpdateSabores("Excluir")
+                                                            }}
+                                                            />
+                                                            
+                                                            }
+                                                        </div>
+                                                        <FaPlusCircle
+                                                        type="button"
+                                                        className={styles.icon_plus}
+                                                        onClick={()=> {
+                                                        setAddSabor(!addsabor)
+                                                        }}
+                                                        />
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                        <div className={styles.listaSabores}>
+                                                            <input type="text" className={styles.select}
+                                                            onChange={(el)=> setSabor(el.target.value)}
+                                                            placeholder="Sabor"
+                                                            />
+                                                            <input type="text" className={styles.select}
+                                                            onChange={(el)=> setIngredientes(el.target.value)}
+                                                            placeholder="Ingredientes"
+                                                            />
+                                                            <FaRegSave
+                                                            type="button"
+                                                            onClick={()=> {
+                                                                UpdateSabores("add")
+                                                            }}
+                                                            />
+                                                        </div>
+                                                        <FaTimesCircle
+                                                        type="button"
+                                                        className={styles.icon_plus}
+                                                        onClick={()=> {
+                                                        setAddSabor(!addsabor)
+                                                        }}
+                                                        />
+                                                    </div>
+                                                }
+                                        </div>
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -107,6 +222,7 @@ export default function FormEdit (props) {
                     </div>
                 </div>
             </div> 
+            <ToastContainer/>
             </>
         )
 }

@@ -22,6 +22,7 @@ export default function Produto () {
     const [produtos, setProdutos] = useState([])
     const [users, setUsers] = useState([])
     const [load, setLoading] = useState(false)
+    var [escolha, setEscolha] =useState([])
     const [state, setState] = useState("start")
     var [counter, setCounter] = useState(1)
     const {site, nome} = useParams()
@@ -101,6 +102,19 @@ export default function Produto () {
         }
     }
 
+    const lis = []
+    
+    const saborEscolha = (sabor) => {
+        var pacote = document.getElementsByName('sabor');
+        for (var i = 0; i < pacote.length; i++){
+            if ( pacote[i].checked ) {
+                if (!lis.includes(sabor)) {
+                    lis.push(sabor)
+                }
+            }
+        }
+    }
+
 
     return (
         <>
@@ -172,19 +186,43 @@ export default function Produto () {
                                                 <div id="detalhes" className="accordion-collapse collapse">
                                                     <div className="accordion-body">
                                                         <ul className={styles.listSabores}>
-                                                            {produto[0].listaSabores && 
-                                                            produto[0].listaSabores.map(item => {
+                                                            {produto[0].listaSabores.map(item => {
                                                                 return (
-                                                                        <li key={item.sabor} className={styles.li}>
+                                                                        <li key={item.sabor}>
+                                                                            {!produto[0].qtdSabores ?
+                                                                                <div className={styles.li}>
+                                                                                    <div>
+                                                                                        <input type= "radio"
+                                                                                        onClick={() => {
+                                                                                                setEscolha({sabor:item.sabor})
+                                                                                        }}
+                                                                                        name="sabor"
+                                                                                        value={item.sabor}
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <strong>{item.sabor}</strong>
+                                                                                        <p>{item.ingredientes}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            :
                                                                             <div>
-                                                                                <input type="checkbox"
-                                                                                
-                                                                                />
+                                                                                <div className={styles.li}>
+                                                                                    <input type= "checkbox"
+                                                                                    onClick={() => {
+                                                                                        saborEscolha(item.sabor)
+                                                                                    }}
+                                                                                    name="sabor"
+                                                                                    value={item.sabor}
+                                                                                    />
+                                                                                </div>
+                                                                                <div>
+                                                                                    <strong>{item.sabor}</strong>
+                                                                                    <p>{item.ingredientes}</p>
+                                                                                </div>
                                                                             </div>
-                                                                            <div>
-                                                                                <strong>{item.sabor}</strong>
-                                                                                <p>{item.Ingredientes}</p>
-                                                                            </div>
+                                                                            }
+                                                                            
                                                                         </li>
                                                                     )
                                                             })}

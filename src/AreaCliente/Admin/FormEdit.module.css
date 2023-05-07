@@ -26,3 +26,19 @@
     margin-left: 1em;
     border: none;
 }
+.listaSabores {
+    align-items: center;
+}
+.icon_plus {
+    font-size: 1.1em;
+    margin-top: 0.2em;
+}
+.select {
+    margin-right: 0.7em;
+    padding: 0.2em;
+    border-radius: 10px;
+    border: 1px solid #c7c7c7;
+    margin-bottom: 0.7em;
+    text-indent: 0.2em;
+    width: 100%;
+}
