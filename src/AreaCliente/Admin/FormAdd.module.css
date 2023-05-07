@@ -62,5 +62,27 @@
 }
 .cont_tamanhos strong {
     margin: 0em 0.2em;
-
+}
+.check_box {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+.check_box input {
+    margin-right: 0.6em;
+}
+.saborescomida {
+    list-style-type: none;
+    padding: 0.4em;
+    border: 1px dashed #c7c7c7;
+}
+.saborescomida li {
+    margin-bottom: 0.4em;
+    display: flex;
+    align-items: center;
+}
+.saborescomida li strong {
+    margin-right: 0.5em;
 }

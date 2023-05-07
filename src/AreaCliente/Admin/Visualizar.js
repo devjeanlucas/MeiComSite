@@ -10,6 +10,7 @@ export default function Visualizar (props) {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         return valorFormatado
     }
+    
 
     const [select, setSelect] = useState()
 
@@ -170,12 +171,12 @@ export default function Visualizar (props) {
                                 <div className={styles.cont_bottom}>
                                     <div className={styles.cont_text}>
                                         <div className="row">
-                                            <div className="col-md-7">
+                                            <div className="col-md-4 col-lg-6">
                                                 <div className={styles.cont_img}>
                                                     <img src={!select ? props.imagem : select} className={styles.img}/>
                                                 </div>
                                                 <div>
-                                                    {props.imagem &&
+                                                    {props.imagem1 &&
                                                         <button
                                                         onClick={(e)=> {
                                                             e.preventDefault()
@@ -225,7 +226,7 @@ export default function Visualizar (props) {
                                                     }
                                                 </div>
                                             </div>
-                                            <div className="col-md-5">
+                                            <div className="col-md-8 col-lg-6">
                                                 <div className={styles.cont_info}>
                                                     <div className={styles.info}>
                                                         <div className={styles.header}>
@@ -253,6 +254,30 @@ export default function Visualizar (props) {
                                                             <p>{props.desc ? props.desc: "descrição"}</p>
                                                         </div>
                                                         <button className={styles.btn_buy} disabled>Comprar {props.preço ? FormataValor(parseFloat(props.preço)): FormataValor(0)}</button>
+                                                        <div className="accordion" id="accordionExample">
+                                                            <div className="accordion-item">
+                                                                <h2 className="accordion-header">
+                                                                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#saboresExample" aria-expanded="false" aria-controls="collapseOne">
+                                                                    Sabores
+                                                                    </button>
+                                                                </h2>
+                                                                <div id="saboresExample" className="accordion-collapse collapse">
+                                                                    <div className="accordion-body" >
+                                                                        <ul className={styles.listSabores}>
+                                                                            {props.listaSabores.map(dados=> {
+                                                                                return (
+                                                                                        <li key={dados.id}>
+                                                                                            <strong>{dados.sabor}</strong>
+                                                                                            <p>{dados.Ingredientes}</p>
+                                                                                        </li>
+                                                                                    )
+                                                                            })}
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

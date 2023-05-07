@@ -1,4 +1,4 @@
-import {  useParams } from "react-router-dom";
+import {  Link, useParams } from "react-router-dom";
 import styles from "./Produto.module.css"
 import { useState } from "react"
 import App from "../../Hooks/App"
@@ -67,6 +67,8 @@ export default function Produto () {
 
     var total = produto.length > 0  && produto[0].preço * counter
 
+
+
     const addSacola = (id, produto) => {
         let produtosSalvos = new Array()
 
@@ -86,6 +88,7 @@ export default function Produto () {
                 qtd: 1,
                 site: site,
                 estoque: produto.estoque
+                
             })
             localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
             toast.success('Produto adicionado ao carrinho')
@@ -97,6 +100,7 @@ export default function Produto () {
             toast.success('Produto já adicionado ao carrinho')
         }
     }
+
 
     return (
         <>
@@ -130,7 +134,10 @@ export default function Produto () {
                                                 <div className="col-7 col-sm-4 col-md-5 col-lg-4">
                                                     <div className={styles.counter}>
                                                         <button
-                                                        onClick={()=> setCounter(counter -= 1)}
+                                                        onClick={()=> {
+                                                            if (counter == 1) return
+                                                            setCounter(counter -= 1)
+                                                        }}
                                                         >-</button>
                                                         <input type="number" value={counter}/>
                                                         <button
@@ -145,7 +152,46 @@ export default function Produto () {
                                             <p>{produto[0].desc}</p>
                                         </div>
                                         <div className={styles.btn_comprar}>
-                                            <button>Comprar <span>{FormataValor(total)}</span></button>
+                                            <button
+                                            onClick={()=> addSacola(produto[0].iden, produto[0])}
+                                            >Comprar <span>{FormataValor(total)}</span></button>
+                                        </div>
+
+                                        <div>
+                                            {produto[0].qtdSabores &&
+                                                <h5>Escolha até {produto[0].qtdSabores} sabores</h5>
+                                            }
+                                        </div>
+                                        <div className="accordion" id="accordionExample">
+                                            <div className="accordion-item">
+                                                <h2 className="accordion-header">
+                                                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#detalhes" aria-expanded="false" aria-controls="collapseOne">
+                                                    Sabores
+                                                    </button>
+                                                </h2>
+                                                <div id="detalhes" className="accordion-collapse collapse">
+                                                    <div className="accordion-body">
+                                                        <ul className={styles.listSabores}>
+                                                            {produto[0].listaSabores && 
+                                                            produto[0].listaSabores.map(item => {
+                                                                return (
+                                                                        <li key={item.sabor} className={styles.li}>
+                                                                            <div>
+                                                                                <input type="checkbox"
+                                                                                
+                                                                                />
+                                                                            </div>
+                                                                            <div>
+                                                                                <strong>{item.sabor}</strong>
+                                                                                <p>{item.Ingredientes}</p>
+                                                                            </div>
+                                                                        </li>
+                                                                    )
+                                                            })}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -235,6 +281,7 @@ export default function Produto () {
                                             </h2>
                                             <div id="detalhes" className="accordion-collapse collapse">
                                                 <div className="accordion-body">
+
                                                 </div>
                                             </div>
                                         </div>

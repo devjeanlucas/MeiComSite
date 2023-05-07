@@ -98,7 +98,7 @@
     border: none;
     border-radius: 5px;
     width: 100%;
-    margin-right: 0.3em;
+    margin: 0.3em 0.3em 0.8em 0em;
 }
 .Light .icon {
     border: none;
@@ -160,4 +160,15 @@
 .Light .btn_disable {
     background-color: #fff;
     color: #000;
+}
+.Light .listSabores {
+    list-style-type: none;
+    padding: 0.4em;
+}
+.Light .listSabores li strong {
+    font-size: 1.1em;
+    text-transform: capitalize;
+}
+.Light .listSabores li p {
+    font-size: 1em;
 }

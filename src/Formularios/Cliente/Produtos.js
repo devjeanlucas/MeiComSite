@@ -149,7 +149,7 @@ export default function Informations () {
                             id = {id && id}
                             email = {user && user.email}
                             modalidade= {usuario.length > 0 && usuario[0].mod}
-                            tema = {usuario.length > 0 && usuario[0].theme}
+                            tema = {usuario.length > 0 && usuario[0].theme} 
                             />
                     </div>
                 </div>
