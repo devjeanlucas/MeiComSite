@@ -40,6 +40,7 @@ export default function FormEdit (props) {
     const [m, setM] = useState()
     const [g, setG] = useState()
     const [material, setMaterial] = useState()
+    const [saborComida,setSaborComida] = useState([])
 
 
     const db = getFirestore(App)
@@ -73,7 +74,7 @@ export default function FormEdit (props) {
                 serve: qtdpessoas,
                 espera: espera,
                 qtdSabores: qtdSabores ? qtdSabores.trim() : "",
-                listaSabores:dados
+                listaSabores:saborComida
                 });
         }
 
@@ -103,16 +104,11 @@ export default function FormEdit (props) {
 
     
     const addSabor = (sabor) => {
-        let produtosSalvos = new Array()
+
+        let index = saborComida.findIndex(prop => prop.sabor == sabor)
         
-        if (localStorage.hasOwnProperty(`sabores`)) {
-            produtosSalvos = JSON.parse(localStorage.getItem(`sabores`))
-        }
-        let index = produtosSalvos.findIndex(prop => prop.sabor == sabor)
         if (index < 0) {
-            produtosSalvos.push({sabor, Ingredientes})
-            setDados(produtosSalvos)
-            localStorage.setItem(`sabores`,JSON.stringify(produtosSalvos))
+            setSaborComida([...saborComida, {sabor, Ingredientes}])
             setSabor('')
             setIngredientes('')
             toast.success('Sabor adicionado com sucesso!')
@@ -121,16 +117,9 @@ export default function FormEdit (props) {
         }
     }
     const retirarSabor = (sabor) => {
-
-        let produtosSalvos = new Array()
-
-        if (localStorage.hasOwnProperty(`sabores`)) {
-            produtosSalvos = JSON.parse(localStorage.getItem(`sabores`))
-        }
-        let index = produtosSalvos.findIndex(prop => prop.sabor == sabor)
-
-        produtosSalvos.splice(index, 1)
-        localStorage.setItem(`sabores`,JSON.stringify(produtosSalvos))
+        let index = saborComida.findIndex(prop => prop.sabor == sabor)
+        saborComida.splice(index, 1)
+        setSaborComida(saborComida)
         toast.success('Sabor retirado com sucesso!')
     }
     function formataTextoGoogleDrive (texto) {
@@ -309,7 +298,7 @@ export default function FormEdit (props) {
                                                         <div className="accordion-body" >
 
                                                             <ul className={`${styles.saborescomida} saborescomida`}>
-                                                                {dados.length > 0 && dados.map(item => {
+                                                                {saborComida.length > 0 && saborComida.map(item => {
                                                                     return (
                                                                             <li key={item.sabor}>
                                                                                 <strong>{item.sabor}</strong>

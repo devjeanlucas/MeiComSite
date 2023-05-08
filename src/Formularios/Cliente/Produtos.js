@@ -4,7 +4,7 @@ import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
-import {FaEdit, FaPlusCircle, FaTrashAlt} from "react-icons/fa"
+import {FaEdit, FaPlusCircle, FaRegSadTear, FaTrashAlt} from "react-icons/fa"
 import { getFirestore, collection, getDocs, doc,setDoc} from "@firebase/firestore";
 import FormAdd from "../../AreaCliente/Admin/FormAdd"
 import FormEdit from "../../AreaCliente/Admin/FormEdit"
@@ -88,13 +88,25 @@ export default function Informations () {
     
     return (
             <>
+                {usuario[0] && usuario[0].status == "Em análise" ?
                 <div className={styles.cont_btn}>
-                    <button className={styles.btn}
-                    type="button" 
-                    data-bs-toggle="modal" 
-                    data-bs-target={`#ModalAdd`}
-                    ><FaPlusCircle/> Adicionar Novo</button>
-                </div>
+                <button className={styles.btn_disabled}
+                type="button" 
+                disabled
+                ><FaPlusCircle/> Adicionar Novo</button>
+                <strong>Site ainda não autorizado a adicionar produtos <FaRegSadTear/></strong>
+                </div>:
+                <div className={styles.cont_btn}>
+                <button className={styles.btn}
+                type="button" 
+                data-bs-toggle="modal" 
+                data-bs-target={`#ModalAdd`}
+                ><FaPlusCircle/> Adicionar Novo</button>
+             </div>
+                
+                }
+
+
                 <ul className={styles.list_produtos}>
                     {Users && user && Users.map(dados => {
                         if (dados.status != "inerit") {

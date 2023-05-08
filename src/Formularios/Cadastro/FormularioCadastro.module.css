@@ -5,7 +5,8 @@
         margin: 2em auto;
         background-color: #fafafa;
         padding: 1em;
-        box-shadow: 1px 1px 4px #00000063;
+        box-shadow: 1px 1px 4px #85858563;
+        border-radius: 20px;
     }
     .container h4 {
         margin-bottom: 1em;
@@ -37,18 +38,23 @@
         font-weight: 600;
     }
     .cont_save {
+        width: 80%;
         display: flex;
         justify-content: flex-end;
     }
     .cont_save button {
-        padding: 0.3em 1em;
+        padding: 0.4em 1em;
         border: none;
         margin: 1em 0em;
-        background-color: #ff9100;
+        background-color: #ff9100 ;
         color: #fff;
     }
     .disabled {
         background-color: #c7c7c7 !important;
+    }
+    .center {
+        margin: 3em auto;
+        text-align: center;
     }
     /*Formulario Negocio*/
     .cont_dashed {
@@ -82,6 +88,7 @@
         justify-content: flex-end;
     }
     .cont_btn_save {
+
         margin-bottom: 1em;
     }
     .cont_btn_save button {
@@ -185,6 +192,25 @@
     .flex {
         display: flex;
         align-items: center;
+    }
+    .btn_save {
+        font-size: 1.1em;
+        margin-left: 0.7em;
+    }
+    .btn_add_cidade {
+        border: none;
+        background-color: transparent;
+        margin: 0.6em 0em;
+        text-decoration: underline;
+    }
+    .logo {
+        width: 30px;
+        height: 30px;
+    }
+    .flex_space_around {
+        display: flex;
+        align-items: center;
+        height: 100%;
         justify-content: space-around;
     }
 }

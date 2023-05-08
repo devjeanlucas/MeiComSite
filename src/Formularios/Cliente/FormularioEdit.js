@@ -9,6 +9,9 @@ import App from "../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs, updateDoc, doc} from "@firebase/firestore";
 import {FaPlusCircle, FaRegSave, FaTrashAlt} from "react-icons/fa"
+import moment from 'moment/moment';
+
+
 
 export default function FormularioEdit () {
 
@@ -84,11 +87,11 @@ export default function FormularioEdit () {
 
     Users && Users.map(dados => {
         if (dados.iduser == user.id) {
-            dados.cidades.map(item => {
-                listCidades.push({cidade: item.cidade})
+            dados.listCidades.map(item => {
+                listCidades.push({local: item.local})
             })
-            dados.bairros.map(item => {
-                listBairros.push({bairro: item.bairro})
+            dados.listBairros.map(item => {
+                listBairros.push({local: item.local})
             })
         }
     })
@@ -96,17 +99,17 @@ export default function FormularioEdit () {
 
 
     const salvarLocal = async () => {
-        listCidades.push({cidade: novaCidade})
-        listBairros.push({bairro: novoBairro})
+        listCidades.push({local: novaCidade})
+        listBairros.push({local: novoBairro})
 
         if (novaCidade) {
             await updateDoc(doc(db, `MeiComSite`, user.email), {
-                cidades: listCidades
+                listCidades: listCidades
             });
         }
         if (novoBairro) {
             await updateDoc(doc(db, `MeiComSite`, user.email), {
-                bairros: listBairros
+                listBairros: listBairros
             });
         }
         
@@ -159,8 +162,13 @@ export default function FormularioEdit () {
                                             setRazao(el.target.value)
                                         }}
                                         defaultValue={dados.razao}/>
+                                        <label>Nascimento </label>
+                                        <input type="text"
+                                        defaultValue={moment(dados.nascimento).format('DD/MM/YYYY')}
+                                        disabled
+                                        />
                                         <label>Site </label>
-                                        <strong>meicomsite.netlify.app/{!site ? dados.site: site}</strong>
+                                        <strong>meicomsite.netlify.app/{dados.site}</strong>
                                         <input type="text"
                                         onChange={(el)=> {
                                             setSite(el.target.value)
@@ -290,10 +298,10 @@ export default function FormularioEdit () {
                                             
                                             }
                                             >
-                                                {dados.cidades && dados.cidades.map(item => {
+                                                {dados.listCidades && dados.listCidades.map(item => {
                                                     return (
-                                                        <option value={item.cidade}>
-                                                            {item.cidade}
+                                                        <option value={item.local}>
+                                                            {item.local}
                                                         </option>
                                                         )
                                                 })}
@@ -343,9 +351,9 @@ export default function FormularioEdit () {
                                     <div className="col-md-6">
                                         <div className={styles.flex_space_around}>
                                             <select onChange={(el)=> setNovoBairro(el.target.value)}>
-                                                {dados.bairros && dados.bairros.map(item => {
+                                                {dados.listBairros && dados.listBairros.map(item => {
                                                     return (
-                                                        <option value={item.bairro} key={item.id}>{item.bairro}</option>
+                                                        <option value={item.local} key={item.local}>{item.local}</option>
                                                         )
                                                 })}
                                             </select>

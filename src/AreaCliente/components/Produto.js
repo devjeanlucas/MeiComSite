@@ -102,9 +102,9 @@ export default function Produto () {
         }
     }
 
-    const lis = []
     
     const saborEscolha = (sabor) => {
+        const lis = []
         var pacote = document.getElementsByName('sabor');
         for (var i = 0; i < pacote.length; i++){
             if ( pacote[i].checked ) {
@@ -113,6 +113,7 @@ export default function Produto () {
                 }
             }
         }
+        console.log(lis)
     }
 
 

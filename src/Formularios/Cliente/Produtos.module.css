@@ -32,10 +32,14 @@
     width: 90%;
     margin: 1em auto 0.2em auto;
 }
-.btn {
+.btn, .btn_disabled {
     border: none;
     padding: 0.6em;
     background-color: #FF9100;
     color: #fff;
     border-radius: 20px;
+}
+.btn_disabled {
+    background-color: #8f8f8f !important;
+    margin-right: 1em;
 }

@@ -57,15 +57,18 @@ export default function BoxConfirm (props) {
             razao:obj.razao,
             cidade:obj.cidade,
             plan:obj.plan,
-            abre:obj.abre,
-            fecha:obj.fecha,
-            site:obj.site,
-            nascimento:obj.nascimento,
-            token:obj.token ? obj.token : "",
-            CEP: obj.CEP
+            abre: obj.abre,
+            fecha: obj.fecha,
+            site: obj.site,
+            nascimento: obj.nascimento,
+            listCidades: props.listCidades,
+            listBairros: props.listBairros,
+            logo:obj.logo,
+            admin: true,
+            token:obj.token ? obj.token : ""
             });
 
-        window.location.href('https://meicomsite.netlify.com')
+        window.location.reload()
     };
 
 
@@ -170,7 +173,7 @@ export default function BoxConfirm (props) {
         <>
         {obj.ação == "Iniciar Cadastro" &&
         <div className={styles.container}>
-            <h4>Confirmar alterações?</h4>
+            <h4>Confirma seus dados?</h4>
             <div className='line'></div>
             <div className={styles.cont_btn}>
 
@@ -180,7 +183,7 @@ export default function BoxConfirm (props) {
                 type={props.type} 
                 data-bs-toggle={props.data_bs_toggle} 
                 data-bs-target={props.data_bs_target}
-                >Confirmar</button>
+                >Confirmo</button>
 
 
                 <button className={styles.cancel}

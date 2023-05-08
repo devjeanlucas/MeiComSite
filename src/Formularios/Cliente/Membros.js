@@ -63,39 +63,38 @@ export default function Membros () {
                 {Usuario && Usuario.map(item => {
                     if (item.iduser == user.id) {
                         return (
-                                <div className={styles.container}>
-                                    {item.plan != "Premium" && 
-                                    <div className={styles.flex}>
-                                        <p>Atualize para Adicionar mais membros</p>
-                                        <Link
-                                        to="/planos" 
-                                        className={styles.button}>planos</Link>
+                                <div>
+                                    <div className={styles.container}>
+                                        {item.plan != "Premium" &&
+                                        <div className={styles.flex}>
+                                            <p>Atualize para Adicionar mais membros</p>
+                                            <Link
+                                            to="/planos"
+                                            className={styles.button}>planos</Link>
+                                        </div>
+                                        }
                                     </div>
-                                    }
+                                    <div className={styles.container}>
+                                    <ul className={styles.list}>
+                                        <li>
+                                            <div className="row">
+                                                <div className="col-sm-2">
+                                                    <img src={user.avatar} className={styles.img}/>
+                                                </div>
+                                                <div className="col-sm-6">
+                                                    <p>{item.email}</p>
+                                                    <p>{item.nome}</p>
+                                                    {item.admin && <p>administrador</p>}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                                 </div>
                             )
                     }
                 })}
-                {Users && user && Users.map(dados => {
-                    return (
-                            <div className={styles.container}>
-                                <ul className={styles.list}>
-                                    <li>
-                                        <div className="row">
-                                            <div className="col-sm-2">
-                                                <img src={dados.avatar} className={styles.img}/>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <p>{dados.email}</p>
-                                                <p>{dados.nome}</p>
-                                                {dados.admin && <p>administrador</p>}
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        )
-                })}
+            
                 {!load && 
                 <Loading/>}
             </>
