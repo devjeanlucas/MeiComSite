@@ -68,6 +68,8 @@ export default function Produto () {
 
     var total = produto.length > 0  && produto[0].preço * counter
 
+    const [saboresEscolhidos, setSaboresEscolhidos] = useState([])
+
 
 
     const addSacola = (id, produto) => {
@@ -81,40 +83,39 @@ export default function Produto () {
         let index = produtosSalvos.findIndex(prop => prop.id == id)
 
         if (index < 0) {
-            produtosSalvos.push({
-                id: id,
-                nome: produto.nome,
-                img: produto.img,
-                preço: produto.precoDesconto ? produto.precoDesconto : produto.preço,
-                qtd: 1,
-                site: site,
-                estoque: produto.estoque
-                
-            })
-            localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
-            toast.success('Produto adicionado ao carrinho')
+            if (usuario[0] && usuario[0].mod == "Restaurante") {
+                if (produto.qtdSabores < saboresEscolhidos.length) return toast.error(`Apenas ${produto.qtdSabores} sabores`)
+    
+                produtosSalvos.push({
+                    id: id,
+                    nome: produto.nome,
+                    img: produto.img,
+                    preço: produto.precoDesconto ? produto.precoDesconto : produto.preço,
+                    qtd: 1,
+                    site: site,
+                    estoque: produto.estoque,
+                    saboresEscolhidos
+                })
+                localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+                toast.success('Produto adicionado ao carrinho')
+            }
+            
         } else {
-            const obj = produtosSalvos[index]
-            obj['qtd'] += 1 
-            console.log(produtosSalvos)
-            localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
-            toast.success('Produto já adicionado ao carrinho')
+            toast.error('Produto já adicionado ao carrinho')
         }
     }
 
-    
-    const saborEscolha = (sabor) => {
-        const lis = []
-        var pacote = document.getElementsByName('sabor');
-        for (var i = 0; i < pacote.length; i++){
-            if ( pacote[i].checked ) {
-                if (!lis.includes(sabor)) {
-                    lis.push(sabor)
-                }
-            }
-        }
-        console.log(lis)
+    const addSabor = (sabor) => {
+        setSaboresEscolhidos([...saboresEscolhidos, {sabor: sabor}])
     }
+    const deletaSabor = (sabor) => {
+        let index = saboresEscolhidos.findIndex(prop => prop.sabor == sabor)
+        saboresEscolhidos.splice(index, 1)
+        setSaboresEscolhidos(saboresEscolhidos)
+    }
+
+    
+
 
 
     return (
@@ -203,23 +204,27 @@ export default function Produto () {
                                                                                     </div>
                                                                                     <div>
                                                                                         <strong>{item.sabor}</strong>
-                                                                                        <p>{item.ingredientes}</p>
+                                                                                        <p>{item.Ingredientes}</p>
                                                                                     </div>
                                                                                 </div>
                                                                             :
                                                                             <div>
                                                                                 <div className={styles.li}>
                                                                                     <input type= "checkbox"
-                                                                                    onClick={() => {
-                                                                                        saborEscolha(item.sabor)
-                                                                                    }}
                                                                                     name="sabor"
                                                                                     value={item.sabor}
+                                                                                    onChange={(e)=> {
+                                                                                        if (e.target.checked) {
+                                                                                            addSabor(e.target.value)
+                                                                                        } else {
+                                                                                            deletaSabor(e.target.value)
+                                                                                        }
+                                                                                    }}
                                                                                     />
                                                                                 </div>
                                                                                 <div>
                                                                                     <strong>{item.sabor}</strong>
-                                                                                    <p>{item.ingredientes}</p>
+                                                                                    <p>{item.Ingredientes}</p>
                                                                                 </div>
                                                                             </div>
                                                                             }
