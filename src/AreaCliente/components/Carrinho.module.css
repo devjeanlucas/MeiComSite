@@ -1,4 +1,4 @@
-.Dark .list {
+.Dark .list, .Light .list {
     list-style-type: none;
 }
 .Dark .list li {

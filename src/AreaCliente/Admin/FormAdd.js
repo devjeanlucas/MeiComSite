@@ -71,9 +71,9 @@ export default function FormEdit (props) {
                 iden: props.id,
                 categoria:categoria.trim(),
                 desc:desc.trim(),
-                serve: qtdpessoas,
+                serve: parseInt(qtdpessoas),
                 espera: espera,
-                qtdSabores: qtdSabores ? qtdSabores.trim() : "",
+                qtdSabores: parseInt(qtdSabores) ? qtdSabores.trim() : '',
                 listaSabores:saborComida
                 });
         }

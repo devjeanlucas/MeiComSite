@@ -85,6 +85,7 @@ export default function Produto () {
         if (index < 0) {
             if (usuario[0] && usuario[0].mod == "Restaurante") {
                 if (produto.qtdSabores < saboresEscolhidos.length) return toast.error(`Apenas ${produto.qtdSabores} sabores`)
+                if (produto.qtdSabores > saboresEscolhidos.length) return toast.error(`Escolha ${produto.qtdSabores} sabores`)
     
                 produtosSalvos.push({
                     id: id,

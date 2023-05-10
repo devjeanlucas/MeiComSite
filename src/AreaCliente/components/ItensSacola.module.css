@@ -1,4 +1,4 @@
-.btn_finalizar {
+.Dark .btn_finalizar, .Light .btn_finalizar {
     display: block;
     text-decoration: none;
     text-align: center;
@@ -34,4 +34,13 @@
 }
 .Dark {
     padding: 1em;
+}
+/*Light*/
+.Light {
+    box-shadow: 1px 1px 4px #c7c7c7;
+    border-radius: 20px 20px 0px 0px;
+    padding: 0.7em;
+}
+.Light .btn_finalizar {
+    background-color: rgb(255, 0, 0);
 }

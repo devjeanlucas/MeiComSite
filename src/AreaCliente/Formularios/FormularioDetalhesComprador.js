@@ -28,20 +28,7 @@ export default function FormularioDetalhesComprador () {
         getUsers()
     }, [])
 
-    const listCidades = []
-    const listBairros = []
-
-    Users && Users.map(dados => {
-        if (dados.site.toLowerCase().replaceAll(' ','') == site) {
-            dados.cidades.map(item => {
-                listCidades.push({cidade: item.cidade})
-            })
-            dados.bairros.map(item => {
-                listBairros.push({bairro: item.bairro})
-            })
-        }
-    })
-
+    
 
     function pegaItems() {
         let listGeral = []
@@ -104,16 +91,22 @@ export default function FormularioDetalhesComprador () {
     const message = `Olá! Me chamo ${nome} estou comprando no ${site},
     endereço- Cidade:${cidade} Bairro: ${bairro} Rua:${rua}, Nº ${numero} 
     ,segue minhas compras:
-    ${dados && dados.map(dados => {return (`${dados.nome} x${dados.qtd} ${FormataValor(dados.preço)}.
-    Forma de pagamento: ${pagamento}
-
-    `)})}
-    `; 
+    ${dados && dados.map(dados => {
+        if (dados.saboresEscolhidos.length > 0) {
+            return (`${dados.nome} x${dados.qtd} ${FormataValor(dados.preço)}.
+        Sabores: ${dados.saboresEscolhidos.map(item=> {return item.sabor})}`)
+        }
+}
+    )
+}`; 
 
     const href = createWhatsAppLink('71981298548', message)
 
-
+    const usuario = Users && Users.filter(item => item.site.toLowerCase().replaceAll(' ', '') == site)
     
+
+
+
     return (
             <>
                 <h4>Já estamos finalizando...</h4>
@@ -123,18 +116,24 @@ export default function FormularioDetalhesComprador () {
                     <h5>Telefone *</h5>
                     <input type="text" onChange={(el)=> setTelefone(el.target.value)}/>
                     <h5>Cidade *</h5>
-                    <select>
-                        {listCidades && listCidades.map(item => {
+                    <select
+                    onChange={(el)=> setCidade(el.target.value)}
+                    >
+                        <option>--</option>
+                        {usuario.length > 0 && usuario[0].listCidades.map(dados => {
                             return (
-                                <option value={item.cidade}>{item.cidade}</option>
+                                <option value={dados.local}> {dados.local}</option>
                                 )
                         })}
                     </select>
                     <h5>Bairro *</h5>
-                    <select>
-                        {listBairros && listBairros.map(item => {
+                    <select
+                    onChange={(el)=> setBairro(el.target.value)}
+                    >
+                        <option>--</option>
+                        {usuario.length > 0 && usuario[0].listBairros.map(dados => {
                             return (
-                                <option value={item.bairro}>{item.bairro}</option>
+                                <option value={dados.local}> {dados.local}</option>
                                 )
                         })}
                     </select>
@@ -143,7 +142,9 @@ export default function FormularioDetalhesComprador () {
                     <h5>Numero *</h5>
                     <input type="number" onChange={(el)=> setNumero(el.target.value)}/>
                     <h5>Pagamento *</h5>
-                    <select onChange={(el) => setPagamento(el.target.value)}>
+                    <select onChange={(el) => setPagamento(el.target.value)}
+                    >
+                        <option>--</option>
                         <option value="Cartão de crédito">Cartão de crédito</option>
                     </select>
                     <div className={styles.cont_total}>

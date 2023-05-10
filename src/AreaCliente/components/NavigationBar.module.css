@@ -6,6 +6,7 @@
         position: fixed;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
         text-align: center;
         top: 0em;
@@ -20,6 +21,11 @@
         display: block;
         font-size: 1.2em;
         margin: 0.3em;
+    }
+    .icon_bag {
+        color: #000;
+        font-size: 1.3em;
+        margin-right: 0.6em;
     }
     .Light .title {
         width: 100% !important;

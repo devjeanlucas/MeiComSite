@@ -1,4 +1,4 @@
-import { FaBars, FaSearch, FaShoppingCart } from "react-icons/fa"
+import { FaBars, FaSearch, FaShoppingBag, FaShoppingCart } from "react-icons/fa"
 import MenuMobileCliente from "./MenuMobileCliente"
 import styles from "./NavigationBar.module.css"
 import { Link, useParams } from "react-router-dom"
@@ -24,6 +24,13 @@ export default function NavigationBar (props) {
                             data-bs-target="#offcanvasNavbarLight"
                             aria-controls="offcanvasNavbar"
                             />
+                            <Link
+                            to={`/${site}/compras`}
+                            >
+                                <FaShoppingBag
+                                className={styles.icon_bag}
+                                />
+                            </Link>
                         </div>
                     </div>
                 </div>
