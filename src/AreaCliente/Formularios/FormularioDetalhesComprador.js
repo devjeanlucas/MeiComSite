@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import styles from "./FormularioDetalhesComprador.module.css"
 import '@firebase/firestore';
-import { getFirestore, collection, getDocs, updateDoc, doc} from "@firebase/firestore";
+import { getFirestore, collection, getDocs, updateDoc, doc, setDoc} from "@firebase/firestore";
 import App from "../../Hooks/App";
+import moment from "moment";
 
 
 export default function FormularioDetalhesComprador () {
@@ -17,13 +18,19 @@ export default function FormularioDetalhesComprador () {
     const [pagamento, setPagamento] = useState()
     const [telefone, setTelefone] = useState()
     const db = getFirestore(App)
+   
+    const [vendas, setVendas] = useState([])
     const [Users, setUsers] = useState([])
+    const usuario = Users && Users.filter(item => item.site.toLowerCase().replaceAll(' ', '') == site)
     const UserCollection = collection(db, "MeiComSite")
+    const VendasCollection = collection(db, `MeiComSite/${usuario.length > 0 && usuario[0].email}/vendas`)
 
     useEffect(()=> {
         const getUsers = async () => {
             const data = await getDocs(UserCollection);
             setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
+            const dataVendas = await getDocs(VendasCollection);
+            setVendas((dataVendas.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         };
         getUsers()
     }, [])
@@ -99,10 +106,41 @@ export default function FormularioDetalhesComprador () {
 }
     )
 }`; 
+console.log(dados)
 
     const href = createWhatsAppLink('71981298548', message)
 
-    const usuario = Users && Users.filter(item => item.site.toLowerCase().replaceAll(' ', '') == site)
+
+    var listIDs = []
+    
+    vendas && vendas.map(item => listIDs.push(parseInt(item.id)))
+    
+    var max = listIDs.reduce(function(a, b) {
+        return Math.max(a, b);
+    }, 0);
+    
+    var id = max + 1
+    
+
+    const salvavenda = async() => {
+        if (usuario.length > 0 ) {
+            if (usuario[0].mod == "Restaurante") {
+                await setDoc(doc(db, `MeiComSite/${usuario[0].email}/vendas`, `${id}`), {
+                    nome,
+                    telefone,
+                    cidade,
+                    bairro,
+                    rua,
+                    numero,
+                    pagamento,
+                    status: "Aguardando confirmação",
+                    data: moment().format('DD/MM/YYYY'),
+                    hora: moment().format('HH:MM'),
+                    pedido: dados && dados
+                });
+            }
+        } 
+    }
     
 
 
@@ -146,13 +184,17 @@ export default function FormularioDetalhesComprador () {
                     >
                         <option>--</option>
                         <option value="Cartão de crédito">Cartão de crédito</option>
+                        <option value="Cartão de débito">Cartão de débito</option>
+                        <option value="Dinheiro">Dinheiro</option>
                     </select>
                     <div className={styles.cont_total}>
                         <h4>Total: {FormataValor(total)}</h4>
                     </div>
                     <div className={styles.line}/>
                     {telefone && nome && cidade && rua && bairro && numero && pagamento ?
-                        <a href={href} target="_blank"  className={styles.btn_finalizar}>Finalizar pelo Wpp</a>
+                        <a href={href} target="_blank"  className={styles.btn_finalizar}
+                        onClick={salvavenda}
+                        >Finalizar pelo Wpp</a>
                         :
                         <button className={styles.btn_disabled} type="button" disabled>Complete as informações</button>
                     }

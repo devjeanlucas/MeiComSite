@@ -39,6 +39,17 @@ export default function NavBarUser () {
                         className="nav-link" aria-current="page">Produtos</Link>
                     </div>
                 </SwiperSlide>
+
+                <SwiperSlide>
+                    <div
+                     className={`nav-item`}
+                    >
+                        <Link
+                        to="/perfil/user/vendas"
+                        className="nav-link" aria-current="page">Vendas</Link>
+                    </div>
+                </SwiperSlide>
+
                 <SwiperSlide>
                     <div
                      className={`nav-item`}

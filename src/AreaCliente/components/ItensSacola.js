@@ -57,7 +57,6 @@ export default function ItensSacola () {
     }
 
     const dados = pegaDados()
-    const dadosUser = dados && dados.filter(dados => dados.site == site)
     var total = pegaPreco()
     var qtd = pegaItems()
     
@@ -66,7 +65,7 @@ export default function ItensSacola () {
                 <h4>Compras</h4>
                 <h5>Itens: {qtd}</h5>
                 <h3>Total: {FormataValor(total)}</h3>
-                {dadosUser.length > 0 ?
+                {dados.length > 0 ?
                     <Link to={`/${site}/compras/detalhes`}
                     className={styles.btn_finalizar}
                     >Continuar </Link>:

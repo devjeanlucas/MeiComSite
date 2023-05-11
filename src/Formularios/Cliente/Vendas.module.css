@@ -1,0 +1,24 @@
+.list {
+    list-style-type: none;
+    padding: 1em;
+    width: 97%;
+    margin: 1em auto !important;
+}
+.list li {
+    margin-bottom: 1em;
+    box-shadow: 1px 1px 4px #c7c7c7;
+    width: 100%;
+    padding: 1em;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+.list li strong {
+    margin: 0em 0.6em 0.8em 0em ;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+.pending {
+    background-color: rgba(255, 255, 70, 0.333);
+}

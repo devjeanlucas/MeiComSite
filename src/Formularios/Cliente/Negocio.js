@@ -56,7 +56,7 @@ export default function Negocio () {
                 {Users && user && Users.map(dados => {
                     if (dados.iduser == user.id) {
                         return (
-                                <div className={styles.container}>
+                                <div className={styles.container} key={dados.iduser}>
                                     <h2 className={styles.razao}>{dados.razao}</h2>
 
                                     <div className="row">

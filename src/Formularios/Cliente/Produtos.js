@@ -5,7 +5,7 @@ import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
 import {FaEdit, FaPlusCircle, FaRegSadTear, FaTrashAlt} from "react-icons/fa"
-import { getFirestore, collection, getDocs, doc,setDoc} from "@firebase/firestore";
+import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import FormAdd from "../../AreaCliente/Admin/FormAdd"
 import FormEdit from "../../AreaCliente/Admin/FormEdit"
 import BoxConfirm from "../../components/BoxConfirm"

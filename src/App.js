@@ -19,6 +19,7 @@ import Categorias from "./AreaCliente/components/Categorias";
 import Carrinho from "./AreaCliente/components/Carrinho";
 import ItensSacola from "./AreaCliente/components/ItensSacola";
 import FormularioDetalhesComprador from "./AreaCliente/Formularios/FormularioDetalhesComprador"
+import Vendas from "./Formularios/Cliente/Vendas";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/perfil/user/membros" element={<Membros/>}/>
                 <Route path="/perfil/user/config" element={<FormularioEdit/>}/>
                 <Route path="/perfil/cadastro" element={<FormularioCadastro/>}/>
+                <Route path="/perfil/user/vendas" element={<Vendas/>}/>
               </Route>
 
               <Route path="/catalogo/:modalidade" element={<Catalogo/>}/>
