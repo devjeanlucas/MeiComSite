@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./FormAdd.module.css"
 import '@firebase/firestore';
-import {  getFirestore, doc,  collection, getDocs, setDoc} from "@firebase/firestore";
+import {  getFirestore, doc,  setDoc, updateDoc} from "@firebase/firestore";
 import App from "../../Hooks/App"
 import Visualizar from "./Visualizar";
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
@@ -9,7 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function FormEdit (props) {
+export default function FormAdd (props) {
 
     const [nome, setNome]= useState()
     const [imagem, setImagem] = useState()
@@ -79,30 +79,48 @@ export default function FormEdit (props) {
         }
 
         if (props.modalidade == "Loja Virtual") {
-            await setDoc(doc(db, `MeiComSite/${props.email}/produtos`, `${props.id}`), {
-                img: driveimg1 ? `https://docs.google.com/uc?id=${img1}`: img1,
-                img2: img2 ? driveimg2 ? `https://docs.google.com/uc?id=${img2}`: img2 : "",
-                img3: img3 ? driveimg3 ? `https://docs.google.com/uc?id=${img3}`: img3: "",
-                img4: img4 ? driveimg4 ? `https://docs.google.com/uc?id=${img4}`: img4: "",
-                nome:nome.trim(),
-                preço:parseFloat(preço),
-                estoque: parseInt(estoque),
-                iden: props.id,
-                categoria:categoria.trim(),
-                desc:desc.trim(),
-                small_desc:small_desc.trim(),
-                cor,
-                p: p ? p : '',
-                m:  m ? m : '',
-                g:  g ? g : '',
-                material
-                });
+            if (props.listaProdutos) {
+                await updateDoc(doc(db, `MeiComSite/${props.email}/produtos`, `${props.categoria}`), {
+                    produtos: [...props.listaProdutos,
+    
+                    {
+                        nome:nome.trim(),
+                        preço: parseFloat(preço),
+                        img: driveimg1 ? `https://docs.google.com/uc?id=${img1}`: img1,
+                        img2: img2 ? driveimg2 ? `https://docs.google.com/uc?id=${img2}`: img2 : "",
+                        img3: img3 ? driveimg3 ? `https://docs.google.com/uc?id=${img3}`: img3 : "",
+                        img4: img4 ? driveimg4 ? `https://docs.google.com/uc?id=${img4}`: img4 : "", 
+                        desc:desc.trim(),
+                        small_desc: small_desc.trim(),
+                        material: material.trim()
+                    }
+                    ]
+                    });
+            } else {
+                await setDoc(doc(db, `MeiComSite/${props.email}/produtos`, `${props.categoria}`), {
+                    categoria: props.categoria,
+                    img:props.img,
+                    produtos: [
+    
+                    {
+                        nome:nome.trim(),
+                        preço:parseFloat(preço),
+                        img: driveimg1 ? `https://docs.google.com/uc?id=${img1}`: img1,
+                        img2: img2 ? driveimg2 ? `https://docs.google.com/uc?id=${img2}`: img2 : "",
+                        img3: img3 ? driveimg3 ? `https://docs.google.com/uc?id=${img3}`: img3 : "",
+                        img4: img4 ? driveimg4 ? `https://docs.google.com/uc?id=${img4}`: img4 : "",
+                        desc:desc.trim(),
+                        small_desc: small_desc.trim(),
+                        material: material.trim()
+                    }
+                    ]
+                    });
+            }
         }
         window.location.reload()
     }
 
 
-    
     const addSabor = (sabor) => {
 
         let index = saborComida.findIndex(prop => prop.sabor == sabor)
@@ -252,8 +270,6 @@ export default function FormEdit (props) {
                                             <input type="text" onChange={(el)=> setNome(el.target.value)}/>
                                             <strong>Descrição:</strong>
                                             <textarea type="text" onChange={(el)=> setDesc(el.target.value)}/>
-                                            <strong>Categoria:</strong>
-                                            <input type="text" onChange={(el)=> setCategoria(el.target.value)}/>
                                             {categoria && categoria.includes('izza') &&
                                                 <div>
                                                     <strong>Quantos sabores?</strong>
@@ -467,8 +483,6 @@ export default function FormEdit (props) {
                                             <input type="text" onChange={(el)=> setSmallDesc(el.target.value)}/>
                                             <strong>Descrição Longa:</strong>
                                             <textarea type="text" onChange={(el)=> setDesc(el.target.value)}/>
-                                            <strong>Categoria:</strong>
-                                            <input type="text" onChange={(el)=> setCategoria(el.target.value)}/>
                                             <strong>Preço:</strong>
                                             <input type="number" onChange={(el)=> setPreço(el.target.value)}/>
 
@@ -512,24 +526,14 @@ export default function FormEdit (props) {
                                     aria-label={props.aria_label}
                                     >Cancelar</button>
 
-                                    {nome && imagem && small_desc && desc && categoria && preço && cor && material? 
-                                        <button
-                                        onClick={(el)=> {
-                                            el.preventDefault()
-                                            addItem()
-                                        }}
-                                        className={styles.btn_confirm}
-                                        >Confirmar</button>
-                                        :
-                                        <button
-                                        onClick={(el)=> {
-                                            el.preventDefault()
-                                        }}
-                                        
-                                        disabled
-                                        >Confirmar</button>
+                                    <button
+                                    onClick={(el)=> {
+                                        el.preventDefault()
+                                        addItem()
+                                    }}
+                                    className={styles.btn_confirm}
+                                    >Confirmar</button>
                                     
-                                    }
                                 </div>
                         </div>
                     </div>

@@ -1,26 +1,24 @@
+import { useParams } from "react-router-dom"
 import styles from "./Produtos.module.css"
-import Loading from "../../components/Loading"
 import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
-import {FaEdit, FaPlusCircle, FaRegSadTear, FaTrashAlt} from "react-icons/fa"
-import { getFirestore, collection, getDocs} from "@firebase/firestore";
+import { getFirestore, collection, getDocs, setDoc, doc} from "@firebase/firestore";
 import FormAdd from "../../AreaCliente/Admin/FormAdd"
-import FormEdit from "../../AreaCliente/Admin/FormEdit"
-import BoxConfirm from "../../components/BoxConfirm"
+import Loading from "../../components/Loading"
 
 
 
-export default function Informations () {
+export default function Produtos () {
+
+    const {categoria} = useParams()
 
     const [load, setLoading] = useState(false)
     const [user, setUser] = useState();
     const [state, setState] = useState(false)
-    const [Users, setUsers] = useState([])
+    const [produtos, setProdutos] = useState([])
     const [usuarios, setUsuarios] = useState([])
-    const [ação, setAção] = useState([])
-    const [produto, setProduto] = useState()
     const db = getFirestore(App)
     const Collec = collection(db, "MeiComSite")
     const UserCollection = collection(db, `MeiComSite/${user && user.email}/produtos`)
@@ -49,7 +47,7 @@ export default function Informations () {
         const dataUser = await getDocs(Collec)
         setUsuarios((dataUser.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         const data = await getDocs(UserCollection);
-        setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
+        setProdutos((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
         setLoading(true)
     };
     if (user) {
@@ -59,97 +57,75 @@ export default function Informations () {
         }
     }
     
-    var listIDs = []
-    
-    Users && Users.map(item => listIDs.push(parseInt(item.id)))
-    
-    var max = listIDs.reduce(function(a, b) {
-        return Math.max(a, b);
-    }, 0);
-    
-    var id = max + 1
+    const usuario = []
+
+    user && usuarios.filter(dados => {
+        if (dados.iduser == user.id) {
+            usuario.push(dados)
+        }
+    })
+
+
+    const listProdutosTemp = []
+    const cat = produtos && produtos.length > 0 && produtos.filter(dados => dados.categoria == categoria)
+    const img = cat && cat[0].imagem
+    listProdutosTemp.push(cat && cat[0].produtos)
 
     const FormataValor = (valor) => {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         return valorFormatado
     }
-    
-    const usuario = []
 
-    usuarios && user && usuarios.filter(dados => {
-        if (dados.iduser == user.id) {
-            usuario.push(dados)
-        }
-    })
-    const obj ={
-        ação
-    }
 
-    
+
     return (
             <>
-                {usuario[0] && usuario[0].status == "Em análise" ?
-                <div className={styles.cont_btn}>
-                <button className={styles.btn_disabled}
-                type="button" 
-                disabled
-                ><FaPlusCircle/> Adicionar Novo</button>
-                <strong>Site ainda não autorizado a adicionar produtos <FaRegSadTear/></strong>
-                </div>:
-                <div className={styles.cont_btn}>
-                <button className={styles.btn}
-                type="button" 
-                data-bs-toggle="modal" 
-                data-bs-target={`#ModalAdd`}
-                ><FaPlusCircle/> Adicionar Novo</button>
-             </div>
-                
-                }
-
-
-                <ul className={styles.list_produtos}>
-                    {Users && user && Users.map(dados => {
-                        if (dados.status != "inerit") {
-                            return (
-                                    <li className={`row`} key={dados.id}>
-                                        <div className="col-2">
-                                            <img src={dados.img} className={styles.img}/>
+                <div className={styles.container}>
+                    <button
+                    type="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target={`#ModalAdd`}
+                    >Adicionar</button>
+                    <h4  className={styles.title}>{categoria}</h4>
+                    <ul className={styles.list}>
+                        {produtos && produtos.length > 0 && produtos.map(dados => {
+                            if (dados.produtos) {
+                                if (dados.categoria == categoria) {
+                                    return (
+                                        dados.produtos.map(item => {
+                                        return (
+                                                <li key={dados.id} className={styles.cont_item}>
+                                                    <div className="col-3 col-sm-2">
+                                                        <img src={item.img} className={styles.img}/>
+                                                    </div>
+                                                    <div className="col-9 col-sm-10">
+                                                        <div className={styles.info}>
+                                                            <div className={styles.info_item}>
+                                                                <p><strong>Nome:</strong>{item.nome}</p>
+                                                                <p><strong>Preço:</strong>{FormataValor(item.preço)}</p>
+                                                                <p><strong>Material:</strong>{item.material}</p>
+                                                            </div>
+                                                            <div className={styles.line}/>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            )
+                                    })
+                                    )
+                                }
+                            } else {
+                                return (
+                                        <div>
+                                            <h4>Ainda não temos produtos</h4>
                                         </div>
-                                        <div className={`col-10`}>
-                                            <div className={styles.cont_item}>
-                                                <div className={styles.cont_buttons}>
-                                                    <FaEdit className={styles.icon}
-                                                    type="button" 
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target={`#ModalEdit`}
-                                                    onClick={()=> setProduto(dados)}
-                                                    />
-                                                    <FaTrashAlt className={styles.icon}
-                                                    type="button" 
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target={`#ModalConfirm`}
-                                                    onClick={()=> {
-                                                        setAção("Deletar")
-                                                        setProduto(dados)}}
-                                                    />
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <p>Nome: <strong>{dados.nome}</strong></p>
-                                                    <p>Preço: <strong>{FormataValor(dados.preço)}</strong></p>
-                                                    <p>Categoria: <strong>{dados.categoria}</strong></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </li>
-                                )
+                                    )
+                            }
+                        })
                         }
-                    })}
-                    {!load &&
-                    <Loading/>
-                    }
-                </ul>
-                
+                    </ul>
+                    {!load && <Loading/>}
+                </div>
+
 
                 <div className="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel">
                 <div className={`modal-dialog modal-xl`}>
@@ -158,47 +134,17 @@ export default function Informations () {
                             type="button"
                             dismiss="modal"
                             aria_label="Close"
-                            id = {id && id}
                             email = {user && user.email}
+                            categoria = {categoria}
                             modalidade= {usuario.length > 0 && usuario[0].mod}
                             tema = {usuario.length > 0 && usuario[0].theme} 
+                            listaProdutos = {listProdutosTemp && listProdutosTemp[0]}
+                            img={img}
                             />
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel">
-                <div className={`modal-dialog modal-xl`}>
-                    <div className="modal-content">
-                        <FormEdit
-                            type="button"
-                            dismiss="modal"
-                            aria_label="Close"
-                            data_bs_toggle="modal" 
-                            data_bs_target={`#ModalEdit`}
-                            
-                            dados={produto}
-                            id={user && user.email}
-                            />
-                    </div>
-                </div>
-            </div>
-            
-            <div className="modal fade" id="ModalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel">
-                <div className={`modal-dialog modal-sm`}>
-                    <div className="modal-content">
-                        <BoxConfirm
-                            type="button"
-                            dismiss="modal"
-                            aria_label="Close"
-                            data_bs_toggle="modal" 
-                            data_bs_target={`#ModalConfirm`}
-                            obj={obj}
-                            dados={produto}
-                            id={user && user.email}
-                            />
-                    </div>
-                </div>
-            </div>
+                
             </>
         )
 }

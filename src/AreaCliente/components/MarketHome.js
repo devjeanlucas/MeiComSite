@@ -64,57 +64,47 @@ export default function MarketHome () {
             reduced.push(item);
         }
     });
-    
-    function createWhatsAppLink(phoneNumber, message) {
-        return `https://api.whatsapp.com/send?phone=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
-      }
-    
-      
-    const phoneNumber = '71981298548'; // Substitua pelo número de telefone do destinatário
-    const message = 'Olá! Me chamo Jean Lucas'; // Substitua pela mensagem que você deseja enviar
-    const href = createWhatsAppLink(phoneNumber, message);
 
-    /*<a href={href} target="_blank" rel="noopener noreferrer">Clique</a>*/
     
     return (
         <>
-            {usuario.length > 0 && usuario[0].theme == "Dark" &&
-            <>
-            {!load && <Loading/>}
-            <div className={`${styles.container} row ${styles[usuario && usuario[0].theme]}`}>
-                <div className="col-lg-3">
-                    <NavShop/>
-                </div>
-                <div className="col-md-9">
-                    <div className={styles.list}>
-                        <ul className="row">
-                        {produtos && produtos.map(dados => {
-                                return (
-                                        <li key={dados.id} className="col-6 col-md-6 col-lg-4">
-                                            <div>
-                                                <div className={styles.cont_img}>
-                                                    <Link
-                                                    to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
-                                                    >
-                                                        <img src={dados.img} className={styles.img}/>
-                                                    </Link>
-                                                </div>
-                                                <div className={styles.cont_desc}>
-                                                    <div className={styles.text}>
-                                                        <h4>{dados.nome}</h4>
-                                                        <h5>{FormataValor(parseFloat(dados.preço))}</h5>
+                <>
+                {usuario.length > 0 && usuario[0].theme == "Dark" &&
+                <>
+                {!load && <Loading/>}
+                <div className={`${styles.container} row ${styles[usuario && usuario[0].theme]}`}>
+                    <div className="col-lg-3">
+                        <NavShop/>
+                    </div>
+                    <div className="col-md-9">
+                        <div className={styles.list}>
+                            <ul className="row">
+                            {produtos && produtos.map(dados => {
+                                    return (
+                                            <li key={dados.id} className="col-6 col-md-6 col-lg-4">
+                                                <div>
+                                                    <div className={styles.cont_img}>
+                                                        <Link
+                                                        to={`/${site}/${dados.categoria}`}
+                                                        >
+                                                            <img src={dados.imagem} className={styles.img}/>
+                                                        </Link>
+                                                    </div>
+                                                    <div className={styles.cont_desc}>
+                                                        <div className={styles.text}>
+                                                            <h4>{dados.categoria}</h4>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    )
-                            
-                        })
-                        }
-                        </ul>
+                                            </li>
+                                        )
+                                
+                            })
+                            }
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
                 </>
             }
             {usuario.length > 0 && usuario[0].theme == "Light" && 
@@ -156,6 +146,11 @@ export default function MarketHome () {
                         </div>
                     </div>
                 }
+                
+                
+                </>
+            
+        
         </>
         )
 }

@@ -52,6 +52,7 @@ export default function Categorias () {
     }
 
     
+    
 
     return (
             <>
@@ -63,27 +64,32 @@ export default function Categorias () {
                         <div className="col-lg-8">
                             <div className={styles.list}>
                                     <ul className="row">
-                                        {produtos && produtos.map(dados => {
-                                            if (dados.categoria.toLowerCase() == categoria) {
+                                        {produtos && produtos.map(item => {
+                                            if (item.categoria.toLowerCase() == categoria) {
                                                 return (
-                                                    <li key={dados.id} className="col-6 col-md-6 col-lg-4">
-                                                        <div>
-                                                            <div className={styles.cont_img}>
-                                                                <Link
-                                                                to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
-                                                                >
-                                                                    <img src={dados.img} className={styles.img}/>
-                                                                </Link>
-                                                            </div>
-                                                            <div className={styles.cont_desc}>
-                                                                <div className={styles.text}>
-                                                                    <h4>{dados.nome}</h4>
-                                                                    <h5>{FormataValor(parseFloat(dados.preço))}</h5>
+                                                    item.produtos.map(dados => {
+                                                        return (
+                                                            <li key={dados.id} className="col-6 col-md-6 col-lg-4">
+                                                                <div>
+                                                                    <div className={styles.cont_img}>
+                                                                        <Link
+                                                                        to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
+                                                                        >
+                                                                            <img src={dados.img} className={styles.img}/>
+                                                                        </Link>
+                                                                    </div>
+                                                                    <div className={styles.cont_desc}>
+                                                                        <div className={styles.text}>
+                                                                            <h4>{dados.nome}</h4>
+                                                                            <h5>{FormataValor(parseFloat(dados.preço))}</h5>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    )
+                                                            </li>
+                                                            )
+                                                    })
+                                                    
+                                                )
                                             }
                                         })}
                                 </ul>

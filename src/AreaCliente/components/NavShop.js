@@ -113,7 +113,7 @@ export default function NavShop () {
                             <Link
                             to={`/${usuario[0].site}/compras`}
                             >
-                            <FaShoppingBag className={`item ${styles.icon}`}/>Sacola
+                            <FaShoppingBag className={`item ${styles.icon}`}/>Sacolaaaa
                             </Link>
                         </li>
 
@@ -122,7 +122,7 @@ export default function NavShop () {
                             <Link
                             to={`/${usuario[0].site}`}
                             >
-                                <FaBookReader className={styles.icon}/>Cardápio
+                                <FaBookReader className={styles.icon}/>Cardápiooo
                             </Link>
                         </li>
 

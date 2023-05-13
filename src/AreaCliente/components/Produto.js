@@ -56,7 +56,10 @@ export default function Produto () {
         getCliente()
     }
 
-    const produto = produtos && produtos.filter(dados => {if (dados.nome.replaceAll(' ', '').toLowerCase() == nome) {return dados}})
+    const produto = produtos.length > 0 && produtos[0].produtos
+
+    console.log(produto)
+
 
     const FormataValor = (valor) => {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -335,7 +338,7 @@ export default function Produto () {
                             </div>
                         </div>
                     </div>
-                }
+                                }
             </div>
             <ToastContainer
             position="top-left"

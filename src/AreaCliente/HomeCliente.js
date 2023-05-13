@@ -34,8 +34,6 @@ export default function HomeCliente () {
 
 
     const redirect = cliente && cliente[0].site
-    const {sites} = useParams()
-    
 
     return (
         <>

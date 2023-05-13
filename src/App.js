@@ -12,7 +12,7 @@ import Produto from "./AreaCliente/components/Produto";
 import Negocio from "./Formularios/Cliente/Negocio";
 import Membros from "./Formularios/Cliente/Membros";
 import HomeCliente from "./AreaCliente/HomeCliente"
-import Produtos from "./Formularios/Cliente/Produtos"
+import CategoriasProdutos from "./Formularios/Cliente/Categorias"
 import MarketHome from "./AreaCliente/components/MarketHome";
 import Catalogo from "./Pages/Catálogo";
 import Categorias from "./AreaCliente/components/Categorias";
@@ -20,6 +20,7 @@ import Carrinho from "./AreaCliente/components/Carrinho";
 import ItensSacola from "./AreaCliente/components/ItensSacola";
 import FormularioDetalhesComprador from "./AreaCliente/Formularios/FormularioDetalhesComprador"
 import Vendas from "./Formularios/Cliente/Vendas";
+import Produtos from "./Formularios/Cliente/Produtos";
 
 function App() {
   return (
@@ -39,7 +40,8 @@ function App() {
 
               <Route path="perfil" element={<Perfil/>}>
                 <Route path="/perfil/user/negocio" element={<Negocio/>}/>
-                <Route path="/perfil/user/dados" element={<Produtos/>}/>
+                <Route path="/perfil/user/categorias" element={<CategoriasProdutos/>}/>
+                <Route path="/perfil/user/categorias/:categoria" element={<Produtos/>}/>
                 <Route path="/perfil/user/membros" element={<Membros/>}/>
                 <Route path="/perfil/user/config" element={<FormularioEdit/>}/>
                 <Route path="/perfil/cadastro" element={<FormularioCadastro/>}/>

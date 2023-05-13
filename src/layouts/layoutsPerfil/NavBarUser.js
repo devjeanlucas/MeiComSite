@@ -35,7 +35,7 @@ export default function NavBarUser () {
                      className={`nav-item`}
                     >
                         <Link
-                        to="/perfil/user/dados"
+                        to="/perfil/user/categorias"
                         className="nav-link" aria-current="page">Produtos</Link>
                     </div>
                 </SwiperSlide>
