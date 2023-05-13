@@ -101,12 +101,13 @@ export default function FormularioDetalhesComprador () {
     ${dados && dados.map(dados => {
         if (dados.saboresEscolhidos.length > 0) {
             return (`${dados.nome} x${dados.qtd} ${FormataValor(dados.preço)}.
-        Sabores: ${dados.saboresEscolhidos.map(item=> {return item.sabor})}`)
+        Sabores: ${dados.saboresEscolhidos.map(item=> {return item.sabor})}
+        Total do pedido: ${FormataValor(total)}
+        `)
         }
 }
     )
 }`; 
-console.log(dados)
 
     const href = createWhatsAppLink('71981298548', message)
 
@@ -136,7 +137,8 @@ console.log(dados)
                     status: "Aguardando confirmação",
                     data: moment().format('DD/MM/YYYY'),
                     hora: moment().format('HH:MM'),
-                    pedido: dados && dados
+                    pedido: dados && dados,
+                    total: total && parseFloat(total)
                 });
             }
         } 

@@ -4,6 +4,7 @@ import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import {auth} from "../../Service/firebase"
 import { useState,useEffect } from "react"
 import Loading from "../../components/Loading"
+import VerDetalhesPedido from "../../components/VerDetalhesPedido";
 
 
 
@@ -53,12 +54,15 @@ export default function Vendas () {
         nome = nome.split(' ')
         return `${nome[0]} ${nome[1]}`
     }
+    
+    const [obj, setObj] = useState()
+    const [ação, setAção] = useState()
 
     
     return (
             <>
             <ul className={styles.list}>
-                {vendas && vendas.map(dados => {
+                { vendas && vendas.length > 0 ? vendas.map(dados => {
                     return (
                             <>
                                 <li key={dados.id} className={
@@ -76,14 +80,49 @@ export default function Vendas () {
                                         <span>{dados.status}</span>
                                     </div>
                                     <div className={styles.cont_button}>
-                                        
+                                        <button
+                                        type="button" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target={`#VisualizarPedido`}
+                                        onClick={()=> {
+                                            setAção('Ver Pedido')
+                                            setObj(dados)
+                                        }}
+                                        >Ver pedido</button>
+                                        <button
+                                        type="button" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target={`#VisualizarPedido`}
+                                        onClick={()=> {
+                                            setAção('Ver Endereço')
+                                            setObj(dados)
+                                        }}
+                                        >Ver Endereço</button>
                                     </div>
                                 </li>
                             </>
                         )
-                })}
+                }):
+                <h4>Ainda não há vendas</h4>
+                }
                 {!load && <Loading/>}
             </ul>
+
+            <div className="modal fade" id="VisualizarPedido" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div className={`modal-dialog modal-md`}>
+                    <div className="modal-content">
+                        <VerDetalhesPedido
+                            type="button"
+                            dismiss="modal"
+                            aria_label="Close"
+                            data_bs_toggle="modal" 
+                            data_bs_target={`#VisualizarPedido`}
+                            obj={obj}
+                            ação={ação}
+                            />
+                    </div>
+                </div>
+            </div>
             </>
         )
 }

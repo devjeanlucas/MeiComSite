@@ -22,3 +22,16 @@
 .pending {
     background-color: rgba(255, 255, 70, 0.333);
 }
+.cont_button {
+    display: flex;
+}
+.cont_button button{
+    padding: 0.7em;
+    border: none;
+    border-radius: 20px;
+    margin: 0.6em;
+    display:block;
+    background-color: #ad8e00;
+    color: #fff;
+    font-weight: 600;
+}
