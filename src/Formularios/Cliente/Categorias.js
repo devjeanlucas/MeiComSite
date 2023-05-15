@@ -5,8 +5,7 @@ import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
 import {FaEdit, FaPlusCircle, FaRegSadTear, FaTrashAlt} from "react-icons/fa"
-import { getFirestore, collection, getDocs, setDoc, doc} from "@firebase/firestore";
-import FormEdit from "../../AreaCliente/Admin/FormEdit"
+import { getFirestore, collection, getDocs, setDoc, doc, updateDoc} from "@firebase/firestore";
 import BoxConfirm from "../../components/BoxConfirm"
 import { Link } from "react-router-dom"
 
@@ -23,6 +22,7 @@ export default function Informations () {
     const [imagem, setImagem] = useState()
     const [categoria, setCategoria] = useState()
     const [produto, setProduto] = useState()
+    const [id, setId] = useState()
     const db = getFirestore(App)
     const Collec = collection(db, "MeiComSite")
     const UserCollection = collection(db, `MeiComSite/${user && user.email}/produtos`)
@@ -68,17 +68,26 @@ export default function Informations () {
             usuario.push(dados)
         }
     })
-    const obj ={
-        ação
-    }
-    
     const addCategoria = async () => {
         await setDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${categoria}`), {
             categoria: categoria,
             imagem: imagem
-            });
+        });
         window.location.reload()
     }
+    const editCategoria = async () => {
+        await updateDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${produto && produto.id}`), {
+            categoria: categoria ? categoria : produto.categoria
+        });
+        await updateDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${produto && produto.id}`), {
+            imagem: imagem ? imagem : produto.imagem
+        });
+        window.location.reload()
+    }
+    const obj ={
+        ação
+    }
+    
 
     
     return (
@@ -117,16 +126,18 @@ export default function Informations () {
                                                     <FaEdit className={styles.icon}
                                                     type="button"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target={`#ModalEdit`}
+                                                    data-bs-target={`#ModalEditarCategoria`}
                                                     onClick={()=> setProduto(dados)}
                                                     />
                                                     <FaTrashAlt className={styles.icon}
                                                     type="button"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target={`#ModalConfirm`}
+                                                    data-bs-target={`#ModalConfirmTrash`}
                                                     onClick={()=> {
-                                                        setAção("Deletar")
-                                                        setProduto(dados)}}
+                                                        setAção("Deletar categoria")
+                                                        setProduto(dados)
+                                                        setId(dados.id)
+                                                    }}
                                                     />
                                                 </div>
                                                 <div className={styles.item}>
@@ -149,61 +160,73 @@ export default function Informations () {
                 
 
                 <div className="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel">
-                <div className={`modal-dialog modal-sm`}>
-                    <div className="modal-content">
-                        <div className={styles.cont_new_categorie}>
-                            <h4>Nova Categoria</h4>
-                            <div className="line"/>
-                            <div className={styles.info_categorie}>
-                                <strong>nome:</strong>
-                                <input type="text"
-                                onChange={(el)=> setCategoria(el.target.value)}
-                                />
-                                <strong>imagem:</strong>
-                                <input type="text"
-                                onChange={(el)=> setImagem(el.target.value)}
-                                />
+                    <div className={`modal-dialog modal-sm`}>
+                        <div className="modal-content">
+                            <div className={styles.cont_new_categorie}>
+                                <h4>Nova Categoria</h4>
+                                {imagem && <img src={imagem} className={styles.img}/>}
+                                <div className="line"/>
+                                <div className={styles.info_categorie}>
+                                    <strong>nome:</strong>
+                                    <input type="text"
+                                    onChange={(el)=> setCategoria(el.target.value)}
+                                    />
+                                    <strong>imagem:</strong>
+                                    <input type="text"
+                                    onChange={(el)=> setImagem(el.target.value)}
+                                    />
+                                </div>
+                                <button
+                                onClick={()=> addCategoria()}
+                                >Adicionar</button>
                             </div>
-                            <button
-                            onClick={()=> addCategoria()}
-                            >Adicionar</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel">
-                <div className={`modal-dialog modal-xl`}>
-                    <div className="modal-content">
-                        <FormEdit
-                            type="button"
-                            dismiss="modal"
-                            aria_label="Close"
-                            data_bs_toggle="modal" 
-                            data_bs_target={`#ModalEdit`}
-                            
-                            dados={produto}
-                            id={user && user.email}
-                            />
+                <div className="modal fade" id="ModalEditarCategoria" tabindex="-1" aria-labelledby="exampleModalLabel">
+                    <div className={`modal-dialog modal-sm`}>
+                        <div className="modal-content">
+                            <div className={styles.cont_new_categorie}>
+                                <h4>Editar Categoria</h4>
+                                {imagem && <img src={imagem} className={styles.img}/>}
+                                <div className="line"/>
+                                <div className={styles.info_categorie}>
+                                    <strong>nome:</strong>
+                                    <input type="text"
+                                    defaultValue={produto && produto.categoria}
+                                    onChange={(el)=> setCategoria(el.target.value)}
+                                    />
+                                    <strong>imagem:</strong>
+                                    <input type="text"
+                                    defaultValue={produto && produto.imagem}
+                                    onChange={(el)=> setImagem(el.target.value)}
+                                    />
+                                </div>
+                                <button
+                                onClick={()=> editCategoria()}
+                                >Salvar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             
-            <div className="modal fade" id="ModalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel">
-                <div className={`modal-dialog modal-sm`}>
-                    <div className="modal-content">
-                        <BoxConfirm
-                            type="button"
-                            dismiss="modal"
-                            aria_label="Close"
-                            data_bs_toggle="modal" 
-                            data_bs_target={`#ModalConfirm`}
-                            obj={obj}
-                            dados={produto}
-                            id={user && user.email}
-                            />
+                <div className="modal fade" id="ModalConfirmTrash" tabindex="-1" aria-labelledby="exampleModalLabel">
+                    <div className={`modal-dialog modal-sm`}>
+                        <div className="modal-content">
+                            <BoxConfirm
+                                type="button"
+                                dismiss="modal"
+                                aria_label="Close"
+                                data_bs_toggle="modal" 
+                                data_bs_target={`#ModalConfirmTrash`}
+                                obj={obj}
+                                dados= {produto && produto}
+                                id={id}
+                                email = {user && user.email}
+                                />
+                        </div>
                     </div>
                 </div>
-            </div>
             </>
         )
 }

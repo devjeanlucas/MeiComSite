@@ -131,7 +131,7 @@ export default function BoxConfirm (props) {
 
     const DeletarProduto = async () => {
 
-        const Doc = doc(db, `MeiComSite/${props.id}/produtos`, `${props.dados.id}`);
+        const Doc = doc(db, `MeiComSite/${props.email}/produtos`, `${props.id}`);
         await deleteDoc(Doc)
         window.location.reload()
     }
@@ -242,10 +242,10 @@ export default function BoxConfirm (props) {
         </div>
         }
         
-        {obj.ação == "Deletar" &&
+        {obj.ação == "Deletar categoria" &&
         <div className={styles.container}>
             <h4>Deletar Produto?</h4>
-            <p>- {props.dados.nome}</p>
+            <p>- {props.dados.categoria}</p>
             <div className='line'></div>
             <div className={styles.cont_btn}>
 

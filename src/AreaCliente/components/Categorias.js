@@ -65,7 +65,7 @@ export default function Categorias () {
                             <div className={styles.list}>
                                     <ul className="row">
                                         {produtos && produtos.map(item => {
-                                            if (item.categoria.toLowerCase() == categoria) {
+                                            if (item.categoria.toLowerCase() == categoria.toLowerCase()) {
                                                 return (
                                                     item.produtos.map(dados => {
                                                         return (
@@ -73,7 +73,7 @@ export default function Categorias () {
                                                                 <div>
                                                                     <div className={styles.cont_img}>
                                                                         <Link
-                                                                        to={`/${site}/produto/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
+                                                                        to={`/${site}/${item.categoria}/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
                                                                         >
                                                                             <img src={dados.img} className={styles.img}/>
                                                                         </Link>

@@ -60,7 +60,7 @@ function App() {
                   <Route path="/:site/compras/detalhes" element={<FormularioDetalhesComprador/>}/>
                 </Route>
 
-                <Route path="/:site/produto/:nome" element={<Produto/>}/>
+                <Route path="/:site/:categoria/:nome" element={<Produto/>}/>
 
               </Route>
             </Routes>

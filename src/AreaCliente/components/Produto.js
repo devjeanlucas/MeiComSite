@@ -25,7 +25,7 @@ export default function Produto () {
     var [escolha, setEscolha] =useState([])
     const [state, setState] = useState("start")
     var [counter, setCounter] = useState(1)
-    const {site, nome} = useParams()
+    const {site, categoria, nome} = useParams()
     
     const getProdutos = async () => {
         const ProdutosCollection = usuario && collection(db, `MeiComSite/${usuario[0].email}/produtos`)
@@ -51,15 +51,12 @@ export default function Produto () {
             getProdutos()
         }
     }
-
+    
     if (state == "start") {
         getCliente()
     }
-
-    const produto = produtos.length > 0 && produtos[0].produtos
-
-    console.log(produto)
-
+    const categoriaProd = produtos && produtos.filter(item => item.categoria == categoria)
+    const produto = categoriaProd.length > 0 && categoriaProd[0].produtos.filter(item => item.nome.toLowerCase().replaceAll(' ', '') == nome)
 
     const FormataValor = (valor) => {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -68,16 +65,16 @@ export default function Produto () {
     const retorna = () => {
         window.history.back()
     }
-
+    
     var total = produto.length > 0  && produto[0].preço * counter
-
+    
     const [saboresEscolhidos, setSaboresEscolhidos] = useState([])
 
 
 
     const addSacola = (id, produto) => {
         let produtosSalvos = new Array()
-
+        
         if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
             produtosSalvos = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
         }
@@ -125,6 +122,8 @@ export default function Produto () {
     return (
         <>
             <div className={styles.container}>
+                
+
                 {usuario.length > 0 && produto.length > 0  && usuario[0].theme == "Light" &&
                     <div className={styles[usuario[0].theme]}>
                         {!load && <Loading/>}

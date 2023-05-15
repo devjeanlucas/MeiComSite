@@ -113,13 +113,7 @@ export default function Produtos () {
                                     })
                                     )
                                 }
-                            } else {
-                                return (
-                                        <div>
-                                            <h4>Ainda não temos produtos</h4>
-                                        </div>
-                                    )
-                            }
+                            } 
                         })
                         }
                     </ul>
