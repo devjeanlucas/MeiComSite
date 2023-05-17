@@ -7,7 +7,7 @@ import Visualizar from "./Visualizar";
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export default function FormAdd (props) {
@@ -417,7 +417,6 @@ export default function FormAdd (props) {
                                 <div className={styles.info}>
                                     <div className="row">
                                         <div className="col-sm-6">
-
                                             <strong>Imagem:</strong>
                                             <div className={styles.check_box}>
                                                 <input type="checkbox"
@@ -429,7 +428,9 @@ export default function FormAdd (props) {
                                             <input type="text" onChange={(el)=> {setImg1(formataTextoGoogleDrive(el.target.value))}}/>: 
 
                                             <input type="text" onChange={(el)=> {setImg1(el.target.value)}}/>}
-
+                                            <Link to="/suporte/fotos"
+                                            target="_blank"
+                                            >Não sei adicionar imagens</Link>
 
                                             <div className="accordion" id="accordionExample">
                                                 <div className="accordion-item">

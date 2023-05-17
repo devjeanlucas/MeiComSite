@@ -9,6 +9,7 @@ import FormAdd from "../../AreaCliente/Admin/FormAdd"
 import FormEdit from "../../AreaCliente/Admin/FormEdit"
 import Loading from "../../components/Loading"
 import { FaEdit, FaTrashAlt } from "react-icons/fa"
+import BoxConfirm from "../../components/BoxConfirm"
 
 
 
@@ -21,6 +22,7 @@ export default function Produtos () {
     const [state, setState] = useState(false)
     const [produtos, setProdutos] = useState([])
     const [usuarios, setUsuarios] = useState([])
+    const [ação, setAção] = useState()
     const db = getFirestore(App)
     const Collec = collection(db, "MeiComSite")
     const UserCollection = collection(db, `MeiComSite/${user && user.email}/produtos`)
@@ -77,8 +79,16 @@ export default function Produtos () {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         return valorFormatado
     }
-    const [obj, setObj] = useState()
+    const [dados, setDados] = useState()
 
+
+    const obj = {
+        dados,
+        ação,
+        lista: cat && cat[0].produtos,
+        categoria
+    }
+    const [index, setIndex] = useState()
 
     return (
             <>
@@ -105,9 +115,18 @@ export default function Produtos () {
                                                         type="button" 
                                                         data-bs-toggle="modal" 
                                                         data-bs-target={`#ModalEdit`}
-                                                        onClick={()=> setObj(item)}
+                                                        onClick={()=> setDados(item)}
                                                         />
-                                                        <FaTrashAlt/>
+                                                        <FaTrashAlt
+                                                        type="button" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target={`#ModalTrash`}
+                                                        onClick={()=> {
+                                                            setDados(item)
+                                                            setAção("Deletar Produto")
+                                                            setIndex(1) 
+                                                        }}
+                                                        />
                                                         <div className={styles.info}>
                                                             <div className={styles.info_item}>
                                                                 <p><strong>Nome:</strong>{item.nome}</p>
@@ -154,11 +173,26 @@ export default function Produtos () {
                             type="button"
                             dismiss="modal"
                             aria_label="Close"
-                            dados={obj}
+                            dados={dados}
                             />
                     </div>
                 </div>
             </div>
+            <div className="modal fade" id="ModalTrash" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div className={`modal-dialog modal-sm`}>
+                    <div className="modal-content">
+                        <BoxConfirm
+                            type="button"
+                            dismiss="modal"
+                            aria_label="Close"
+                            data_bs_toggle="modal" 
+                            data_bs_target={`#ModalTrash`}
+                            obj={obj}
+                            />
+                    </div>
+                </div>
+            </div>
+            
                 
             </>
         )
