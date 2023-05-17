@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom"
 export default function NavigationBar (props) {
 
     const list = props.info && props.info
-    const {site} = useParams()
+    const {site, categoria} = useParams()
 
     return (
         <>
@@ -26,6 +26,7 @@ export default function NavigationBar (props) {
                             />
                             <Link
                             to={`/${site}/compras`}
+                            categoria={categoria}
                             >
                                 <FaShoppingBag
                                 className={styles.icon_bag}
@@ -45,7 +46,7 @@ export default function NavigationBar (props) {
                             {list && !list.logo ? <h4>list.razao</h4> : <img src={list.logo} className={styles.logo}/>}
                         </div>
                         <div className={styles.options}>
-                            <Link to={`/${list && list.site}`}>Catálogo</Link>
+                            <Link to={`/${list && list.site}`}>Categorias</Link>
                             <Link>Promoções</Link>
                         </div>
                         <div className={styles.cont_search}>
@@ -55,6 +56,7 @@ export default function NavigationBar (props) {
                             />
                             <Link
                             to={`/${site}/compras`}
+                            categoria={categoria}
                             >
                                 <FaShoppingCart className={styles.icon}/>
                             </Link>

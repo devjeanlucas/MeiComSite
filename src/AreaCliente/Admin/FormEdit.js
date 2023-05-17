@@ -125,15 +125,6 @@ export default function FormEdit (props) {
                                     className={styles.input}
                                     defaultValue={obj &&  obj.preço.toFixed(2)}/>
 
-                                    <p
-                                    className={styles.label}
-                                    >Categoria:</p>
-                                    <input 
-                                    type="text" 
-                                    onChange={(el) => setCategoria(el.target.value)}
-                                    className={styles.input}
-                                    defaultValue={obj &&  obj.categoria}/>
-
                                     {obj && obj.listaSabores &&
                                         <div>
                                             <p

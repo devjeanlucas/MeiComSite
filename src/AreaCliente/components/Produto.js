@@ -72,7 +72,7 @@ export default function Produto () {
 
 
 
-    const addSacola = (id, produto) => {
+    const addSacola = (nome, produto) => {
         let produtosSalvos = new Array()
         
         if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
@@ -80,7 +80,7 @@ export default function Produto () {
         }
         
         
-        let index = produtosSalvos.findIndex(prop => prop.id == id)
+        let index = produtosSalvos.findIndex(prop => prop.nome == nome)
 
         if (index < 0) {
             if (usuario[0] && usuario[0].mod == "Restaurante") {
@@ -88,14 +88,26 @@ export default function Produto () {
                 if (produto.qtdSabores > saboresEscolhidos.length) return toast.error(`Escolha ${produto.qtdSabores} sabores`)
     
                 produtosSalvos.push({
-                    id: id,
                     nome: produto.nome,
                     img: produto.img,
                     preço: produto.precoDesconto ? produto.precoDesconto : produto.preço,
                     qtd: 1,
                     site: site,
                     estoque: produto.estoque,
-                    saboresEscolhidos
+                    saboresEscolhidos,
+                    categoria: categoriaProd && categoriaProd[0].categoria
+                })
+                localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
+                toast.success('Produto adicionado ao carrinho')
+            }
+            if (usuario[0] && usuario[0].mod == "Loja Virtual") {
+                produtosSalvos.push({
+                    nome: produto.nome,
+                    img: produto.img,
+                    preço: produto.precoDesconto ? produto.precoDesconto : produto.preço,
+                    qtd: 1,
+                    site: site,
+                    categoria: categoriaProd && categoriaProd[0].categoria
                 })
                 localStorage.setItem(`itenscarrinho.${site}`,JSON.stringify(produtosSalvos))
                 toast.success('Produto adicionado ao carrinho')
@@ -172,10 +184,9 @@ export default function Produto () {
                                         </div>
                                         <div className={styles.btn_comprar}>
                                             <button
-                                            onClick={()=> addSacola(produto[0].iden, produto[0])}
+                                            onClick={()=> addSacola(produto[0].nome, produto[0])}
                                             >Comprar <span>{FormataValor(total)}</span></button>
                                         </div>
-
                                         <div>
                                             {produto[0].qtdSabores &&
                                                 <h5>Escolha até {produto[0].qtdSabores} sabores</h5>
@@ -316,7 +327,7 @@ export default function Produto () {
                                         <button>G</button>
                                     </div>
                                     <button className={styles.btn_buy}
-                                    onClick={()=> addSacola(produto[0].id, produto[0])}
+                                    onClick={()=> addSacola(produto[0].nome, produto[0])}
                                     >Comprar</button>
                                     <div className="accordion" id="accordionExample">
 

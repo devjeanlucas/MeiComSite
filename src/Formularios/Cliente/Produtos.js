@@ -6,7 +6,9 @@ import App from "../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs, setDoc, doc} from "@firebase/firestore";
 import FormAdd from "../../AreaCliente/Admin/FormAdd"
+import FormEdit from "../../AreaCliente/Admin/FormEdit"
 import Loading from "../../components/Loading"
+import { FaEdit, FaTrashAlt } from "react-icons/fa"
 
 
 
@@ -75,7 +77,7 @@ export default function Produtos () {
         var valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         return valorFormatado
     }
-
+    const [obj, setObj] = useState()
 
 
     return (
@@ -99,6 +101,13 @@ export default function Produtos () {
                                                         <img src={item.img} className={styles.img}/>
                                                     </div>
                                                     <div className="col-9 col-sm-10">
+                                                        <FaEdit
+                                                        type="button" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target={`#ModalEdit`}
+                                                        onClick={()=> setObj(item)}
+                                                        />
+                                                        <FaTrashAlt/>
                                                         <div className={styles.info}>
                                                             <div className={styles.info_item}>
                                                                 <p><strong>Nome:</strong>{item.nome}</p>
@@ -134,6 +143,18 @@ export default function Produtos () {
                             tema = {usuario.length > 0 && usuario[0].theme} 
                             listaProdutos = {listProdutosTemp && listProdutosTemp[0]}
                             img={img}
+                            />
+                    </div>
+                </div>
+            </div>
+            <div className="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div className={`modal-dialog modal-xl`}>
+                    <div className="modal-content">
+                        <FormEdit
+                            type="button"
+                            dismiss="modal"
+                            aria_label="Close"
+                            dados={obj}
                             />
                     </div>
                 </div>

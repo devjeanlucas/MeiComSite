@@ -100,9 +100,9 @@ export default function Carrinho () {
                                 return (
                                     <li key={dados.id}>
                                         <div className="row">
-                                            <div className="col-4 col-sm-5">
+                                            <div className="col-4 col-sm-4">
                                                 <Link
-                                                    to={`/${site}/produto/${dados.nome.replaceAll(' ', '').toLowerCase()}`}
+                                                    to={`/${site}/${dados.categoria}/${dados.nome.replaceAll(' ', '').toLowerCase()}`}
                                                 >
                                                     <img src={dados.img} className={styles.img}/>
                                                 </Link>
@@ -130,7 +130,7 @@ export default function Carrinho () {
                                                             data-bs-target={`#ModalDeleteCompra`}
                                                             onClick={()=> {
                                                                 setAção("Deletar Compra")
-                                                                setId(dados.id)
+                                                                setId(dados.nome)
                                                             }}
                                                             />
                                                         </div>

@@ -135,14 +135,14 @@ export default function BoxConfirm (props) {
         await deleteDoc(Doc)
         window.location.reload()
     }
-    const deletacompra = (id) => {
+    const deletacompra = (nome) => {
         let produtosSalvos = new Array()
 
         if (localStorage.hasOwnProperty(`itenscarrinho.${site}`)) {
             produtosSalvos = JSON.parse(localStorage.getItem(`itenscarrinho.${site}`))
         }
 
-        let index = produtosSalvos.findIndex(prop => prop.id == id)
+        let index = produtosSalvos.findIndex(prop => prop.nome == nome)
         
         produtosSalvos.splice(index, 1) 
         
@@ -272,13 +272,11 @@ export default function BoxConfirm (props) {
             <h4>Deletar produto?</h4>
             <div className='line'></div>
             <div className={styles.cont_btn}>
-
-                
                 <button className={styles.confirm}
                 type={props.type} 
                 data-bs-toggle={props.data_bs_toggle} 
                 data-bs-target={props.data_bs_target}
-                onClick={()=> deletacompra(obj.id)}
+                onClick={()=> deletacompra(props.obj.id)}
                 >Confirmar</button>
 
 

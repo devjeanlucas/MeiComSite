@@ -7,6 +7,7 @@ import Visualizar from "./Visualizar";
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from "react-router-dom";
 
 
 export default function FormAdd (props) {
@@ -41,6 +42,7 @@ export default function FormAdd (props) {
     const [g, setG] = useState()
     const [material, setMaterial] = useState()
     const [saborComida,setSaborComida] = useState([])
+    const {categoriaURL} = useParams()
 
 
     const db = getFirestore(App)
@@ -57,8 +59,8 @@ export default function FormAdd (props) {
 
 
 
-
     async function addItem () {
+
         if (props.modalidade == "Restaurante") {
             await setDoc(doc(db, `MeiComSite/${props.email}/produtos`, `${props.id}`), {
                 img: driveimg1 ? `https://docs.google.com/uc?id=${img1}`: img1,
