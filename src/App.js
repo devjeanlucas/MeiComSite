@@ -21,6 +21,7 @@ import ItensSacola from "./AreaCliente/components/ItensSacola";
 import FormularioDetalhesComprador from "./AreaCliente/Formularios/FormularioDetalhesComprador"
 import Vendas from "./Formularios/Cliente/Vendas";
 import Produtos from "./Formularios/Cliente/Produtos";
+import Fotos from "./Duvidas/Fotos";
 
 function App() {
   return (
@@ -31,8 +32,9 @@ function App() {
               <Route path="/" element={<Home/>}/>
 
               <Route path="suporte" element={<Suporte/>}>
-                <Route path="/suporte/query" element={<ControlSuporte/>}/>
+                <Route index element={<ControlSuporte/>}/>
                 <Route path="/suporte/:query" element={<Response/>}/>
+                <Route path="/suporte/fotos" element={<Fotos/>}/>
               </Route>
               
               

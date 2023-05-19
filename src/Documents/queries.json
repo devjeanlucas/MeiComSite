@@ -23,7 +23,7 @@
         "resposta":[
             {
                 "titulo":"",
-                "conteudo":"Utilizamos o método de pagamento do pix do mercado pago."
+                "conteudo":"Utilizamos o método de pagamento"
             },
             {
                 "titulo":"",
@@ -35,7 +35,12 @@
     {
         "pergunta":"fotos",
         "titulo":"Como coloco minhas fotos?",
-        "resposta":[]
+        "resposta":[
+            {
+                "titulo":"",
+                "conteudo":"Utilizamos o método de pagamento do pix do mercado pago."
+            }
+        ]
     },
     {
         "pergunta":"preços",

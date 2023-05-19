@@ -22,7 +22,7 @@ return (
                 </ul>
             </div>
                 <Link to="/planos">Planos e Preços</Link>
-                <Link to="/suporte/query">Ajuda</Link>
+                <Link to="/suporte">Ajuda</Link>
             </div>
             <div className={styles.login}>
                 <div className={styles.border_left}></div>

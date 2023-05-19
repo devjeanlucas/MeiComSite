@@ -11,7 +11,7 @@ export default function Suporte () {
         <NavBar/>
         <div className={styles.container}>
                     <div className={styles.container_icon}>
-                        <Link to="/suporte/query">
+                        <Link to="/suporte">
                             <FaAngleLeft className={styles.icon}/>
                         </Link>
                     </div>
