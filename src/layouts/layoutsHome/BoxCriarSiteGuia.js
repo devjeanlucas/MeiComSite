@@ -69,9 +69,9 @@ return (
                     <h4>Em poucos passos impulsione seu negócio</h4>
                     <br/>
                     <ol className={styles.list}>
-                        <li><strong>Escolha sua modalidade de negócio.</strong></li>
-                        <li><strong>Informe o serviço que irá oferecer.</strong></li>
-                        <li><strong>Configure seu Pix do Mercago Pago</strong></li>
+                        <li><strong>Preencha suas informações.</strong></li>
+                        <li><strong>Informe os locais que vai atender.</strong></li>
+                        <li><strong>Configure seu Pix do Mercago Pago (plus)</strong></li>
                         <li><strong>Selecione o layout que deseja na sua página.</strong></li>
                         <li><strong>Adicione fotos do seu One drive.</strong> Acompanhe como</li>
                         <li><strong>Adicione seus produtos.</strong></li>

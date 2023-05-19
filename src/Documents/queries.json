@@ -22,12 +22,12 @@
         "titulo":"Como funciona os pagamentos?",
         "resposta":[
             {
-                "titulo":"",
-                "conteudo":"Utilizamos o método de pagamento"
+                "titulo":"Pagamento por pix",
+                "conteudo":"Disponível apartir do plano plus, cadastrando seu token do mercado pago. O valor das compras irá direto para a mesma, seu intermédio da MeiComSite"
             },
             {
                 "titulo":"",
-                "conteudo":"Através da sua própria conta do mercado pago cadastrada na plataforma o valor é depositado na mesma a MeiComsite não desconta nenhum valor da sua venda."
+                "conteudo":""
             }
             
         ]

@@ -22,6 +22,8 @@ import FormularioDetalhesComprador from "./AreaCliente/Formularios/FormularioDet
 import Vendas from "./Formularios/Cliente/Vendas";
 import Produtos from "./Formularios/Cliente/Produtos";
 import Fotos from "./Duvidas/Fotos";
+import Pagamentos from "./Duvidas/Pagamentos";
+import ComoComeçar from "./Duvidas/ComoComeçar";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
                 <Route index element={<ControlSuporte/>}/>
                 <Route path="/suporte/:query" element={<Response/>}/>
                 <Route path="/suporte/fotos" element={<Fotos/>}/>
+                <Route path="/suporte/pagamentos" element={<Pagamentos/>}/>
+                <Route path="/suporte/passos" element={<ComoComeçar/>}/>
               </Route>
               
               

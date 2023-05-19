@@ -15,7 +15,7 @@ export default function ControlSuporte () {
                         <Link to="/suporte/fotos">
                             <li>Como uso minhas fotos?</li>
                         </Link>
-                        <Link to="/suporte/preços">
+                        <Link to="/planos">
                             <li>Quanto custa?</li>
                         </Link>
                         <Link to="/suporte/criticasesugestoes">
