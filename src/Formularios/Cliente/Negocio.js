@@ -100,6 +100,12 @@ export default function Negocio () {
                                     </div>
                                 </div>
                             )
+                    } else {
+                        return (
+                                <div>
+                                    <Link to="/perfil/cadastro">Fazer cadastro</Link>
+                                </div>
+                            )
                     }
                 })}
                 {!load && 
