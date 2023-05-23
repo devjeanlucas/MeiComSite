@@ -57,6 +57,8 @@ export default function Membros () {
     getUsers()
 
 
+
+    const usuario = Users && user && Users.filter(dados => dados.iduser == user.id)
     
     return (
             <>
@@ -94,6 +96,13 @@ export default function Membros () {
                             )
                     }
                 })}
+
+                {usuario && usuario.length == 0 &&
+                <div className={styles.container_off}>
+                    <h4>Usuário não cadastrado</h4>
+                    <Link to="/perfil/cadastro">Cadastrar agora!</Link>
+                </div>
+                }
             
                 {!load && 
                 <Loading/>}

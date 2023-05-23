@@ -197,6 +197,10 @@
         font-size: 1.1em;
         margin-left: 0.7em;
     }
+    .link_help  {
+        display: block;
+        margin-bottom: 0.5em;
+    }
     .btn_add_cidade {
         border: none;
         background-color: transparent;

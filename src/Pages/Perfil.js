@@ -11,7 +11,9 @@ export default function Perfil () {
             <NavBar/>
             <NavBarUser/>
             <InfoPerfil/>
+
             <Outlet/>
+            
             <Footer/>
         </div>
         )

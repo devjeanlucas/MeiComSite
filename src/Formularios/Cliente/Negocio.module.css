@@ -37,3 +37,8 @@
     margin-right: 0.4em;
     padding: 0.2em 0.5em;
 }
+.container_off {
+    width: 90%;
+    margin: 3em auto;
+    text-align: center;
+}

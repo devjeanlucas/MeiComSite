@@ -45,3 +45,8 @@
     text-transform: capitalize;
     margin-top: 0.8em;
 }
+.container_off {
+    width: 90%;
+    margin: 3em auto;
+    text-align: center;
+}

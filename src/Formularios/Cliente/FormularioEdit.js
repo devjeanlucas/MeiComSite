@@ -10,6 +10,8 @@ import '@firebase/firestore';
 import { getFirestore, collection, getDocs, updateDoc, doc} from "@firebase/firestore";
 import {FaPlusCircle, FaRegSave, FaTrashAlt} from "react-icons/fa"
 import moment from 'moment/moment';
+import { Link } from "react-router-dom"
+import FormularioCadastro from "../Cadastro/FormularioCadastro"
 
 
 
@@ -134,6 +136,8 @@ export default function FormularioEdit () {
     }
     
 
+
+    const usuario = Users && user && Users.filter(dados => dados.iduser == user.id)
 
 
     return (
@@ -475,6 +479,9 @@ export default function FormularioEdit () {
         })        }
          
 
+        {usuario && usuario.length == 0 &&
+        <FormularioCadastro/>
+        }
 
 
         <div className="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

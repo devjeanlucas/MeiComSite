@@ -79,3 +79,8 @@
 .info_categorie strong{
     display: block;
 }
+.container_off {
+    width: 90%;
+    margin: 3em auto;
+    text-align: center;
+}

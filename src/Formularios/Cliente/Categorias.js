@@ -87,26 +87,31 @@ export default function Informations () {
     const obj ={
         ação
     }
-    
 
     
     return (
             <>
-                {usuario[0] && usuario[0].status == "Em análise" ?
-                <div className={styles.cont_btn}>
-                <button className={styles.btn_disabled}
-                type="button" 
-                disabled
-                ><FaPlusCircle/> Nova Categoria</button>
-                <strong>Site ainda não autorizado a adicionar produtos <FaRegSadTear/></strong>
-                </div>:
-                <div className={styles.cont_btn}>
-                <button className={styles.btn}
-                type="button" 
-                data-bs-toggle="modal" 
-                data-bs-target={`#ModalAdd`}
-                ><FaPlusCircle/> Nova Categoria</button>
-             </div>
+                {usuario && usuario.length > 0 &&
+                <>
+                    {usuario[0].status == "Em análise" ?
+                    <div className={styles.cont_btn}>
+                        <button className={styles.btn_disabled}
+                        type="button" 
+                        disabled
+                        ><FaPlusCircle/> Nova Categoria</button>
+                        <strong>Site ainda não autorizado a adicionar produtos <FaRegSadTear/></strong>
+                    </div>
+                    :
+                    <div className={styles.cont_btn}>
+                        <button className={styles.btn}
+                        type="button" 
+                        data-bs-toggle="modal" 
+                        data-bs-target={`#ModalAdd`}
+                        ><FaPlusCircle/> Nova Categoria</button>
+                    </div>
+                    
+                }
+                </>
                 }
 
 
@@ -227,6 +232,13 @@ export default function Informations () {
                         </div>
                     </div>
                 </div>
+
+                {usuario && usuario.length == 0 &&
+                <div className={styles.container_off}>
+                    <h4>Usuário não cadastrado</h4>
+                    <Link to="/perfil/cadastro">Cadastrar agora!</Link>
+                </div>
+                }
             </>
         )
 }

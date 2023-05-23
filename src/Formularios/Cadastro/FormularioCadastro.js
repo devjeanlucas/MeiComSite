@@ -182,8 +182,8 @@ export default function FormularioCadastro () {
                                     <div className={styles.flex}>
                                         <label>Logo </label>
                                     {logo &&  <img src={logo} className={styles.logo}/>}
-                                    <Link to="/suporte/fotos">Como colocar minha logo?</Link>
                                     </div>
+                                    <Link to="/suporte/fotos" className={styles.link_help}>Como colocar minha logo?</Link>
                                     <input type="text"
                                     onChange={(el)=> {
                                         setLogo(el.target.value)
