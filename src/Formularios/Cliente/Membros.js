@@ -16,6 +16,7 @@ export default function Membros () {
 
     const [load, setLoading] = useState(false)
     const [user, setUser] = useState();
+    const [state, setState] = useState(false)
     const [Users, setUsers] = useState([])
     const [Usuario, SetUsuario] = useState([])
     const db = getFirestore(App)
@@ -41,28 +42,34 @@ export default function Membros () {
         } catch (e) {
             <button> tentar novamente </button>
         }
+        
+
+
     },[])
 
+    
     const getUsers = async () => {
-        
-        if (user) {
-            const dataUss = await getDocs(Collection);
-            SetUsuario((dataUss.docs.map((doc) => ({...doc.data(), id: doc.id}))))
+        const dataUss = await getDocs(Collection);
+        SetUsuario((dataUss.docs.map((doc) => ({...doc.data(), id: doc.id}))))
 
-            const data = await getDocs(UserCollection);
-            setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
-            setLoading(true)
-        }
+        const data = await getDocs(UserCollection);
+        setUsers((data.docs.map((doc) => ({...doc.data(), id: doc.id}))))
+        setLoading(true)
+        setState(true)
     };  
-    getUsers()
+
+    if (user) {
+        if (!state) {
+            getUsers()
+        }
+    }
+    const usuario = Usuario && user && Usuario.filter(dados => dados.iduser == user.id)
 
 
-
-    const usuario = Users && user && Users.filter(dados => dados.iduser == user.id)
     
     return (
             <>
-                {Usuario && Usuario.map(item => {
+                {usuario && usuario.map(item => {
                     if (item.iduser == user.id) {
                         return (
                                 <div>
@@ -97,12 +104,6 @@ export default function Membros () {
                     }
                 })}
 
-                {usuario && usuario.length == 0 &&
-                <div className={styles.container_off}>
-                    <h4>Usuário não cadastrado</h4>
-                    <Link to="/perfil/cadastro">Cadastrar agora!</Link>
-                </div>
-                }
             
                 {!load && 
                 <Loading/>}

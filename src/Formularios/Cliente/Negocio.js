@@ -51,6 +51,7 @@ export default function Negocio () {
 
     const usuario = Users && user && Users.filter(dados => dados.iduser == user.id)
 
+
     
     return (
             <>

@@ -8,7 +8,6 @@ export default function VerDetalhesPedido (props) {
         return valorFormatado
     }
 
-    console.log(obj)
 
     return (
         <>
