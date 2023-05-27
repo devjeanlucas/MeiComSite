@@ -53,3 +53,8 @@
         margin: 2em auto 0em auto;
         }
 }
+.container_text a {
+    text-decoration: none;
+    padding: 0.7em;
+    margin-top: 0.5em;
+}

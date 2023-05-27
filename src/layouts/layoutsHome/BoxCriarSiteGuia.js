@@ -61,7 +61,7 @@ export default function BoxCriarSiteGuia () {
 
 
 return (
-    <div className={styles.container}>
+    <div className={styles.container} id="guia">
         <div className="row">
             <div className="col-md-5 order-2 order-md-1 col-lg-6">
                 <div className={styles.container_text}>
@@ -82,7 +82,7 @@ return (
                             onClick={HandleClickLoginGoogle}
                             >Criar agora <FaAngleDoubleRight/></button>
                     :
-                        <Link to={index ? "/cadastro": "/perfil/user/negocio"}>
+                        <Link to={index && index < 0 ? "/cadastro": "/perfil/user/negocio"}>
                             <button className={styles.btn_start}>Começar Grátis</button>
                         </Link>
                         

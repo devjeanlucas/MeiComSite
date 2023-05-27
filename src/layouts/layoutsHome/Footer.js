@@ -30,7 +30,6 @@ export default function Footer () {
                             <h4>Modalidades</h4>
                             <li><a href="#">Loja Virtual</a></li>
                             <li><a href="#">Restaurante</a></li>
-                            <li><a href="#">Agendamento</a></li>
                         </ul>
                         <ul className={styles.list}>
                             <h4>Empresa</h4>
@@ -62,7 +61,6 @@ export default function Footer () {
                 <ul className={styles.list}>
                     <li><a href="#">Loja Virtual</a></li>
                     <li><a href="#">Restaurante</a></li>
-                    <li><a href="#">Agendamento</a></li>
                 </ul>
             </div>
     </div>

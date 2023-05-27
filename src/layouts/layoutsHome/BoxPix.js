@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styles from "./BoxPix.module.css"
 import {FaRegCheckCircle} from "react-icons/fa"
 
@@ -10,7 +11,7 @@ return (
                 <div className={styles.container_text}>
                     <div className={styles.content_title}>
                         <h1 className={styles.title}>Pagamento com QR Code</h1>
-                        <button className="button_orange">Saiba como</button>
+                        <Link to="/suporte/pagamentos" className="button_orange">Saiba como</Link>
                     </div>
                 </div>  
             </div>

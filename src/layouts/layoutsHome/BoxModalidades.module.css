@@ -37,6 +37,9 @@
     .link {
         text-decoration: none !important;
     }
+    .dashed {
+        filter: sepia(70%);
+    }
 }
 @media screen and (min-width:576px) {
     .description {
