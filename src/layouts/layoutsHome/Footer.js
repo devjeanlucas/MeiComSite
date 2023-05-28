@@ -28,20 +28,18 @@ export default function Footer () {
                     <div className={styles.container_lists}>
                         <ul className={styles.list}>
                             <h4>Modalidades</h4>
-                            <li><a href="#">Loja Virtual</a></li>
-                            <li><a href="#">Restaurante</a></li>
+                            <li><Link to="/catalogo/shopping">Loja Virtual</Link></li>
+                            <li><Link to="/catalogo/alimentação">Restaurante</Link></li>
                         </ul>
                         <ul className={styles.list}>
                             <h4>Empresa</h4>
-                            <li><a href="#">Sobre nós</a></li>
-                            <li><a href="#">Dados e armazenamento</a></li>
                             <li><a href="#">Termos de uso</a></li>
                             <li><a href="#">Politica de privacidade</a></li>
                             <li><a href="#">Nos ajude</a></li>
                         </ul>
                         <ul className={styles.list}>
                             <h4>Ajuda</h4>
-                            <Link to="/suporte/query">Central de ajuda</Link>
+                            <li><Link to="/suporte/query">Central de ajuda</Link></li>
                             <li><a href="#">Entre em contato</a></li>
                         </ul>
                     </div>

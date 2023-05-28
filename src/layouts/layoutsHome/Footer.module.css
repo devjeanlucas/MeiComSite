@@ -13,7 +13,7 @@
     list-style-type: none;
     }
     .list li a {
-        color: #474747;
+        color: #474747 !important;
         text-decoration: none;
     
     }
