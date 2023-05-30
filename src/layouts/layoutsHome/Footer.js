@@ -14,10 +14,10 @@ export default function Footer () {
                             Acreditamos no novo e investindo em tecnologia, você pode ir muito além.
                         </p>
                         <div className={styles.redes}>
-                            <a href="#" className={styles.icon}>
+                            <a href="https://www.instagram.com/bro.lucass/" target="_blank" className={styles.icon}>
                                 <FaInstagram/>
                             </a>
-                            <a href="#" className={styles.icon}>
+                            <a href="https://api.whatsapp.com/send?phone=71981298548&text=" target="_blank" className={styles.icon}>
                                 <FaWhatsapp/>
                             </a>
                         </div>
@@ -57,8 +57,8 @@ export default function Footer () {
     <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div className="accordion-body">
                 <ul className={styles.list}>
-                    <li><a href="#">Loja Virtual</a></li>
-                    <li><a href="#">Restaurante</a></li>
+                  <li><Link to="/catalogo/shopping">Loja Virtual</Link></li>
+                  <li><Link to="/catalogo/alimentação">Restaurante</Link></li>
                 </ul>
             </div>
     </div>
@@ -72,7 +72,6 @@ export default function Footer () {
     <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
       <div className="accordion-body"> 
             <ul className={styles.list}>
-                <li><a href="#">Sobre nós</a></li>
                 <li><a href="#">Dados e armazenamento</a></li>
                 <li><a href="#">Termos de uso</a></li>
                 <li><a href="#">Politica de privacidade</a></li>
@@ -90,8 +89,7 @@ export default function Footer () {
     <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
         <div className="accordion-body">
             <ul className={styles.list}>
-                <li><a href="#">Central de ajuda</a></li>
-                <li><a href="#">Entre em contato</a></li>
+              <li><Link to="/suporte">Central de Ajuda</Link></li>
             </ul>
         </div>
     </div>

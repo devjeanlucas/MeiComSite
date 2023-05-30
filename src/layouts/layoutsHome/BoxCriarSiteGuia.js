@@ -73,7 +73,7 @@ return (
                         <li><strong>Informe os locais que vai atender.</strong></li>
                         <li><strong>Configure seu Pix do Mercago Pago (plus)</strong></li>
                         <li><strong>Selecione o layout que deseja na sua página.</strong></li>
-                        <li><strong>Adicione fotos do seu One drive.</strong> Acompanhe como</li>
+                        <li><strong>Adicione fotos do seu One drive.</strong> <Link to="/suporte/fotos">Veja como</Link></li>
                         <li><strong>Adicione seus produtos.</strong></li>
                     </ol>
 
@@ -82,7 +82,7 @@ return (
                             onClick={HandleClickLoginGoogle}
                             >Criar agora <FaAngleDoubleRight/></button>
                     :
-                        <Link to={index && index < 0 ? "/cadastro": "/perfil/user/negocio"}>
+                        <Link to={index && index < 0 ? "/cadastro": "/perfil/user/categorias"}>
                             <button className={styles.btn_start}>Começar Grátis</button>
                         </Link>
                         

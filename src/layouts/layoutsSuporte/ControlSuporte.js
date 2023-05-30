@@ -18,10 +18,7 @@ export default function ControlSuporte () {
                         <Link to="/planos">
                             <li>Quanto custa?</li>
                         </Link>
-                        <Link to="/suporte/criticasesugestoes">
-                            <li>Críticas e sugestões</li>
-                        </Link>
-                        <Link to="/suporte/politicaeprivacidade">
+                        <Link to="/suporte/politica">
                             <li>Política de privacidade</li>
                         </Link>
                     </ul>

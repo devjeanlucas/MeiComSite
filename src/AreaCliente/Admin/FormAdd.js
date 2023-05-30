@@ -93,7 +93,7 @@ export default function FormAdd (props) {
                         img3: img3 ? driveimg3 ? `https://docs.google.com/uc?id=${img3}`: img3 : "",
                         img4: img4 ? driveimg4 ? `https://docs.google.com/uc?id=${img4}`: img4 : "", 
                         desc:desc.trim(),
-                        small_desc: small_desc.trim(),
+                        small_desc: small_desc ? small_desc.trim() : "",
                         material: material.trim()
                     }
                     ]
@@ -112,7 +112,7 @@ export default function FormAdd (props) {
                         img3: img3 ? driveimg3 ? `https://docs.google.com/uc?id=${img3}`: img3 : "",
                         img4: img4 ? driveimg4 ? `https://docs.google.com/uc?id=${img4}`: img4 : "",
                         desc:desc.trim(),
-                        small_desc: small_desc.trim(),
+                        small_desc: small_desc ? small_desc.trim() : "",
                         material: material.trim()
                     }
                     ]

@@ -129,7 +129,7 @@
         color: #969696;
     }
     .Dark .cont_right {
-        padding-left: 2em;
+        padding-left: 0em;
         font-family: 'Outfit', sans-serif;  
     }
     .Dark .header {
@@ -154,7 +154,7 @@
         border-radius: 5px;
     }
     .Dark .btn_buy {
-        margin: 2em 0em 1em 0em;
+        margin: 1em 0em 1em 0em;
         width: 100%;
         padding: 0.8em;
         border: none;

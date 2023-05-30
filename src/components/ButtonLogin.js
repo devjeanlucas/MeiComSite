@@ -1,5 +1,5 @@
 import styles from "./NavBar.module.css"
-import { FaRegUser, FaSignOutAlt } from "react-icons/fa"
+import { FaRegUser, FaSignOutAlt, FaUserAlt } from "react-icons/fa"
 import User from "../Hooks/User"
 import {firebase, auth} from "../Service/firebase"
 import { useState,useEffect } from "react"
@@ -71,7 +71,7 @@ export default function ButtonLogin () {
                     <div className={styles.email}>
                         <strong>{User && User[0].email}</strong>
                     </div>
-                    <Link to={`/perfil/user/negocio`} className={styles.link}>Perfil</Link>
+                    <Link to={`/perfil/user/negocio`} className={styles.link}><FaUserAlt/> Perfil</Link>
                     <div className={styles.logout}>
                         <div>
                             <button onClick={handleClickLogOut}><FaSignOutAlt/> sair</button>

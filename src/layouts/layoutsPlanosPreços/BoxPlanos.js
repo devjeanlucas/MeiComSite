@@ -28,7 +28,7 @@ export default function BoxPlanos () {
                                 </ul>
                             </div>
                             <div className={styles.price}>
-                                <h4>R$ 30,00</h4>
+                                <h4>Em análise</h4>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ export default function BoxPlanos () {
                                 </ul>
                             </div>
                             <div className={styles.price}>
-                                <h4>R$ 60,00</h4>
+                                <h4>Em análise</h4>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ export default function BoxPlanos () {
                                 </ul>
                             </div>
                             <div className={styles.price}>
-                                <h4>R$ 90,00</h4>
+                                <h4>Em análise</h4>
                             </div>
                         </div>
                     </div>

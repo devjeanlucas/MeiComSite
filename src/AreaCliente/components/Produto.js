@@ -261,7 +261,7 @@ export default function Produto () {
                     <div className={styles[usuario[0].theme]}>
                         {!load && <Loading/>}
                         <div className="row">
-                            <div className="col-lg-7">
+                            <div className="col-md-7">
                                 <Swiper
                                 spaceBetween={10}
                                 pagination={{ clickable: true }}
@@ -301,30 +301,12 @@ export default function Produto () {
 
                                 </Swiper>
                             </div>
-                            <div className="col-lg-5">
+                            <div className="col-md-5">
                                 <div className={styles.cont_right}>
                                     <div className={styles.header}>
                                         <h3 className={styles.name}>{produto[0].nome}</h3>
                                         <p className={styles.desc}>{produto[0].desc}</p>
                                         <h4>{FormataValor(produto[0].preço)}</h4>
-                                    </div>
-                                    <strong>cores disponiveis</strong>
-                                    <div className={styles.cont_colors}>
-                                        <div className={styles.item}>
-                                            <input type="color" disabled/>
-                                        </div>
-                                        <div className={styles.item}>
-                                            <input type="color" disabled/>
-                                        </div>
-                                        <div className={styles.item}>
-                                            <input type="color" disabled/>
-                                        </div>
-                                    </div>
-                                    <strong>tamanho</strong>
-                                    <div className={styles.cont_tam}>
-                                        <button>P</button>
-                                        <button>M</button>
-                                        <button>G</button>
                                     </div>
                                     <button className={styles.btn_buy}
                                     onClick={()=> addSacola(produto[0].nome, produto[0])}
@@ -339,7 +321,7 @@ export default function Produto () {
                                             </h2>
                                             <div id="detalhes" className="accordion-collapse collapse">
                                                 <div className="accordion-body">
-
+                                                    <p>{produto[0].desc}</p>
                                                 </div>
                                             </div>
                                         </div>

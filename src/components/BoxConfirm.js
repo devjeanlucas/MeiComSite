@@ -160,18 +160,18 @@ export default function BoxConfirm (props) {
     }
 
     const deletarBairro = async () => {
-        const index = obj.listBairros.findIndex(prop => prop.bairro == obj.novoBairro)
+        const index = obj.listBairros.findIndex(prop => prop.local == obj.novoBairro)
         obj.listBairros.splice(index, 1)
         await updateDoc(doc(db, `MeiComSite`, user.email), {
-            bairros: obj.listBairros
+            listBairros: obj.listBairros
         });
-        window.location.reload()
+         window.location.reload()
     }
     const deletarCidade = async () => {
         const index = obj.listCidades.findIndex(prop => prop.cidade == obj.novaCidade)
         obj.listCidades.splice(index, 1)
         await updateDoc(doc(db, `MeiComSite`, user.email), {
-            cidades: obj.listCidades
+            listCidades: obj.listCidades
         });
         window.location.reload()
     }

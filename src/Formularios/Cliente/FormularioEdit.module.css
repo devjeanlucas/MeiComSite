@@ -196,6 +196,10 @@
         height: 100%;
         justify-content: space-around;
     }
+    .cont_input input {
+        display: block;
+        margin-bottom: 0.7em;
+    }
 }
 @media screen and (min-width:576px) {
     .container {

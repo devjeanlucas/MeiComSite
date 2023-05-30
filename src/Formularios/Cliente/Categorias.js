@@ -123,7 +123,7 @@ export default function Informations () {
                                     <li className={`row ${styles.li}`} key={dados.id}
                                     >
                                         <div className="col-2">
-                                            <img src={dados.imagem} className={styles.img}/>
+                                            <img src={dados.img} className={styles.img}/>
                                         </div>
                                         <div className={`col-10`}>
                                             <div className={styles.cont_item}>

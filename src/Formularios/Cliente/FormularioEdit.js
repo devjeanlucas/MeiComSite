@@ -12,6 +12,8 @@ import {FaPlusCircle, FaRegSave, FaTrashAlt} from "react-icons/fa"
 import moment from 'moment/moment';
 import { Link } from "react-router-dom"
 import FormularioCadastro from "../Cadastro/FormularioCadastro"
+import { toast, ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -23,6 +25,7 @@ export default function FormularioEdit () {
     const [ação, setAção] = useState()
     const [novaCidade, setNovaCidade] = useState()
     const [novoBairro, setNovoBairro] = useState()
+    const [taxa, setTaxa] = useState()
     const UserCollection = collection(db, "MeiComSite")
 
 
@@ -102,17 +105,20 @@ export default function FormularioEdit () {
 
     const salvarLocal = async () => {
         listCidades.push({local: novaCidade})
-        listBairros.push({local: novoBairro})
+        listBairros.push({local: `${novoBairro}-(${parseFloat(taxa)})`})
 
         if (novaCidade) {
             await updateDoc(doc(db, `MeiComSite`, user.email), {
                 listCidades: listCidades
             });
         }
-        if (novoBairro) {
+        if (novoBairro && taxa) {
             await updateDoc(doc(db, `MeiComSite`, user.email), {
                 listBairros: listBairros
             });
+        } else {
+            toast.error('Informa a taxa de entrega!')
+            return
         }
         
         window.location.reload()
@@ -276,7 +282,9 @@ export default function FormularioEdit () {
                                         <div className={styles.flex}>
                                             <input type="text" 
                                             onChange={(el)=> setNovaCidade(el.target.value)}
+                                            placeholder="Nome da Cidade"
                                             />
+
                                             <FaRegSave
                                             className={styles.btn_save}
                                             onClick={(e)=> {
@@ -287,13 +295,15 @@ export default function FormularioEdit () {
                                             />
                                         </div>
                                         }
-                                        <button
-                                        className={styles.btn_add_cidade}
-                                        onClick={(e)=> {
-                                            e.preventDefault()
-                                            setAddCidade(!addCidade)
-                                        }}
-                                        >{!addCidade ? <FaPlusCircle/>: "Cancelar"}</button>
+                                        {!addBairro &&
+                                            <button
+                                            className={styles.btn_add_cidade}
+                                            onClick={(e)=> {
+                                                e.preventDefault()
+                                                setAddCidade(!addCidade)
+                                            }}
+                                            >{!addCidade ? <FaPlusCircle/>: "Cancelar"}</button>
+                                        }
                                     </div>
                                     <div className="col-md-6">
                                         <div className={styles.flex_space_around}>
@@ -329,11 +339,15 @@ export default function FormularioEdit () {
                                     <div className="col-md-6">
                                         <label>Bairros</label>
                                         {addBairro && 
-                                        <div className={styles.flex}>
+                                        <div className={styles.cont_input}>
                                             <input type="text" 
+                                            placeholder="Nome do bairro"
                                             onChange={(el)=> setNovoBairro(el.target.value)}
                                             />
-
+                                            <input type="number" 
+                                            placeholder="Taxa de Entrega"
+                                            onChange={(el)=> setTaxa(el.target.value)}
+                                            />
                                             <FaRegSave
                                             className={styles.btn_save}
                                             onClick={(e)=> {
@@ -344,6 +358,7 @@ export default function FormularioEdit () {
                                             />
                                         </div>
                                         }
+                                        {!addCidade &&
                                         <button
                                         className={styles.btn_add_cidade}
                                         onClick={(e)=> {
@@ -351,6 +366,7 @@ export default function FormularioEdit () {
                                             setAddBairro(!addBairro)
                                         }}
                                         >{!addBairro ? <FaPlusCircle/> : "Cancelar"}</button>
+                                        }
                                     </div>
                                     <div className="col-md-6">
                                         <div className={styles.flex_space_around}>
@@ -433,7 +449,7 @@ export default function FormularioEdit () {
                                         }}
                                         >
                                             {Themes.map(item => {
-                                                if (!mod || mod == "null" ? item.modalidade : mod ) {
+                                                if (item.modalidade == dados.mod) {
                                                     return (
                                                         <SwiperSlide key={item.id} className={styles.item}
                                                         onClick={(el)=> {
@@ -496,7 +512,7 @@ export default function FormularioEdit () {
             </div>
         </div>
     </div>
-            
+            <ToastContainer/>
         </>
         )
 }

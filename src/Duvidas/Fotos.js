@@ -24,7 +24,7 @@ export default function Fotos () {
                         />
                     </div>
 
-
+                    <div className="line"/>
                     <h4>&#8226; Como adiciono minhas fotos?</h4>
                     <div className={styles.info}>
                         <h5

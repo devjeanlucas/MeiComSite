@@ -24,6 +24,7 @@ import Produtos from "./Formularios/Cliente/Produtos";
 import Fotos from "./Duvidas/Fotos";
 import Pagamentos from "./Duvidas/Pagamentos";
 import ComoComeçar from "./Duvidas/ComoComeçar";
+import Politica from "./Duvidas/PoliticadePrivacidade";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/suporte/fotos" element={<Fotos/>}/>
                 <Route path="/suporte/pagamentos" element={<Pagamentos/>}/>
                 <Route path="/suporte/passos" element={<ComoComeçar/>}/>
+                <Route path="/suporte/politica" element={<Politica/>}/>
               </Route>
               
               

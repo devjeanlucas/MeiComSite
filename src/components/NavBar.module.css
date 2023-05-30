@@ -70,11 +70,11 @@
     }
     .link {
         display: block;
-        background-color: #fff;
         width: 100% !important;
         text-decoration: none;
         color: #000;
         padding: 0.3em;
+        margin-bottom: 1em;
     }
     .link_drop {
         background-color: transparent !important;

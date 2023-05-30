@@ -91,11 +91,12 @@ export default function FormularioDetalhesComprador () {
     var qtd = pegaItems()
     const dados = pegaDados()
 
-    function createWhatsAppLink(phoneNumber, message) {
+   function createWhatsAppLink(phoneNumber, message) {
         return `https://api.whatsapp.com/send?phone=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
-      }
+    }
 
-    const message = `Olá! Me chamo ${nome} estou comprando no ${site},
+    const message = usuario[0] && usuario[0].mod == "Restaurante" ?
+     `Olá! Me chamo ${nome} estou comprando no ${site},
     endereço- Cidade:${cidade} Bairro: ${bairro} Rua:${rua}, Nº ${numero} 
     ,segue minhas compras:
     ${dados && dados.map(dados => {
@@ -105,9 +106,20 @@ export default function FormularioDetalhesComprador () {
         Total do pedido: ${FormataValor(total)}
         `)
         }
-}
-    )
-}`; 
+        }
+            )
+        }`: 
+        
+        
+        usuario[0] && usuario[0].mod == "Loja Virtual" && 
+        `Olá! Me chamo ${nome} estou comprando no ${site},
+        endereço- Cidade:${cidade} Bairro: ${bairro} Rua:${rua}, Nº ${numero} 
+        ,segue minhas compras: ${dados.map(dados => {
+            return (`${dados.nome} x${dados.qtd} ${FormataValor(dados.preço)}  /  `)
+        })}
+        Total do pedido: ${FormataValor(total)}
+        `; 
+    
 
     const href = createWhatsAppLink('71981298548', message)
 
@@ -124,8 +136,24 @@ export default function FormularioDetalhesComprador () {
     
 
     const salvavenda = async() => {
-        if (usuario.length > 0 ) {
+        if (usuario[0]) {
             if (usuario[0].mod == "Restaurante") {
+                await setDoc(doc(db, `MeiComSite/${usuario[0].email}/vendas`, `${id}`), {
+                    nome,
+                    telefone,
+                    cidade,
+                    bairro,
+                    rua,
+                    numero,
+                    pagamento,
+                    status: "Aguardando confirmação",
+                    data: moment().format('DD/MM/YYYY'),
+                    hora: moment().format('HH:MM'),
+                    pedido: dados && dados,
+                    total: total && parseFloat(total)
+                });
+            }
+            if (usuario[0].mod == "Loja Virtual") {
                 await setDoc(doc(db, `MeiComSite/${usuario[0].email}/vendas`, `${id}`), {
                     nome,
                     telefone,

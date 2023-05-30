@@ -106,27 +106,31 @@ export default function Produtos () {
                                     return (
                                         dados.produtos.map(item => {
                                         return (
-                                                <li key={dados.id} className={styles.cont_item}>
-                                                    <div className="col-3 col-sm-2">
+                                                <li key={dados.id} className={`row ${styles.cont_item}`}>
+                                                    <div className="col-12 col-sm-2">
                                                         <img src={item.img} className={styles.img}/>
                                                     </div>
-                                                    <div className="col-9 col-sm-10">
-                                                        <FaEdit
-                                                        type="button" 
-                                                        data-bs-toggle="modal" 
-                                                        data-bs-target={`#ModalEdit`}
-                                                        onClick={()=> setDados(item)}
-                                                        />
-                                                        <FaTrashAlt
-                                                        type="button" 
-                                                        data-bs-toggle="modal" 
-                                                        data-bs-target={`#ModalTrash`}
-                                                        onClick={()=> {
-                                                            setDados(item)
-                                                            setAção("Deletar Produto")
-                                                            setIndex(1) 
-                                                        }}
-                                                        />
+                                                    <div className="col-12 col-sm-10">
+                                                        <div className={styles.cont_buttons}>
+                                                            <FaEdit
+                                                            type="button"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target={`#ModalEdit`}
+                                                            onClick={()=> setDados(item)}
+                                                            className={styles.icon}
+                                                            />
+                                                            <FaTrashAlt
+                                                            type="button"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target={`#ModalTrash`}
+                                                            className={styles.icon}
+                                                            onClick={()=> {
+                                                                setDados(item)
+                                                                setAção("Deletar Produto")
+                                                                setIndex(1)
+                                                            }}
+                                                            />
+                                                        </div>
                                                         <div className={styles.info}>
                                                             <div className={styles.info_item}>
                                                                 <p><strong>Nome:</strong>{item.nome}</p>

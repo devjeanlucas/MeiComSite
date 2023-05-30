@@ -10,16 +10,11 @@ export default function Suporte () {
         <>
         <NavBar/>
         <div className={styles.container}>
-                    <div className={styles.container_icon}>
-                        <Link to="/suporte">
-                            <FaAngleLeft className={styles.icon}/>
-                        </Link>
-                    </div>
-                    <div className={styles.cont_input}>
-                    <p className={styles.query_input}>O que precisa saber?</p>
-                    <input type="text" className={styles.input}/>
+            <div className={styles.container_icon}>
+                <Link to="/suporte">
+                    <FaAngleLeft className={styles.icon}/>
+                </Link>
             </div>
-            
         </div>
         
         <Outlet/>

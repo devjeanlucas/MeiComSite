@@ -81,13 +81,13 @@ export default function MarketHome () {
                             <ul className="row">
                             {produtos && produtos.map(dados => {
                                     return (
-                                            <li key={dados.id} className="col-6 col-md-6 col-lg-4">
+                                            <li key={dados.id} className="col-12 col-md-6 col-lg-4">
                                                 <div>
                                                     <div className={styles.cont_img}>
                                                         <Link
                                                         to={`/${site}/${dados.categoria}`}
                                                         >
-                                                            <img src={dados.imagem} className={styles.img}/>
+                                                            <img src={dados.img} className={styles.img}/>
                                                         </Link>
                                                     </div>
                                                     <div className={styles.cont_desc}>

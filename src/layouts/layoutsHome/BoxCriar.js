@@ -70,7 +70,7 @@ export default function BoxCriar () {
                                 onClick={HandleClickLoginGoogle}
                                 >Criar agora <FaAngleDoubleRight/></button>
                         :
-                            <Link to={index && index < 0 ? "/cadastro": "/perfil/user/negocio"}>
+                            <Link to={index && index < 0 ? "/cadastro": "/perfil/user/config"}>
                                 <button className={styles.btn_start}>Começar <FaArrowRight/></button>
                             </Link>
                             

@@ -9,13 +9,15 @@
     background-color: #fa8e01;
     color: #fff;
 }
+.info {
+    margin-left: 1em;
+}
 .list {
     list-style-type: none;
     padding: 0em;
     margin-top: 2em;
 }
 .list li {
-    display: flex;
     border: 1px dashed #ccc;
     margin-bottom: 1em;
     padding: 1em;
@@ -31,6 +33,12 @@
     justify-content: space-between;
     margin-top: 2em;
     flex-wrap: wrap;
+}
+.cont_buttons {
+    margin-left: 1em;
+}
+.icon {
+    margin-right: 0.7em;
 }
 .info_item strong {
     margin-right: 0.4em;
