@@ -71,7 +71,7 @@ export default function Informations () {
     const addCategoria = async () => {
         await setDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${categoria}`), {
             categoria: categoria,
-            imagem: imagem
+            img: imagem
         });
         window.location.reload()
     }
@@ -80,7 +80,7 @@ export default function Informations () {
             categoria: categoria ? categoria : produto.categoria
         });
         await updateDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${produto && produto.id}`), {
-            imagem: imagem ? imagem : produto.imagem
+            img: imagem ? imagem : produto.img
         });
         window.location.reload()
     }

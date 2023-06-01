@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import styles from "./NavBar.module.css"
-import {FaBars} from "react-icons/fa"
+import {FaBars, FaHome} from "react-icons/fa"
 import MenuMobile from "./MenuMobile"
 import ButtonLogin from "./ButtonLogin"
 
@@ -25,13 +25,9 @@ return (
                 <Link to="/suporte">Ajuda</Link>
             </div>
             <div className={styles.login}>
+                <Link to="/perfil/user/negocio" className={styles.icon_home}><FaHome/></Link>
                 <div className={styles.border_left}></div>
-
                 <ButtonLogin/>
-                
-
-
-
                 <div>
                     <FaBars className={`${styles.icon_mobile} navbar-toggler`} 
                     type="button" 

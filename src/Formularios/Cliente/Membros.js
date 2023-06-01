@@ -83,14 +83,14 @@ export default function Membros () {
                                         </div>
                                         }
                                     </div>
-                                    <div className={styles.container}>
+                                    <div className={styles.container_list}>
                                     <ul className={styles.list}>
                                         <li>
                                             <div className="row">
-                                                <div className="col-sm-2">
+                                                <div className="col-2">
                                                     <img src={user.avatar} className={styles.img}/>
                                                 </div>
-                                                <div className="col-sm-6">
+                                                <div className="col-8">
                                                     <p>{item.email}</p>
                                                     <p>{item.nome}</p>
                                                     {item.admin && <p>administrador</p>}

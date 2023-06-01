@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBarUser.module.css"
 import {Swiper,SwiperSlide} from "swiper/react";
+import { FreeMode, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 
 export default function NavBarUser () {
     return (
@@ -18,6 +22,8 @@ export default function NavBarUser () {
                 },
               }}
             className={`${styles.navigation} nav`}
+            freeMode={true}
+            modules={[FreeMode, Pagination]}
             >
                 <SwiperSlide
                 >

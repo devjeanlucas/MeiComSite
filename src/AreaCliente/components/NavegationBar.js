@@ -1,4 +1,4 @@
-import { FaBars, FaSearch, FaShoppingBag, FaShoppingCart } from "react-icons/fa"
+import { FaBars, FaHome, FaSearch, FaShoppingBag, FaShoppingCart } from "react-icons/fa"
 import MenuMobileCliente from "./MenuMobileCliente"
 import styles from "./NavigationBar.module.css"
 import { Link, useParams } from "react-router-dom"
@@ -45,10 +45,6 @@ export default function NavigationBar (props) {
                         <div>
                             {list && !list.logo ? <h4>list.razao</h4> : <img src={list.logo} className={styles.logo}/>}
                         </div>
-                        <div className={styles.options}>
-                            <Link to={`/${list && list.site}`}>Categorias</Link>
-                            <Link>Promoções</Link>
-                        </div>
                         <div className={styles.cont_search}>
                             <input type="text"
                             placeholder={`Pesquisar`}
@@ -59,6 +55,9 @@ export default function NavigationBar (props) {
                             categoria={categoria}
                             >
                                 <FaShoppingCart className={styles.icon}/>
+                            </Link>
+                            <Link  to={`/${list && list.site}`}>
+                                <FaHome className={styles.icon}/>
                             </Link>
                             <FaBars className={styles.icon_bars}
                             type="button" 

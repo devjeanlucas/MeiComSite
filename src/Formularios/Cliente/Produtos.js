@@ -177,7 +177,7 @@ export default function Produtos () {
                             type="button"
                             dismiss="modal"
                             aria_label="Close"
-                            dados={dados}
+                            dados={obj}
                             />
                     </div>
                 </div>

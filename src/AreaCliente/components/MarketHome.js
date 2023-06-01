@@ -73,7 +73,7 @@ export default function MarketHome () {
                 <>
                 {!load && <Loading/>}
                 <div className={`${styles.container} row ${styles[usuario && usuario[0].theme]}`}>
-                    <div className="col-lg-3">
+                    <div className="col-md-3">
                         <NavShop/>
                     </div>
                     <div className="col-md-9">
@@ -81,7 +81,7 @@ export default function MarketHome () {
                             <ul className="row">
                             {produtos && produtos.map(dados => {
                                     return (
-                                            <li key={dados.id} className="col-12 col-md-6 col-lg-4">
+                                            <li key={dados.id} className={`${styles.li} col-12 col-md-12`}>
                                                 <div>
                                                     <div className={styles.cont_img}>
                                                         <Link
@@ -89,9 +89,7 @@ export default function MarketHome () {
                                                         >
                                                             <img src={dados.img} className={styles.img}/>
                                                         </Link>
-                                                    </div>
-                                                    <div className={styles.cont_desc}>
-                                                        <div className={styles.text}>
+                                                        <div className={styles.cont_desc}>
                                                             <h4>{dados.categoria}</h4>
                                                         </div>
                                                     </div>

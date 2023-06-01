@@ -66,30 +66,31 @@ export default function Categorias () {
                                     <ul className="row">
                                         {produtos && produtos.map(item => {
                                             if (item.categoria.toLowerCase() == categoria.toLowerCase()) {
-                                                return (
-                                                    item.produtos.map(dados => {
-                                                        return (
-                                                            <li key={dados.id} className="col-6 col-md-6 col-lg-4">
-                                                                <div>
-                                                                    <div className={styles.cont_img}>
-                                                                        <Link
-                                                                        to={`/${site}/${item.categoria}/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
-                                                                        >
-                                                                            <img src={dados.img} className={styles.img}/>
-                                                                        </Link>
-                                                                    </div>
-                                                                    <div className={styles.cont_desc}>
-                                                                        <div className={styles.text}>
-                                                                            <h4>{dados.nome}</h4>
-                                                                            <h5>{FormataValor(parseFloat(dados.preço))}</h5>
+                                                if (item.produtos && item.produtos.length > 0) {
+                                                    return (
+                                                        item.produtos.map(dados => {
+                                                            return (
+                                                                <li key={dados.id} className={`col-6 col-md-6 col-lg-4 ${styles.li}`}>
+                                                                    <div>
+                                                                        <div className={styles.cont_img}>
+                                                                            <Link
+                                                                            to={`/${site}/${item.categoria}/${dados.nome.toLowerCase().replaceAll(' ', '')}`}
+                                                                            >
+                                                                                <img src={dados.img} className={styles.img}/>
+                                                                            </Link>
+                                                                        </div>
+                                                                        <div className={styles.cont_desc}>
+                                                                            <div className={styles.text}>
+                                                                                <h4>{dados.nome}</h4>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </li>
-                                                            )
-                                                    })
-                                                    
-                                                )
+                                                                </li>
+                                                                )
+                                                        })
+                                                        
+                                                    )
+                                                }
                                             }
                                         })}
                                 </ul>

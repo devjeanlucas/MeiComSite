@@ -58,16 +58,16 @@ export default function FormEdit (props) {
     async function Update () {  
 
         
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
+        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
             nome: !nome ? obj.nome : nome
         });
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
+        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
             desc: !desc ? obj.desc : desc
         });
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
+        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
             preço: !preço ? obj.preço : preço
         });
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos`, obj.id), {
+        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
             categoria: !categoria ? obj.categoria : categoria
         });
         
@@ -75,6 +75,7 @@ export default function FormEdit (props) {
         
 
     }
+
     
 
 
@@ -85,11 +86,7 @@ export default function FormEdit (props) {
                 <div className="row">
                     <div className="col-md-6">
                         <div className={styles.cont_left}>
-
-
-                            <img src={obj && obj.img} className={styles.img}/>
-
-
+                            <img src={obj && obj.dados.img} className={styles.img}/>
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -103,7 +100,8 @@ export default function FormEdit (props) {
                                     type="text" 
                                     className={styles.input}
                                     onChange={(el) => setNome(el.target.value)}
-                                    defaultValue={obj && obj.nome}/>
+                                    defaultValue={obj && obj.dados.nome}
+                                    />
 
 
                                     <p
@@ -113,7 +111,8 @@ export default function FormEdit (props) {
                                     type="text" 
                                     className={styles.input}
                                     onChange={(el) => setDesc(el.target.value)}
-                                    defaultValue={obj && obj.desc}/>
+                                    defaultValue={obj && obj.dados.desc}
+                                    />
 
 
                                     <p
@@ -123,7 +122,8 @@ export default function FormEdit (props) {
                                     type="number" 
                                     onChange={(el) => setPreço(el.target.value)}
                                     className={styles.input}
-                                    defaultValue={obj &&  obj.preço.toFixed(2)}/>
+                                    defaultValue={obj && obj.dados.preço}
+                                    />
 
                                     {obj && obj.listaSabores &&
                                         <div>
