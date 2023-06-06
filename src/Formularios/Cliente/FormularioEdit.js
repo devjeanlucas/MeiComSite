@@ -457,7 +457,7 @@ export default function FormularioEdit () {
                                                             setTheme(item.name)
                                                         }}
                                                         >
-                                                            <img src={item.img} className={styles.img}/>
+                                                            <img src={""} className={styles.img}/>
                                                             <div className={styles.cont_escolha}>
                                                                 <p>{item.name}</p>
                                                             </div>

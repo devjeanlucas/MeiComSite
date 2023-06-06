@@ -25,6 +25,7 @@ import Fotos from "./Duvidas/Fotos";
 import Pagamentos from "./Duvidas/Pagamentos";
 import ComoComeçar from "./Duvidas/ComoComeçar";
 import Politica from "./Duvidas/PoliticadePrivacidade";
+import Gravação from "./Gravação";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Routes>
               
               <Route path="/" element={<Home/>}/>
+              <Route path="/record" element={<Gravação/>}/>
 
               <Route path="suporte" element={<Suporte/>}>
                 <Route index element={<ControlSuporte/>}/>

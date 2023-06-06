@@ -6,16 +6,25 @@ import { doc, updateDoc, getFirestore} from "@firebase/firestore";
 import { FaPlusCircle, FaRegSave, FaTimesCircle, FaTrash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Visualizar from "./Visualizar";
 
 export default function FormEdit (props) {
 
     const obj = props.dados && props.dados
     const id = props.id && props.id
 
+    const [img1, setImg1] = useState()
+    const [img2, setImg2] = useState()
+    const [img3, setImg3] = useState()
+    const [img4, setImg4] = useState()
     const [nome, setNome] = useState()
+    const [small_desc, setSmallDesc] = useState()
     const [desc, setDesc] = useState()
     const [preço, setPreço] = useState()
-    const [categoria, setCategoria] = useState()
+    const [material, setMaterial] = useState()
+
+
+
     var [ação, setAção] = useState()
     const [addsabor, setAddSabor] = useState(false)
     const [sabor, setSabor] = useState()
@@ -58,20 +67,12 @@ export default function FormEdit (props) {
     async function Update () {  
 
         
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
+        {/*await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
             nome: !nome ? obj.nome : nome
-        });
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
-            desc: !desc ? obj.desc : desc
-        });
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
-            preço: !preço ? obj.preço : preço
-        });
-        await updateDoc(doc(db, `MeiComSite/${id && id}/produtos/${obj.categoria}`, obj.id), {
-            categoria: !categoria ? obj.categoria : categoria
-        });
+        });*/}
+        obj.dados['nome'] = "ii"
+        console.log(obj.dados)
         
-        window.location.reload()
         
 
     }
@@ -82,17 +83,26 @@ export default function FormEdit (props) {
     return (
             <>
             <div className={styles.container}>
-                <h1>{obj && obj.nome}</h1>
+                <h1>{obj && obj.dados && obj.dados.nome}</h1>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-7">
                         <div className={styles.cont_left}>
-                            <img src={obj && obj.dados.img} className={styles.img}/>
+                                    
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-5">
                         <div className={styles.cont_right}>
                             <div className="row">
                                 <div className="col-md-6">
+                                    <p
+                                    className={styles.label}
+                                    >Imagem:</p>
+                                    <input 
+                                    type="text" 
+                                    className={styles.input}
+                                    onChange={(el) => setImg1(el.target.value)}
+                                    defaultValue={obj && obj.dados && obj.dados.img}
+                                    />
                                     <p
                                     className={styles.label}
                                     >Nome:</p>
@@ -100,9 +110,17 @@ export default function FormEdit (props) {
                                     type="text" 
                                     className={styles.input}
                                     onChange={(el) => setNome(el.target.value)}
-                                    defaultValue={obj && obj.dados.nome}
+                                    defaultValue={obj && obj.dados && obj.dados.nome}
                                     />
-
+                                    <p
+                                    className={styles.label}
+                                    >Descrição Curta:</p>
+                                    <input 
+                                    type="text" 
+                                    className={styles.input}
+                                    onChange={(el) => setSmallDesc(el.target.value)}
+                                    defaultValue={obj && obj.dados && obj.dados.small_desc}
+                                    />
 
                                     <p
                                     className={styles.label}
@@ -111,7 +129,7 @@ export default function FormEdit (props) {
                                     type="text" 
                                     className={styles.input}
                                     onChange={(el) => setDesc(el.target.value)}
-                                    defaultValue={obj && obj.dados.desc}
+                                    defaultValue={obj && obj.dados && obj.dados.desc}
                                     />
 
 
@@ -122,7 +140,7 @@ export default function FormEdit (props) {
                                     type="number" 
                                     onChange={(el) => setPreço(el.target.value)}
                                     className={styles.input}
-                                    defaultValue={obj && obj.dados.preço}
+                                    defaultValue={obj && obj.dados && obj.dados.preço}
                                     />
 
                                     {obj && obj.listaSabores &&
@@ -194,6 +212,17 @@ export default function FormEdit (props) {
                                         </div>
                                     }
 
+                                </div>
+                                <div className="col-sm-6">
+                                    <p
+                                    className={styles.label}
+                                    >Material:</p>
+                                    <input 
+                                    type="text" 
+                                    className={styles.input}
+                                    onChange={(el) => setMaterial(el.target.value)}
+                                    defaultValue={obj && obj.dados && obj.dados.material}
+                                    />
                                 </div>
                             </div>
                         </div>
