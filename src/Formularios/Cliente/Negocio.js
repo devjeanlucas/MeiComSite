@@ -111,8 +111,7 @@ export default function Negocio () {
                 </div>
                 }
 
-                {!load && 
-                <Loading/>}
+                
             </>
         )
 }

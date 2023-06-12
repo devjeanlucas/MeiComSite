@@ -105,7 +105,6 @@ export default function Vendas () {
                 }):
                 <h4>Ainda não há vendas</h4>
                 }
-                {!load && <Loading/>}
             </ul>
 
             <div className="modal fade" id="VisualizarPedido" tabindex="-1" aria-labelledby="exampleModalLabel">

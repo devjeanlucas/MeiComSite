@@ -158,9 +158,7 @@ export default function Informations () {
                                 )
                         }
                     })}
-                    {!load &&
-                    <Loading/>
-                    }
+                    
                 </ul>
                 
 

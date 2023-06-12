@@ -149,7 +149,6 @@ export default function Produtos () {
                         })
                         }
                     </ul>
-                    {!load && <Loading/>}
                 </div>
 
 
