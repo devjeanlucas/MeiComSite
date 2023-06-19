@@ -7,6 +7,7 @@ import App from "../../Hooks/App"
 import '@firebase/firestore';
 import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import { FaShoppingBag } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 
 export default function MarketHome () {
@@ -148,7 +149,7 @@ export default function MarketHome () {
                 
                 </>
             
-        
+                {<Helmet title="Grava"/>}
         </>
         )
 }
