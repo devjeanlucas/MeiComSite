@@ -9,6 +9,12 @@ import { getFirestore, collection, getDocs} from "@firebase/firestore";
 import { FaShoppingBag } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 
+import {Swiper, SwiperSlide} from "swiper/react"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import LinkMeiComSite from "./LinkMeiComSite";
+
+
 
 export default function MarketHome () {
     const db = getFirestore(App)
@@ -16,6 +22,8 @@ export default function MarketHome () {
     const [produtos, setProdutos] = useState([])
     const [users, setUsers] = useState([])
     const [state, setState] = useState("start")
+    const [primeira_categoria, setPrimeira_categoria] = useState()
+    const [segunda_categoria, setSegunda_categoria] = useState()
     const [load, setLoading] = useState(false)
     const {site} = useParams()
     
@@ -66,6 +74,9 @@ export default function MarketHome () {
         }
     });
 
+
+
+
     
     return (
         <>
@@ -74,38 +85,141 @@ export default function MarketHome () {
                 <>
                 {!load && <Loading/>}
                 <div className={`${styles.container} row ${styles[usuario && usuario[0].theme]}`}>
-                    <div className="col-md-3">
-                        <NavShop/>
-                    </div>
-                    <div className="col-md-9">
+                    <div className="col-md-12">
                         <div className={styles.list}>
-                            <ul className="row">
-                            {produtos && produtos.map(dados => {
-                                    return (
-                                            <li key={dados.id} className={`${styles.li} col-12 col-md-12`}>
-                                                <div>
-                                                    <div className={styles.cont_img}>
-                                                        <Link
-                                                        to={`/${site}/${dados.categoria}`}
-                                                        >
-                                                            <img src={dados.img} className={styles.img}/>
-                                                        </Link>
-                                                        <div className={styles.cont_desc}>
-                                                            <h4>{dados.categoria}</h4>
+                        <Swiper
+                        spaceBetween={10}
+                        className={styles.cont_slides_destaque}
+                        slidesPerView={1}
+                        loop={true}
+                        pagination={true}
+                        >
+                        {produtos && produtos.map(dados => {
+                            if (dados.destaque) {
+                                return (
+                                        <SwiperSlide key={dados.id} className={`${styles.li}`}>
+                                            <div className="row">
+                                                <div className="col-6 col-sm-5 col-md-6 col-lg-8">
+                                                    <div className={styles.cont_text_destaque}>
+                                                        <div>
+                                                            <h1 className={styles.text_destaque}>{dados.text}</h1>
+                                                            <Link
+                                                            to={`/${site}/${dados.categoria}`}
+                                                            className={styles.link_destaque}>
+                                                            Confira</Link>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        )
+                                                <div className="col-6 col-sm-7 col-md-6 col-lg-4">
+                                                    <div className={styles.cont_img_destaque}><img src={dados.img} className={styles.img_destaque}/></div>
+                                                </div>
+                                            </div>
+                                        </SwiperSlide>
+                                    )
+                            }
                                 
                             })
                             }
-                            </ul>
+                        </Swiper>
+                        <h2 className={styles.text_align_center}>Categorias</h2>
+                        <Swiper
+                        spaceBetween={1}
+                        breakpoints={{
+                            320: {
+                                width: 320,
+                                slidesPerView: 2,
+                            },
+                            576: {
+                                width: 576,
+                                slidesPerView: 3,
+                            },
+                        }}
+                        >
+                            {produtos && produtos.map(dados => {
+                                return (
+                                        <SwiperSlide key={dados.id} className={`${styles.li}`}>
+                                            <Link to={`/${site}/${dados.categoria}`} className={styles.link_categorias}>
+                                                <div className={styles.cont_categorias}>
+                                                    <img src={dados.img} className={styles.img_categoria}/>
+                                                    <p className={styles.text_categoria}>{dados.categoria}</p>
+                                                </div>
+                                            </Link>
+                                        </SwiperSlide>
+                                    )
+                                
+                            })
+                            }
+
+                        </Swiper>
+
+                            <div className={styles.cont_prod}>
+                                    {produtos && produtos.map(dados => {
+                                    if (dados.mostrar) {
+                                        if (dados.produtos && dados.produtos.length > 0) {
+                                            return (
+                                                <>
+                                                    
+                                                    <h5 key={dados.categoria} className={styles.title_categoria}>{dados.categoria}</h5>
+
+                                                    <Swiper
+                                                    spaceBetween={25}
+                                                    loop={true}
+                                                    pagination={true}
+                                                    breakpoints={{
+                                                        320: {
+                                                            width: 320,
+                                                            slidesPerView: 2,
+                                                        },
+                                                        576: {
+                                                            width: 576,
+                                                            slidesPerView: 1,
+                                                        },
+                                                    }}
+                                                    >
+                                                        {dados.produtos.map(item => {
+                                                            return (
+                                                                <SwiperSlide key={dados.nome}>
+                                                                    <div>
+                                                                        <Link
+                                                                        to={`/${site}/${dados.categoria}/${item.nome.toLowerCase().replaceAll(' ','')}`}
+                                                                        >
+                                                                        <img src={item.img} className={styles.img_examples}/>
+                                                                        </Link>
+                                                                        <div className={styles.info_produto}>
+                                                                            <p className={styles.text_info}>{item.nome}</p>
+                                                                            <p className={styles.text_info}>{FormataValor(item.preço)}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </SwiperSlide>
+                                                                )
+                                                        })}
+                                                    </Swiper>
+                                                    
+                                                        
+                                                </>
+                                                )
+                                        }
+                                    }    
+                                    })
+                                    }
+                            </div>
                         </div>
-                    </div>
+                        </div>
                 </div>
+                
                 </>
             }
+
+
+
+
+
+
+
+
+
+
+            
             {usuario.length > 0 && usuario[0].theme == "Light" && 
                     <div className={`${styles.container} row ${styles[usuario && usuario[0].theme]}`}>
                         <div className="col-lg-3">
@@ -149,7 +263,11 @@ export default function MarketHome () {
                 
                 </>
             
-                {<Helmet title="Grava"/>}
+                <Helmet>
+                    <title>{usuario.length > 0 && usuario[0].razao}</title>
+                    <link rel="icon" type="image/url" href={usuario.length > 0 && usuario[0].logo} sizes="16x16" />
+                </Helmet>
+                <LinkMeiComSite/>
         </>
         )
 }

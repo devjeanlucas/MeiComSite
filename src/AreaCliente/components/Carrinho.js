@@ -100,14 +100,14 @@ export default function Carrinho () {
                                 return (
                                     <li key={dados.id}>
                                         <div className="row">
-                                            <div className="col-4 col-sm-4">
+                                            <div className="col-3 col-sm-4">
                                                 <Link
                                                     to={`/${site}/${dados.categoria}/${dados.nome.replaceAll(' ', '').toLowerCase()}`}
                                                 >
                                                     <img src={dados.img} className={styles.img}/>
                                                 </Link>
                                             </div>
-                                            <div className="col-8 col-sm-7">
+                                            <div className="col-9 col-sm-7">
                                                 <div className={styles.cont_desc}>
                                                     <div className="row">
                                                         <h5>{dados.nome}</h5>

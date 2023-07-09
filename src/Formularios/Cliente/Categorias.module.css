@@ -84,3 +84,14 @@
     margin: 3em auto;
     text-align: center;
 }
+.input {
+    width: 100%;
+}
+.on {
+    color: #4fe20b !important;
+    margin-right: 0.4em;
+}
+.off {
+    color: #8f8f8f !important;
+    margin-right: 0.4em;
+}

@@ -1,0 +1,15 @@
+.text_footer {
+    position: fixed;
+    z-index: 3000;
+    padding-bottom: 0.8em;
+    bottom: 0em;
+    text-align: center;
+    left: 0em;
+    right: 0em;
+    margin: 0em auto;
+    width: 100%;
+    background-color: #fff;
+}
+.text_footer a {
+    color: #000;
+}

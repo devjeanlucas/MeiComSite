@@ -4,7 +4,7 @@ import { useState,useEffect } from "react"
 import {auth} from "../../Service/firebase"
 import App from "../../Hooks/App"
 import '@firebase/firestore';
-import {FaEdit, FaPlusCircle, FaRegSadTear, FaTrashAlt} from "react-icons/fa"
+import {FaCheck, FaCheckCircle, FaEdit, FaPlusCircle, FaRegSadTear, FaTimesCircle, FaTrashAlt} from "react-icons/fa"
 import { getFirestore, collection, getDocs, setDoc, doc, updateDoc} from "@firebase/firestore";
 import BoxConfirm from "../../components/BoxConfirm"
 import { Link } from "react-router-dom"
@@ -19,6 +19,9 @@ export default function Informations () {
     const [Users, setUsers] = useState([])
     const [usuarios, setUsuarios] = useState([])
     const [ação, setAção] = useState([])
+    const [mostrar, setMostrar] = useState()
+    const [text, setText] = useState()
+    const [destaque, setDestaque] = useState()
     const [imagem, setImagem] = useState()
     const [categoria, setCategoria] = useState()
     const [produto, setProduto] = useState()
@@ -71,7 +74,10 @@ export default function Informations () {
     const addCategoria = async () => {
         await setDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${categoria}`), {
             categoria: categoria,
-            img: imagem
+            img: imagem,
+            mostrar:false,
+            destaque:false,
+            text:''
         });
         window.location.reload()
     }
@@ -81,6 +87,15 @@ export default function Informations () {
         });
         await updateDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${produto && produto.id}`), {
             img: imagem ? imagem : produto.img
+        });
+        await updateDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${produto && produto.id}`), {
+            destaque: destaque ?  destaque == 'Sim' ? true : destaque == 'Não' && false : produto.destaque
+        });
+        await updateDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${produto && produto.id}`), {
+            mostrar: mostrar ?  mostrar == 'Sim' ? true : mostrar == 'Não' && false : produto.mostrar
+        });
+        await updateDoc(doc(db, `MeiComSite/${user && user.email}/produtos`, `${produto && produto.id}`), {
+            text: text ?  text  : produto.text
         });
         window.location.reload()
     }
@@ -194,16 +209,74 @@ export default function Informations () {
                                 {imagem && <img src={imagem} className={styles.img}/>}
                                 <div className="line"/>
                                 <div className={styles.info_categorie}>
-                                    <strong>nome:</strong>
+                                    <strong>Nome:</strong>
                                     <input type="text"
                                     defaultValue={produto && produto.categoria}
                                     onChange={(el)=> setCategoria(el.target.value)}
                                     />
-                                    <strong>imagem:</strong>
+                                    <strong>Imagem:</strong>
                                     <input type="text"
                                     defaultValue={produto && produto.imagem}
                                     onChange={(el)=> setImagem(el.target.value)}
                                     />
+
+
+                                    <div className={styles.cont_check_box}>
+                                        <strong>Mostrar no inicio</strong>
+                                        {produto && produto.mostrar ? <FaCheckCircle className={styles.on}/> : <FaTimesCircle className={styles.off}/>}
+                                        <select
+                                        onChange={(el)=> setMostrar(el.target.value)}
+                                        >
+                                            <option
+                                            value="--"
+                                            >--</option>
+                                            <option
+                                            value="Sim"
+                                            >Sim</option>
+                                            <option
+                                            value="Não"
+                                            >Não</option>
+                                        </select>
+                                    </div>
+                                    <div className={styles.cont_check_box}>
+                                        <strong>Destacar categoria</strong>
+                                        {produto && produto.destaque ? <FaCheckCircle className={styles.on}/> : <FaTimesCircle className={styles.off}/>}
+                                        <select
+                                        defaultValue='sim'
+                                        onChange={(el)=> setDestaque(el.target.value)}
+                                        >
+                                            <option
+                                            value="--"
+                                            >--</option>
+                                            <option
+                                            value="Sim"
+                                            >Sim</option>
+                                            <option
+                                            value="Não"
+                                            >Não</option>
+                                        </select>
+                                    </div>
+                                    {produto && produto.mostrar &&
+                                    <div>
+                                        <strong>Texto de destaque</strong>
+                                        <textarea
+                                        defaultValue={produto.text}
+                                        className={styles.input}
+                                        onChange={(el)=> setText(el.target.value)}
+                                        />
+                                    </div>
+                                    }
+
+
+
+
+
+
+
+
+
+
+
                                 </div>
                                 <button
                                 onClick={()=> editCategoria()}

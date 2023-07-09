@@ -257,11 +257,13 @@ export default function Produto () {
                         </div>
                     </div>
                 }
+
+                
                 {usuario.length > 0 && produto.length > 0  && usuario[0].theme == "Dark" &&
                     <div className={styles[usuario[0].theme]}>
                         {!load && <Loading/>}
                         <div className="row">
-                            <div className="col-md-7">
+                            <div className="col-sm-7">
                                 <Swiper
                                 spaceBetween={10}
                                 pagination={{ clickable: true }}
@@ -301,7 +303,7 @@ export default function Produto () {
 
                                 </Swiper>
                             </div>
-                            <div className="col-md-5">
+                            <div className="col-sm-5">
                                 <div className={styles.cont_right}>
                                     <div className={styles.header}>
                                         <h3 className={styles.name}>{produto[0].nome}</h3>

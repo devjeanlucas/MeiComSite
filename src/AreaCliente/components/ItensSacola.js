@@ -62,8 +62,8 @@ export default function ItensSacola () {
     
     return (
             <div className={styles[theme && theme]}>
-                <h4>Compras</h4>
-                <h5>Itens: {qtd}</h5>
+                <h4>Meu Carrinho</h4>
+                <h5>Itens: x{qtd}</h5>
                 <h3>Total: {FormataValor(total)}</h3>
                 {dados.length > 0 ?
                     <Link to={`/${site}/compras/detalhes`}

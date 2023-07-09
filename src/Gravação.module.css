@@ -1,7 +1,5 @@
 .container {
-    background-color: #000;
-    width: 100%;
-    position: fixed;
-    height: 100vh;
-    top: 0em;
+    display: table;
+    margin: 1em auto;
+    text-align: center;
 }

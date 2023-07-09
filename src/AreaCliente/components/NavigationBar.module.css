@@ -48,6 +48,8 @@
         justify-content: space-between;
         z-index: 1000;
         background-color: #fff;
+        align-items: center;
+        border-bottom: 1px solid #dddd;
     }
     .Dark .options {
         display: none;
@@ -68,7 +70,50 @@
         height: 100%;
         align-items: center;
     }
-
+    .link_home {
+        color: #000;
+        text-decoration: none;
+        font-size: 1.1em;
+        font-weight: 800;
+        margin-left: 1.5em;
+        font-family: 'Raleway', sans-serif;
+    }
+    .link {
+        color: #000;
+        text-decoration: none;
+        margin-left: 1.5em;
+        font-weight: 600;
+    }
+    .info_place {
+        align-items: center;
+        display: flex;
+    }
+    .info_desk {
+        display: none !important;
+    }
+    .body_offcanva {
+        position: fixed;
+        top: 5em !important;
+    }
+    .btn_cat {
+        margin-left: 2.5em;
+        background-color: transparent;
+        border: none;
+        font-weight: 600;
+    }
+    .search {
+        height: 36px;
+        border: 1px solid #7c7c7c;
+        border-radius: 30px;
+        padding: 0em 0.7em;
+        position: relative;
+    }
+    .cont_input {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
 }
 @media screen and (min-width:767px) {
     .Dark .options {
@@ -83,8 +128,8 @@
     .Dark .input {
         display: flex;
     }
-    .Dark .icon_bars, .Light .icon_bars {
-        display: none;
+    .info_desk {
+        display: flex !important;
     }
 
 }
